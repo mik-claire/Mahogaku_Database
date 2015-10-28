@@ -16,7 +16,7 @@ namespace Mahogaku_Database
 {
     public partial class Form_Main : Form
     {
-        private string connectionString = "mongodb://192.168.15.130:27017";
+        private string connectionString = "mongodb://localhost:27017";
 		//private string connectionString = "mongodb://localhost:51001";
 
         public Form_Main()
@@ -97,7 +97,7 @@ namespace Mahogaku_Database
                 server = client.GetServer();
 
                 MongoDatabase db = server.GetDatabase("mhgk");
-                MongoCollection col = db.GetCollection<Character>("data");
+                MongoCollection col = db.GetCollection<CharacterData>("data");
 
                 var filter = new CharacterData();
                 var cursor = col.FindAllAs<CharacterData>().SetSortOrder(SortBy.Ascending("Type", "Kana"));
@@ -111,7 +111,7 @@ namespace Mahogaku_Database
 					}
 
                     data.Add(doc);
-                }
+                }                
 
                 return data;
             }
@@ -152,12 +152,24 @@ namespace Mahogaku_Database
 				{
 					case "力":
 						item.SubItems[0].ForeColor = Color.Crimson;
-						break;
+                        for (int i = 0; i < item.SubItems.Count; i++)
+                        {
+                            item.SubItems[i].BackColor = Color.SeaShell;
+                        }
+                        break;
 					case "魔":
 						item.SubItems[0].ForeColor = Color.SteelBlue;
+                        for (int i = 0; i < item.SubItems.Count; i++)
+                        {
+                            item.SubItems[i].BackColor = Color.AliceBlue;
+                        }
 						break;
                     case "技":
 						item.SubItems[0].ForeColor = Color.Green;
+                        for (int i = 0; i < item.SubItems.Count; i++)
+                        {
+                            item.SubItems[i].BackColor = Color.Honeydew;
+                        }
 						break;
 					default:
 						break;
