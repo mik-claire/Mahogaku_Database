@@ -84,7 +84,7 @@ namespace Mahogaku_Database
 
 		public string[] ConvertToArray()
 		{
-			string[] record = new string[13];
+			string[] record = new string[14];
 
             string[] affiliation = new string[2];
             if (Affiliation != null)
@@ -107,6 +107,7 @@ namespace Mahogaku_Database
             record[10] = Remarks;
             record[11] = creater;
             record[12] = URLToPixiv;
+            record[13] = id.ToString();
 
 			return record;
 		}

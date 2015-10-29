@@ -14,8 +14,8 @@ namespace Mahogaku_Database
 {
     public partial class Form_Insert : Form
     {
-        private string connectionString = "mongodb://192.168.11.7:27017";
-        //private string connectionString = "mongodb://localhost:51001";
+        //private string connectionString = "mongodb://localhost:27017";
+        private string connectionString = "mongodb://localhost:51001";
 
         public Form_Insert()
         {
