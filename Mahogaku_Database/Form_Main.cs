@@ -9,15 +9,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using System.Data.SQLite;
 
 namespace Mahogaku_Database
 {
     public partial class Form_Main : Form
     {
         //private string connectionString = "mongodb://localhost:27017";
-		private string connectionString = "mongodb://localhost:51001";
+		//private string connectionString = "mongodb://localhost:51001";
+
+        private string connectionString = string.Format(
+            "Data Source={0};Version=3;", Application.StartupPath + @"\data.db");
+
+        private List<string> characterID = new List<string>();
 
         public Form_Main()
         {
@@ -88,38 +95,77 @@ namespace Mahogaku_Database
         /// <returns></returns>
         private List<CharacterData> getData()
         {
-            MongoClient client = null;
-            MongoServer server = null;
+            SQLiteConnection cn = null;
+            SQLiteCommand cmd = null;
+            SQLiteDataReader reader = null;
 
             try
             {
-                client = new MongoClient(this.connectionString);
-                server = client.GetServer();
+                cn = new SQLiteConnection(this.connectionString);
+                cn.Open();
 
-                MongoDatabase db = server.GetDatabase("mhgk");
-                MongoCollection col = db.GetCollection<CharacterData>("data");
-
-                var filter = new CharacterData();
-                var cursor = col.FindAllAs<CharacterData>().SetSortOrder(SortBy.Ascending("Type", "Kana"));
-
+                cmd = cn.CreateCommand();
+                cmd.CommandText = @"
+SELECT
+  CH.ID AS ID, CH.NAME AS NAME, CH.KANA AS KANA,
+  T.NAME AS TYPE, S.NAME AS SEX,
+  CH.RACE AS RACE, CH.AGE AS AGE, CH.GRADE AS GRADE,
+  CH.SKILL AS SKILL, CH.CLUB AS CLUB, CH.ORGANIZATION AS ORG,
+  CH.REMARKS AS REM, CR.NAME AS CRNAME, CR.PIXIV AS PIXIV,
+  CR.TWITTER AS TWITTER, CH.URL AS SHEET
+FROM
+  CHARACTER CH JOIN CREATER CR
+  ON CH.CREATER_ID = CR.ID JOIN TYPE T
+  ON CH.TYPE_ID = T.ID JOIN SEX S
+  ON CH.SEX_ID = S.ID
+ORDER BY
+  T.ID ASC,
+  CH.KANA ASC
+;
+";
+                reader = cmd.ExecuteReader();
+                
                 List<CharacterData> data = new List<CharacterData>();
-                foreach (CharacterData doc in cursor)
-				{
-					if (doc.Skill == string.Empty)
-					{
-						doc.Skill = "NO_DATA";
-					}
+                while (reader.Read())
+                {
+                    CharacterData doc = new CharacterData();
+                    doc.ID = reader["ID"].ToString();
+                    doc.Name = reader["NAME"].ToString();
+                    doc.Kana = reader["KANA"].ToString();
+                    doc.Type = reader["TYPE"].ToString();
+                    doc.Sex = reader["SEX"].ToString();
+                    doc.Age = reader["AGE"].ToString();
+                    doc.Grade = reader["GRADE"].ToString();
+                    doc.Skill = reader["SKILL"].ToString();
+                    doc.Club = reader["CLUB"].ToString();
+                    doc.Organization = reader["ORG"].ToString();
+                    doc.Remarks = reader["REM"].ToString();
+                    doc.URLToPixiv = reader["SHEET"].ToString();
+
+                    CreaterData creater = new CreaterData();
+                    creater.Name = reader["CRNAME"].ToString();
+                    creater.PixivID = reader["PIXIV"].ToString();
+                    creater.TwitterID = reader["TWITTER"].ToString();
+                    doc.Creater = creater;
 
                     data.Add(doc);
-                }                
+                }
 
                 return data;
             }
             finally
             {
-                if (server != null)
+                if (reader != null)
                 {
-                    server.Disconnect();
+                    reader.Close();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+                if (cn != null)
+                {
+                    cn.Close();
                 }
             }
         }
@@ -134,7 +180,8 @@ namespace Mahogaku_Database
 
             foreach(CharacterData doc in data)
             {
-				string[] record = doc.ConvertToArray();
+                /*
+				//string[] record = doc.ConvertToArray();
                 record[11] = record[11].Split(',')[0];
 				ListViewItem item = new ListViewItem(record);
                 item.UseItemStyleForSubItems = false;
@@ -147,33 +194,60 @@ namespace Mahogaku_Database
                 }
                 tag += "," + doc.URLToPixiv;
                 item.Tag = tag;
+                */
+                string[] record = {
+                                      doc.Type,
+                                      doc.Name,
+                                      doc.Kana,
+                                      doc.Sex,
+                                      doc.Race,
+                                      doc.Age,
+                                      doc.Grade,
+                                      doc.Skill,
+                                      doc.Club,
+                                      doc.Organization,
+                                      doc.Remarks,
+                                      doc.Creater.Name,
+                                      doc.ID
+                                  };
+                ListViewItem item = new ListViewItem(record);
+                item.UseItemStyleForSubItems = false;
 
-				switch (record[0])
-				{
-					case "力":
-						item.SubItems[0].ForeColor = Color.Crimson;
+                // Linkをタグで保持
+                string tag = @"http://www.pixiv.net/member.php?id=" + doc.Creater.PixivID + ",";
+                if (doc.Creater.TwitterID != null)
+                {
+                    tag += @"https://twitter.com/" + doc.Creater.TwitterID;
+                }
+                tag += "," + doc.URLToPixiv;
+                item.Tag = tag;
+
+                switch (doc.Type)
+                {
+                    case "力":
+                        item.SubItems[0].ForeColor = Color.Crimson;
                         for (int i = 0; i < item.SubItems.Count; i++)
                         {
                             item.SubItems[i].BackColor = Color.SeaShell;
                         }
                         break;
-					case "魔":
-						item.SubItems[0].ForeColor = Color.SteelBlue;
+                    case "魔":
+                        item.SubItems[0].ForeColor = Color.SteelBlue;
                         for (int i = 0; i < item.SubItems.Count; i++)
                         {
                             item.SubItems[i].BackColor = Color.AliceBlue;
                         }
-						break;
+                        break;
                     case "技":
-						item.SubItems[0].ForeColor = Color.Green;
+                        item.SubItems[0].ForeColor = Color.Green;
                         for (int i = 0; i < item.SubItems.Count; i++)
                         {
                             item.SubItems[i].BackColor = Color.Honeydew;
                         }
-						break;
-					default:
-						break;
-				}
+                        break;
+                    default:
+                        break;
+                }
 
                 this.listView_Display.Items.Add(item);
             }
@@ -186,6 +260,7 @@ namespace Mahogaku_Database
         /// <param name="e"></param>
         private void button_Insert_Click(object sender, EventArgs e)
         {
+            /*
             using (Form_Insert f = new Form_Insert())
             {
                 DialogResult dr = f.ShowDialog();
@@ -197,6 +272,7 @@ namespace Mahogaku_Database
                 // 更新
                 load();
             }
+            */
         }
 
         private void listView_Display_MouseClick(object sender, MouseEventArgs e)

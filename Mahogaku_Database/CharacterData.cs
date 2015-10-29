@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Bson;
 
 namespace Mahogaku_Database
 {
@@ -16,13 +15,12 @@ namespace Mahogaku_Database
 		// TODO: クラスにあってDBにないフィールド
 
 		/// <summary>
-		/// オブジェクトID（使わないんじゃね）
+		/// ID
 		/// </summary>
-		public BsonObjectId id { get; set; }
+		public string ID { get; set; }
 
 		/// <summary>
 		/// 属性
-		/// int にするかも
 		/// </summary>
 		public string Type { get; set; }
 
@@ -61,10 +59,15 @@ namespace Mahogaku_Database
 		/// </summary>
 		public string Skill { get; set; }
 
-		/// <summary>
-		/// 「,」区切りのフリータグ
-		/// </summary>
-		public AffiliationsData Affiliation { get; set; }
+        /// <summary>
+        /// 部活
+        /// </summary>
+        public string Club { get; set; }
+
+        /// <summary>
+        /// 組織
+        /// </summary>
+        public string Organization { get; set; }
 
 		/// <summary>
 		/// 備考
@@ -81,35 +84,5 @@ namespace Mahogaku_Database
 		/// 「,」区切りで複数設定可能
 		/// </summary>
 		public string URLToPixiv { get; set; }
-
-		public string[] ConvertToArray()
-		{
-			string[] record = new string[14];
-
-            string[] affiliation = new string[2];
-            if (Affiliation != null)
-            {
-                affiliation = Affiliation.getStringArray();
-            }
-
-            string creater = Creater.GetString();
-
-            record[0] = Type;
-            record[1] = Name;
-            record[2] = Kana;
-            record[3] = Sex;
-            record[4] = Race;
-            record[5] = Age;
-            record[6] = Grade;
-            record[7] = Skill;
-            record[8] = affiliation[0];
-            record[9] = affiliation[1];
-            record[10] = Remarks;
-            record[11] = creater;
-            record[12] = URLToPixiv;
-            record[13] = id.ToString();
-
-			return record;
-		}
     }
 }

@@ -8,7 +8,7 @@ namespace Mahogaku_Database
 {
 	/// <summary>
 	/// 親御さんのデータ
-	/// </summary>
+    /// </summary>
 	public class CreaterData
 	{
 		public string Name { get; set; }
@@ -16,15 +16,5 @@ namespace Mahogaku_Database
 		public string PixivID { get; set; }
 
 		public string TwitterID { get; set; }
-
-        public string GetString()
-        {
-            if (TwitterID == null)
-            {
-                return Name + "," + PixivID;
-            }
-
-            return Name + "," + PixivID + "," + TwitterID;
-        }
 	}
 }

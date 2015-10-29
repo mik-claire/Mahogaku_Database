@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Mahogaku_Database
 {
 	/// <summary>
 	/// 所属
-	/// </summary>
+    /// </summary>
+    [BsonIgnoreExtraElements]
 	public class AffiliationsData
 	{
 		/// <summary>

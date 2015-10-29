@@ -233,7 +233,7 @@ TwitterID : {14}",
             doc.Age = this.textBox_Age.Text.Trim();
             doc.Grade = this.textBox_Grade.Text.Trim();
             doc.Skill = skill;
-            doc.Affiliation = affiliation;
+            //doc.Affiliation = affiliation;
             doc.Remarks = this.textBox_Remarks.Text.Trim();
             doc.URLToPixiv = this.textBox_URLToPixiv.Text.Trim();
             doc.Creater = creater;
