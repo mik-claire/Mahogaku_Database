@@ -47,10 +47,10 @@
             // 
             // button_GetData
             // 
-            this.button_GetData.Location = new System.Drawing.Point(1063, 471);
-            this.button_GetData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_GetData.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_GetData.Location = new System.Drawing.Point(797, 377);
             this.button_GetData.Name = "button_GetData";
-            this.button_GetData.Size = new System.Drawing.Size(100, 29);
+            this.button_GetData.Size = new System.Drawing.Size(75, 23);
             this.button_GetData.TabIndex = 0;
             this.button_GetData.Text = "取得";
             this.button_GetData.UseVisualStyleBackColor = true;
@@ -74,11 +74,10 @@
             this.listView_Display.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_Display.FullRowSelect = true;
             this.listView_Display.GridLines = true;
-            this.listView_Display.Location = new System.Drawing.Point(16, 15);
-            this.listView_Display.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_Display.Location = new System.Drawing.Point(12, 12);
             this.listView_Display.MultiSelect = false;
             this.listView_Display.Name = "listView_Display";
-            this.listView_Display.Size = new System.Drawing.Size(1145, 448);
+            this.listView_Display.Size = new System.Drawing.Size(860, 359);
             this.listView_Display.TabIndex = 1;
             this.listView_Display.UseCompatibleStateImageBehavior = false;
             this.listView_Display.View = System.Windows.Forms.View.Details;
@@ -146,10 +145,10 @@
             // 
             // button_Insert
             // 
-            this.button_Insert.Location = new System.Drawing.Point(955, 471);
-            this.button_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Insert.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_Insert.Location = new System.Drawing.Point(716, 377);
             this.button_Insert.Name = "button_Insert";
-            this.button_Insert.Size = new System.Drawing.Size(100, 29);
+            this.button_Insert.Size = new System.Drawing.Size(75, 23);
             this.button_Insert.TabIndex = 2;
             this.button_Insert.Text = "登録";
             this.button_Insert.UseVisualStyleBackColor = true;
@@ -157,13 +156,13 @@
             // 
             // Form_Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 515);
+            this.ClientSize = new System.Drawing.Size(884, 412);
             this.Controls.Add(this.button_Insert);
             this.Controls.Add(this.listView_Display);
             this.Controls.Add(this.button_GetData);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximizeBox = false;
             this.Name = "Form_Main";
             this.Text = "まほがくでーたべーす！";
             this.Load += new System.EventHandler(this.Form_Main_Load);

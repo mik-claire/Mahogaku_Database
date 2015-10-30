@@ -1,0 +1,521 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Data.SQLite;
+
+namespace Mahogaku_Database
+{
+    public partial class Form_InsertCharacter : Form
+    {
+        private string connectionString = string.Format(
+            "Data Source={0};Version=3;", Application.StartupPath + @"\data.db");
+
+        List<string> sexID = new List<string>();
+        List<string> typeID = new List<string>();
+        List<string> createrID = new List<string>();
+
+        public Form_InsertCharacter()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// フォームロード
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form_Insert_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                // データセット
+                setData();
+            }
+            catch (Exception ex)
+            {
+                string message = "Error!!" + Environment.NewLine + ex.Message;
+                MessageBox.Show(message,
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// データセット
+        /// </summary>
+        private void setData()
+        {
+            // 性別
+            List<string[]> sex = getSex();
+            foreach(string[] doc in sex)
+            {
+                this.sexID.Add(doc[0]);
+                this.comboBox_Sex.Items.Add(doc[1]);
+            }
+            this.comboBox_Sex.SelectedIndex = 0;
+
+            // 属性
+            List<string[]> type = getType();
+            foreach (string[] doc in type)
+            {
+                this.typeID.Add(doc[0]);
+                this.comboBox_Type.Items.Add(doc[1]);
+            }
+            this.comboBox_Type.SelectedIndex = 0;
+
+            // 親御さん
+            List<string[]> creater = getCreater();
+            foreach (string[] doc in creater)
+            {
+                this.createrID.Add(doc[0]);
+                this.comboBox_Creater.Items.Add(doc[1]);
+            }
+            this.comboBox_Creater.SelectedIndex = 0;
+        }
+
+        private List<string[]> getSex()
+        {
+            SQLiteConnection cn = null;
+            SQLiteCommand cmd = null;
+            SQLiteDataReader reader = null;
+
+            try
+            {
+                cn = new SQLiteConnection(this.connectionString);
+                cn.Open();
+
+                cmd = cn.CreateCommand();
+                cmd.CommandText = @"
+SELECT
+  *
+FROM
+  SEX S
+ORDER BY
+  S.ID ASC
+;
+";
+                reader = cmd.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+                while (reader.Read())
+                {
+                    string[] doc = {
+                                       reader["ID"].ToString(),
+                                       reader["NAME"].ToString()
+                                   };
+                    data.Add(doc);
+                }
+
+                return data;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+                if (cn != null)
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+        private List<string[]> getType()
+        {
+            SQLiteConnection cn = null;
+            SQLiteCommand cmd = null;
+            SQLiteDataReader reader = null;
+
+            try
+            {
+                cn = new SQLiteConnection(this.connectionString);
+                cn.Open();
+
+                cmd = cn.CreateCommand();
+                cmd.CommandText = @"
+SELECT
+  *
+FROM
+  TYPE T
+ORDER BY
+  T.ID ASC
+;
+";
+                reader = cmd.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+                while (reader.Read())
+                {
+                    string[] doc = {
+                                       reader["ID"].ToString(),
+                                       reader["NAME"].ToString()
+                                   };
+                    data.Add(doc);
+                }
+
+                return data;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+                if (cn != null)
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+        private List<string[]> getCreater()
+        {
+            SQLiteConnection cn = null;
+            SQLiteCommand cmd = null;
+            SQLiteDataReader reader = null;
+
+            try
+            {
+                cn = new SQLiteConnection(this.connectionString);
+                cn.Open();
+
+                cmd = cn.CreateCommand();
+                cmd.CommandText = @"
+SELECT
+  ID,
+  NAME,
+  PASSWORD
+FROM
+  CREATER C
+ORDER BY
+  C.NAME ASC
+;
+";
+                reader = cmd.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+                while (reader.Read())
+                {
+                    string[] doc = {
+                                       reader["ID"].ToString(),
+                                       reader["NAME"].ToString(),
+                                       reader["PASSWORD"].ToString()
+                                   };
+                    data.Add(doc);
+                }
+
+                return data;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+                if (cn != null)
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 「OK」
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_OK_Click(object sender, EventArgs e)
+        {
+            #region 入力チェック
+            // 名前
+            if (this.textBox_Name.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("名前が未入力です。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            // よみがな
+            if (this.textBox_Kana.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("よみがなが未入力です。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            // 種族
+            if (this.textBox_Race.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("種族が未入力です。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            // 年齢
+            if (this.textBox_Age.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("年齢が未入力です。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            // 学年
+            if (this.textBox_Grade.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("学年が未入力です。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            // キャラクターシートURL
+            if (this.textBox_URLToPixiv.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("キャラクターシートURLが未入力です。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            // 魔砲
+            string skill = this.textBox_Skill.Text.Trim();
+            if (skill == string.Empty)
+            {
+                skill = "NoData";
+            }
+
+            // 部活
+            string club = "未所属";
+            if (this.textBox_Club.Text.Trim() != string.Empty)
+            {
+                club = this.textBox_Club.Text.Trim();
+            }
+
+            // 組織
+            string organization = "未所属";
+            if (this.textBox_Organization.Text.Trim() != string.Empty)
+            {
+                organization = this.textBox_Organization.Text.Trim();
+            }
+
+            // 親御さん情報
+            CreaterData creater = new CreaterData();
+            creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
+
+            // キャラクターシートURL
+            if (this.textBox_URLToPixiv.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("キャラクターシートURLが未入力です。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            #endregion
+
+            DialogResult dr = MessageBox.Show(string.Format(@"
+以下の情報で登録してよろしいですか？
+
+名前 : {0}
+よみがな : {1}
+性別 : {2}
+属性 : {3}
+種族 : {4}
+年齢 : {5}
+学年 : {6}
+魔砲 : {7}
+部活 : {8}
+組織 : {9}
+備考 : {10}
+キャラクターシートURL :
+{11}
+
+親御さん情報
+名前 : {12}",
+                 this.textBox_Name.Text.Trim(),
+                 this.textBox_Kana.Text.Trim(),
+                 this.sexID[this.comboBox_Sex.SelectedIndex],
+                 this.typeID[this.comboBox_Type.SelectedIndex],
+                 this.textBox_Race.Text.Trim(),
+                 this.textBox_Age.Text.Trim(),
+                 this.textBox_Grade.Text.Trim(),
+                 skill,
+                 club,
+                 organization,
+                 this.textBox_Remarks.Text.Trim(),
+                 this.textBox_Remarks.Text.Trim(),
+                 this.comboBox_Creater.Text.Trim()
+                 ),
+                "Question.",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (dr != DialogResult.OK)
+            {
+                return;
+            }
+
+            CharacterData doc = new CharacterData();
+            doc.Type = this.comboBox_Type.SelectedIndex.ToString();
+            doc.Name = this.textBox_Name.Text.Trim();
+            doc.Kana = this.textBox_Kana.Text.Trim();
+            doc.Sex = this.comboBox_Sex.SelectedIndex.ToString();
+            doc.Race = this.textBox_Race.Text.Trim();
+            doc.Age = this.textBox_Age.Text.Trim();
+            doc.Grade = this.textBox_Grade.Text.Trim();
+            doc.Skill = skill;
+            doc.Remarks = this.textBox_Remarks.Text.Trim();
+            doc.URLToPixiv = this.textBox_URLToPixiv.Text.Trim();
+            doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
+
+            try
+            {
+                // TODO: ユーザ選択
+
+                // データ登録
+                insert(doc);
+                this.DialogResult = DialogResult.OK;
+            }
+            catch(Exception ex)
+            {
+                string message = "Error!!" + Environment.NewLine + ex.Message; 
+                MessageBox.Show(message,
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            this.Close();
+        }
+
+        /// <summary>
+        /// データ登録
+        /// </summary>
+        /// <param name="doc">入力された情報</param>
+        private void insert(CharacterData doc)
+        {
+            string sql = @"
+INSERT INTO
+CHARACTER (
+  NAME,
+  KANA,
+  TYPE_ID,
+  SEX_ID,
+  RACE,
+  AGE,
+  GRADE,
+  SKILL,
+  CLUB,
+  ORGANIZATION,
+  REMARKS,
+  CREATER_ID,
+  URL
+)
+VALUES (
+  {0},
+  {1},
+  {2},
+  {3},
+  {4},
+  {5},
+  {6},
+  {7},
+  {8},
+  {9},
+  {10},
+  {11},
+);
+";
+            sql = string.Format(sql,
+                doc.Name,
+                doc.Kana,
+                doc.Type,
+                doc.Sex,
+                doc.Race,
+                doc.Age,
+                doc.Grade,
+                doc.Skill,
+                doc.Club,
+                doc.Organization,
+                doc.Remarks,
+                doc.Creater.ID,
+                doc.URLToPixiv);
+
+            executeQuery(sql);
+        }
+
+        private void executeQuery(string sql)
+        {
+            SQLiteConnection cn = null;
+            SQLiteCommand cmd = null;
+
+            try
+            {
+                cn = new SQLiteConnection(this.connectionString);
+                cmd = cn.CreateCommand();
+
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+                if (cn != null)
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 「Cancel」
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button_ShowCreaters_Click(object sender, EventArgs e)
+        {
+            using (Form_Creater f = new Form_Creater())
+            {
+                DialogResult dr = f.ShowDialog();
+                if (dr != DialogResult.OK)
+                {
+                    return;
+                }
+
+                setData();
+            }
+        }
+    }
+}

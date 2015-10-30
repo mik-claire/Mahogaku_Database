@@ -1,30 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
 using System.Data.SQLite;
 
 namespace Mahogaku_Database
 {
     public partial class Form_Main : Form
     {
-        //private string connectionString = "mongodb://localhost:27017";
-		//private string connectionString = "mongodb://localhost:51001";
-
         private string connectionString = string.Format(
             "Data Source={0};Version=3;", Application.StartupPath + @"\data.db");
 
         private List<string> characterID = new List<string>();
+
+        private List<string> createrID = new List<string>();
 
         public Form_Main()
         {
@@ -41,7 +30,7 @@ namespace Mahogaku_Database
             try
             {
                 // 更新
-                load();
+                loadDisplay();
             }
             catch (Exception ex)
             {
@@ -63,7 +52,7 @@ namespace Mahogaku_Database
             try
             {
                 // 更新
-                load();
+                loadDisplay();
 
                 MessageBox.Show("Success!");
             }
@@ -80,7 +69,7 @@ namespace Mahogaku_Database
         /// <summary>
         /// 更新
         /// </summary>
-        private void load()
+        private void loadDisplay()
         {
             // データ取得
             List<CharacterData> data = getData();
@@ -111,8 +100,8 @@ SELECT
   T.NAME AS TYPE, S.NAME AS SEX,
   CH.RACE AS RACE, CH.AGE AS AGE, CH.GRADE AS GRADE,
   CH.SKILL AS SKILL, CH.CLUB AS CLUB, CH.ORGANIZATION AS ORG,
-  CH.REMARKS AS REM, CR.NAME AS CRNAME, CR.PIXIV AS PIXIV,
-  CR.TWITTER AS TWITTER, CH.URL AS SHEET
+  CH.REMARKS AS REM, CR.ID AS CRID, CR.NAME AS CRNAME,
+  CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.URL AS SHEET
 FROM
   CHARACTER CH JOIN CREATER CR
   ON CH.CREATER_ID = CR.ID JOIN TYPE T
@@ -133,6 +122,7 @@ ORDER BY
                     doc.Name = reader["NAME"].ToString();
                     doc.Kana = reader["KANA"].ToString();
                     doc.Type = reader["TYPE"].ToString();
+                    doc.Race = reader["RACE"].ToString();
                     doc.Sex = reader["SEX"].ToString();
                     doc.Age = reader["AGE"].ToString();
                     doc.Grade = reader["GRADE"].ToString();
@@ -143,12 +133,16 @@ ORDER BY
                     doc.URLToPixiv = reader["SHEET"].ToString();
 
                     CreaterData creater = new CreaterData();
+                    creater.ID = reader["CRID"].ToString();
                     creater.Name = reader["CRNAME"].ToString();
                     creater.PixivID = reader["PIXIV"].ToString();
                     creater.TwitterID = reader["TWITTER"].ToString();
                     doc.Creater = creater;
 
                     data.Add(doc);
+
+                    this.characterID.Add(doc.ID);
+                    this.createrID.Add(doc.Creater.ID);
                 }
 
                 return data;
@@ -180,21 +174,6 @@ ORDER BY
 
             foreach(CharacterData doc in data)
             {
-                /*
-				//string[] record = doc.ConvertToArray();
-                record[11] = record[11].Split(',')[0];
-				ListViewItem item = new ListViewItem(record);
-                item.UseItemStyleForSubItems = false;
-
-                // Linkをタグで保持
-                string tag = @"http://www.pixiv.net/member.php?id=" + doc.Creater.PixivID + ",";
-                if (doc.Creater.TwitterID != null)
-                {
-                    tag += @"https://twitter.com/" + doc.Creater.TwitterID;
-                }
-                tag += "," + doc.URLToPixiv;
-                item.Tag = tag;
-                */
                 string[] record = {
                                       doc.Type,
                                       doc.Name,
@@ -208,7 +187,8 @@ ORDER BY
                                       doc.Organization,
                                       doc.Remarks,
                                       doc.Creater.Name,
-                                      doc.ID
+                                      doc.ID,
+                                      doc.Creater.ID
                                   };
                 ListViewItem item = new ListViewItem(record);
                 item.UseItemStyleForSubItems = false;
@@ -260,8 +240,7 @@ ORDER BY
         /// <param name="e"></param>
         private void button_Insert_Click(object sender, EventArgs e)
         {
-            /*
-            using (Form_Insert f = new Form_Insert())
+            using (Form_InsertCharacter f = new Form_InsertCharacter())
             {
                 DialogResult dr = f.ShowDialog();
                 if (dr != DialogResult.OK)
@@ -270,11 +249,15 @@ ORDER BY
                 }
 
                 // 更新
-                load();
+                loadDisplay();
             }
-            */
         }
 
+        /// <summary>
+        /// 右クリックメニュー
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView_Display_MouseClick(object sender, MouseEventArgs e)
         {
             // 右クリック判定
@@ -335,11 +318,6 @@ ORDER BY
             menu.Items.Add(menuItem_CharacterSheets);
 
             menu.Show(Cursor.Position);
-        }
-
-        private void method1(string url)
-        {
-            System.Diagnostics.Process.Start(url);
         }
     }
 }
