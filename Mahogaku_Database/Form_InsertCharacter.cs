@@ -1,14 +1,14 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Windows.Forms;
-using System.Data.SQLite;
 
 namespace Mahogaku_Database
 {
     public partial class Form_InsertCharacter : Form
     {
-        private string connectionString = string.Format(
-            "Data Source={0};Version=3;", Application.StartupPath + @"\data.db");
+        private string connectionString = string.Empty;
 
         List<string> sexID = new List<string>();
         List<string> typeID = new List<string>();
@@ -17,6 +17,7 @@ namespace Mahogaku_Database
         public Form_InsertCharacter()
         {
             InitializeComponent();
+            this.connectionString = ConfigurationManager.ConnectionStrings["mhgk"].ConnectionString;
         }
 
         /// <summary>
@@ -48,6 +49,8 @@ namespace Mahogaku_Database
         {
             // 性別
             List<string[]> sex = getSex();
+            this.sexID.Clear();
+            this.comboBox_Sex.Items.Clear();
             foreach(string[] doc in sex)
             {
                 this.sexID.Add(doc[0]);
@@ -57,6 +60,8 @@ namespace Mahogaku_Database
 
             // 属性
             List<string[]> type = getType();
+            this.typeID.Clear();
+            this.comboBox_Type.Items.Clear();
             foreach (string[] doc in type)
             {
                 this.typeID.Add(doc[0]);
@@ -66,6 +71,8 @@ namespace Mahogaku_Database
 
             // 親御さん
             List<string[]> creater = getCreater();
+            this.createrID.Clear();
+            this.comboBox_Creater.Items.Clear();
             foreach (string[] doc in creater)
             {
                 this.createrID.Add(doc[0]);
@@ -76,13 +83,13 @@ namespace Mahogaku_Database
 
         private List<string[]> getSex()
         {
-            SQLiteConnection cn = null;
-            SQLiteCommand cmd = null;
-            SQLiteDataReader reader = null;
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
 
             try
             {
-                cn = new SQLiteConnection(this.connectionString);
+                cn = new MySqlConnection(this.connectionString);
                 cn.Open();
 
                 cmd = cn.CreateCommand();
@@ -128,13 +135,13 @@ ORDER BY
 
         private List<string[]> getType()
         {
-            SQLiteConnection cn = null;
-            SQLiteCommand cmd = null;
-            SQLiteDataReader reader = null;
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
 
             try
             {
-                cn = new SQLiteConnection(this.connectionString);
+                cn = new MySqlConnection(this.connectionString);
                 cn.Open();
 
                 cmd = cn.CreateCommand();
@@ -180,13 +187,13 @@ ORDER BY
 
         private List<string[]> getCreater()
         {
-            SQLiteConnection cn = null;
-            SQLiteCommand cmd = null;
-            SQLiteDataReader reader = null;
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
 
             try
             {
-                cn = new SQLiteConnection(this.connectionString);
+                cn = new MySqlConnection(this.connectionString);
                 cn.Open();
 
                 cmd = cn.CreateCommand();
@@ -335,6 +342,7 @@ ORDER BY
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            string url = this.textBox_URLToPixiv.Text.Trim().Replace(",", Environment.NewLine);
             #endregion
 
             DialogResult dr = MessageBox.Show(string.Format(@"
@@ -358,8 +366,8 @@ ORDER BY
 名前 : {12}",
                  this.textBox_Name.Text.Trim(),
                  this.textBox_Kana.Text.Trim(),
-                 this.sexID[this.comboBox_Sex.SelectedIndex],
-                 this.typeID[this.comboBox_Type.SelectedIndex],
+                 this.comboBox_Sex.SelectedItem.ToString(),
+                 this.comboBox_Type.SelectedItem.ToString(),
                  this.textBox_Race.Text.Trim(),
                  this.textBox_Age.Text.Trim(),
                  this.textBox_Grade.Text.Trim(),
@@ -367,7 +375,7 @@ ORDER BY
                  club,
                  organization,
                  this.textBox_Remarks.Text.Trim(),
-                 this.textBox_Remarks.Text.Trim(),
+                 url,
                  this.comboBox_Creater.Text.Trim()
                  ),
                 "Question.",
@@ -380,22 +388,21 @@ ORDER BY
             }
 
             CharacterData doc = new CharacterData();
-            doc.Type = this.comboBox_Type.SelectedIndex.ToString();
+            doc.Type = this.typeID[this.comboBox_Type.SelectedIndex];
             doc.Name = this.textBox_Name.Text.Trim();
             doc.Kana = this.textBox_Kana.Text.Trim();
-            doc.Sex = this.comboBox_Sex.SelectedIndex.ToString();
+            doc.Sex = this.sexID[this.comboBox_Sex.SelectedIndex];
             doc.Race = this.textBox_Race.Text.Trim();
             doc.Age = this.textBox_Age.Text.Trim();
             doc.Grade = this.textBox_Grade.Text.Trim();
             doc.Skill = skill;
             doc.Remarks = this.textBox_Remarks.Text.Trim();
             doc.URLToPixiv = this.textBox_URLToPixiv.Text.Trim();
+            doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
 
             try
             {
-                // TODO: ユーザ選択
-
                 // データ登録
                 insert(doc);
                 this.DialogResult = DialogResult.OK;
@@ -420,7 +427,7 @@ ORDER BY
         {
             string sql = @"
 INSERT INTO
-CHARACTER (
+`CHARACTER` (
   NAME,
   KANA,
   TYPE_ID,
@@ -436,18 +443,19 @@ CHARACTER (
   URL
 )
 VALUES (
-  {0},
-  {1},
+  '{0}',
+  '{1}',
   {2},
   {3},
-  {4},
-  {5},
-  {6},
-  {7},
-  {8},
-  {9},
-  {10},
+  '{4}',
+  '{5}',
+  '{6}',
+  '{7}',
+  '{8}',
+  '{9}',
+  '{10}',
   {11},
+  '{12}'
 );
 ";
             sql = string.Format(sql,
@@ -470,12 +478,13 @@ VALUES (
 
         private void executeQuery(string sql)
         {
-            SQLiteConnection cn = null;
-            SQLiteCommand cmd = null;
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
 
             try
             {
-                cn = new SQLiteConnection(this.connectionString);
+                cn = new MySqlConnection(this.connectionString);
+                cn.Open();
                 cmd = cn.CreateCommand();
 
                 cmd.CommandText = sql;
@@ -509,11 +518,6 @@ VALUES (
             using (Form_Creater f = new Form_Creater())
             {
                 DialogResult dr = f.ShowDialog();
-                if (dr != DialogResult.OK)
-                {
-                    return;
-                }
-
                 setData();
             }
         }

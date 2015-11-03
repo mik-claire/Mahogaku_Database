@@ -1,9 +1,0 @@
-db.data.insert({ Type : "技", Name : "弥咲 悠理", Kana : "みさき ゆうり", Sex : "男", Race : "人間", Age : "16", Grade : "高等部2年", Skill : "プログラミング魔砲", Remarks : "デバイス・ソフトウェア開発に長ける,#鬼朔使役話", Creater : { Name : "ミカゼ", PixivID : "11609472", TwitterID : "mikaze_Atlantis" }, URLToPixiv : "http://www.pixiv.net/novel/member.php?id=11609472" })
-
-
-
-
-db.data.update({ _id : ObjectId("562d80e5ef0fa9027d280ea9") }, { $set : { Remarks : "デバイス・ソフトウェア開発に長ける, #鬼朔使役話" } })
-
-db.data.update({ "_id" : ObjectId("562de89150d94a19f818de06") }, { $set : { Creater.Name : "笠木" } })
-

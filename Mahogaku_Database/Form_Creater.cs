@@ -1,26 +1,21 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 using System.Windows.Forms;
-using System.Data.SQLite;
 
 namespace Mahogaku_Database
 {
     public partial class Form_Creater : Form
     {
-        private string connectionString = string.Format(
-            "Data Source={0};Version=3;", Application.StartupPath + @"\data.db");
+        private string connectionString = string.Empty;
 
         List<string> createrID = new List<string>();
 
         public Form_Creater()
         {
             InitializeComponent();
+            this.connectionString = ConfigurationManager.ConnectionStrings["mhgk"].ConnectionString;
         }
 
         private void Form_Creater_Load(object sender, EventArgs e)
@@ -67,13 +62,13 @@ namespace Mahogaku_Database
         /// <returns></returns>
         private List<CreaterData> getData()
         {
-            SQLiteConnection cn = null;
-            SQLiteCommand cmd = null;
-            SQLiteDataReader reader = null;
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
 
             try
             {
-                cn = new SQLiteConnection(this.connectionString);
+                cn = new MySqlConnection(this.connectionString);
                 cn.Open();
 
                 cmd = cn.CreateCommand();

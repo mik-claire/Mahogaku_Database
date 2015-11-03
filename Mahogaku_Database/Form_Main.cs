@@ -1,15 +1,15 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Data.SQLite;
 
 namespace Mahogaku_Database
 {
     public partial class Form_Main : Form
     {
-        private string connectionString = string.Format(
-            "Data Source={0};Version=3;", Application.StartupPath + @"\data.db");
+        private string connectionString = string.Empty;
 
         private List<string> characterID = new List<string>();
 
@@ -18,6 +18,7 @@ namespace Mahogaku_Database
         public Form_Main()
         {
             InitializeComponent();
+            this.connectionString = ConfigurationManager.ConnectionStrings["mhgk"].ConnectionString;
         }
 
         /// <summary>
@@ -27,6 +28,7 @@ namespace Mahogaku_Database
         /// <param name="e"></param>
         private void Form_Main_Load(object sender, EventArgs e)
         {
+            
             try
             {
                 // 更新
@@ -84,13 +86,13 @@ namespace Mahogaku_Database
         /// <returns></returns>
         private List<CharacterData> getData()
         {
-            SQLiteConnection cn = null;
-            SQLiteCommand cmd = null;
-            SQLiteDataReader reader = null;
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
 
             try
             {
-                cn = new SQLiteConnection(this.connectionString);
+                cn = new MySqlConnection(this.connectionString);
                 cn.Open();
 
                 cmd = cn.CreateCommand();
@@ -103,7 +105,7 @@ SELECT
   CH.REMARKS AS REM, CR.ID AS CRID, CR.NAME AS CRNAME,
   CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.URL AS SHEET
 FROM
-  CHARACTER CH JOIN CREATER CR
+  `CHARACTER` CH JOIN CREATER CR
   ON CH.CREATER_ID = CR.ID JOIN TYPE T
   ON CH.TYPE_ID = T.ID JOIN SEX S
   ON CH.SEX_ID = S.ID

@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SQLite;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Mahogaku_Database
 {
     public partial class Form_InsertCreater : Form
     {
-        private string connectionString = string.Format(
-            "Data Source={0};Version=3;", Application.StartupPath + @"\data.db");
+        private string connectionString = string.Empty;
 
         public Form_InsertCreater()
         {
             InitializeComponent();
+            this.connectionString = ConfigurationManager.ConnectionStrings["mhgk"].ConnectionString;
         }
 
         private void button_OK_Click(object sender, EventArgs e)
@@ -133,12 +127,12 @@ TWITTER
 
         private void executeQuery(string sql)
         {
-            SQLiteConnection cn = null;
-            SQLiteCommand cmd = null;
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
 
             try
             {
-                cn = new SQLiteConnection(this.connectionString);
+                cn = new MySqlConnection(this.connectionString);
                 cn.Open();
                 cmd = cn.CreateCommand();
 
