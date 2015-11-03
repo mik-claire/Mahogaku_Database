@@ -102,7 +102,8 @@ SELECT
   CH.RACE AS RACE, CH.AGE AS AGE, CH.GRADE AS GRADE,
   CH.SKILL AS SKILL, CH.CLUB AS CLUB, CH.ORGANIZATION AS ORG,
   CH.REMARKS AS REM, CR.ID AS CRID, CR.NAME AS CRNAME,
-  CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.URL AS SHEET
+  CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.URL AS SHEET,
+  CR.PASSWORD AS PASSWORD
 FROM
   `CHARACTER` CH JOIN CREATER CR
   ON CH.CREATER_ID = CR.ID JOIN TYPE T
@@ -138,6 +139,7 @@ ORDER BY
                     creater.Name = reader["CRNAME"].ToString();
                     creater.PixivID = reader["PIXIV"].ToString();
                     creater.TwitterID = reader["TWITTER"].ToString();
+                    creater.Password = reader["PASSWORD"].ToString();
                     doc.Creater = creater;
 
                     data.Add(doc);
@@ -189,7 +191,8 @@ ORDER BY
                                       doc.Remarks,
                                       doc.Creater.Name,
                                       doc.ID,
-                                      doc.Creater.ID
+                                      doc.Creater.ID,
+                                      doc.Creater.Password
                                   };
                 ListViewItem item = new ListViewItem(record);
                 item.UseItemStyleForSubItems = false;
@@ -243,6 +246,64 @@ ORDER BY
         {
             using (Form_InsertCharacter f = new Form_InsertCharacter())
             {
+                DialogResult dr = f.ShowDialog();
+                if (dr != DialogResult.OK)
+                {
+                    return;
+                }
+
+                // 更新
+                loadDisplay();
+            }
+        }
+
+        /// <summary>
+        /// 「編集」
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_Update_Click(object sender, EventArgs e)
+        {
+            if (this.listView_Display.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("項目が選択されていません。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
+            ListViewItem item = this.listView_Display.SelectedItems[0];
+
+            using (Form_UpdateCharacter f = new Form_UpdateCharacter())
+            {
+                CharacterData doc = new CharacterData();
+                doc.ID = item.SubItems[12].Text;
+                doc.Name = item.SubItems[1].Text;
+                doc.Kana = item.SubItems[2].Text;
+                doc.Sex = item.SubItems[3].Text;
+                doc.Type = item.SubItems[0].Text;
+                doc.Race = item.SubItems[4].Text;
+                doc.Age = item.SubItems[5].Text;
+                doc.Grade = item.SubItems[6].Text;
+                doc.Skill = item.SubItems[7].Text;
+                doc.Club = item.SubItems[8].Text;
+                doc.Organization = item.SubItems[9].Text;
+                doc.Remarks = item.SubItems[10].Text;
+                CreaterData creater = new CreaterData();
+                creater.ID = item.SubItems[13].Text;
+                doc.Creater = creater;
+                string[] urlArray = item.Tag.ToString().Split(',');
+                string url = string.Empty;
+                for (int i = 2; i < urlArray.Length; i++)
+                {
+                    url += urlArray[i] + ",";
+                }
+                doc.URLToPixiv = url.Substring(0, url.Length - 1);
+                f.Character = doc;
+                f.Pass = item.SubItems[14].Text;
+
                 DialogResult dr = f.ShowDialog();
                 if (dr != DialogResult.OK)
                 {
