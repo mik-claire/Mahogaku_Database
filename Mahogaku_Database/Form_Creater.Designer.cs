@@ -34,6 +34,7 @@
             this.columnHeader_Twitter = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button_GetData = new System.Windows.Forms.Button();
             this.button_Insert = new System.Windows.Forms.Button();
+            this.button_Update = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView_Display
@@ -46,7 +47,7 @@
             this.listView_Display.FullRowSelect = true;
             this.listView_Display.GridLines = true;
             this.listView_Display.Location = new System.Drawing.Point(16, 15);
-            this.listView_Display.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_Display.Margin = new System.Windows.Forms.Padding(4);
             this.listView_Display.Name = "listView_Display";
             this.listView_Display.Size = new System.Drawing.Size(465, 296);
             this.listView_Display.TabIndex = 0;
@@ -57,12 +58,12 @@
             // columnHeader_Name
             // 
             this.columnHeader_Name.Text = "名前";
-            this.columnHeader_Name.Width = 110;
+            this.columnHeader_Name.Width = 120;
             // 
             // columnHeader_Pixiv
             // 
             this.columnHeader_Pixiv.Text = "PixivID";
-            this.columnHeader_Pixiv.Width = 100;
+            this.columnHeader_Pixiv.Width = 110;
             // 
             // columnHeader_Twitter
             // 
@@ -73,7 +74,7 @@
             // 
             this.button_GetData.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button_GetData.Location = new System.Drawing.Point(383, 320);
-            this.button_GetData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_GetData.Margin = new System.Windows.Forms.Padding(4);
             this.button_GetData.Name = "button_GetData";
             this.button_GetData.Size = new System.Drawing.Size(100, 29);
             this.button_GetData.TabIndex = 1;
@@ -84,8 +85,8 @@
             // button_Insert
             // 
             this.button_Insert.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Insert.Location = new System.Drawing.Point(275, 320);
-            this.button_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Insert.Location = new System.Drawing.Point(124, 322);
+            this.button_Insert.Margin = new System.Windows.Forms.Padding(4);
             this.button_Insert.Name = "button_Insert";
             this.button_Insert.Size = new System.Drawing.Size(100, 29);
             this.button_Insert.TabIndex = 2;
@@ -93,16 +94,29 @@
             this.button_Insert.UseVisualStyleBackColor = true;
             this.button_Insert.Click += new System.EventHandler(this.button_Insert_Click);
             // 
+            // button_Update
+            // 
+            this.button_Update.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_Update.Location = new System.Drawing.Point(16, 322);
+            this.button_Update.Margin = new System.Windows.Forms.Padding(4);
+            this.button_Update.Name = "button_Update";
+            this.button_Update.Size = new System.Drawing.Size(100, 29);
+            this.button_Update.TabIndex = 3;
+            this.button_Update.Text = "編集";
+            this.button_Update.UseVisualStyleBackColor = true;
+            this.button_Update.Click += new System.EventHandler(this.button_Update_Click);
+            // 
             // Form_Creater
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 364);
+            this.Controls.Add(this.button_Update);
             this.Controls.Add(this.button_Insert);
             this.Controls.Add(this.button_GetData);
             this.Controls.Add(this.listView_Display);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_Creater";
             this.Text = "Form_Creater";
             this.Load += new System.EventHandler(this.Form_Creater_Load);
@@ -118,5 +132,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader_Twitter;
         private System.Windows.Forms.Button button_GetData;
         private System.Windows.Forms.Button button_Insert;
+        private System.Windows.Forms.Button button_Update;
     }
 }

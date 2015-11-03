@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace Mahogaku_Database
@@ -15,7 +14,7 @@ namespace Mahogaku_Database
         public Form_Creater()
         {
             InitializeComponent();
-            this.connectionString = ConfigurationManager.ConnectionStrings["mhgk"].ConnectionString;
+            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
         }
 
         private void Form_Creater_Load(object sender, EventArgs e)
@@ -213,6 +212,38 @@ FROM CREATER ORDER BY NAME ASC
         {
             using (Form_InsertCreater f = new Form_InsertCreater())
             {
+                DialogResult dr = f.ShowDialog();
+                if (dr != DialogResult.OK)
+                {
+                    return;
+                }
+
+                loadDisplay();
+            }
+        }
+
+        private void button_Update_Click(object sender, EventArgs e)
+        {
+            if (this.listView_Display.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("項目が選択されていません。",
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
+            ListViewItem item = this.listView_Display.SelectedItems[0];
+
+            using (Form_UpdateCreater f = new Form_UpdateCreater())
+            {
+                f.ID = item.SubItems[4].Text;
+                f.Name = item.SubItems[0].Text;
+                f.Pass = item.SubItems[3].Text;
+                f.Pixiv = item.SubItems[1].Text;
+                f.Twitter = item.SubItems[2].Text.Substring(1, item.SubItems[2].Text.Length - 1);
+
                 DialogResult dr = f.ShowDialog();
                 if (dr != DialogResult.OK)
                 {

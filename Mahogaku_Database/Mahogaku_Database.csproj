@@ -77,6 +77,12 @@
     <Compile Include="Form_InsertCharacter.Designer.cs">
       <DependentUpon>Form_InsertCharacter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_UpdateCreater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_UpdateCreater.Designer.cs">
+      <DependentUpon>Form_UpdateCreater.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_InsertCreater.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_InsertCharacter.resx">
       <DependentUpon>Form_InsertCharacter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_UpdateCreater.resx">
+      <DependentUpon>Form_UpdateCreater.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_InsertCreater.resx">
       <DependentUpon>Form_InsertCreater.cs</DependentUpon>

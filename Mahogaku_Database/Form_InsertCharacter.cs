@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace Mahogaku_Database
@@ -17,7 +16,7 @@ namespace Mahogaku_Database
         public Form_InsertCharacter()
         {
             InitializeComponent();
-            this.connectionString = ConfigurationManager.ConnectionStrings["mhgk"].ConnectionString;
+            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
         }
 
         /// <summary>
