@@ -10,14 +10,9 @@ namespace Mahogaku_Database
     {
         private string connectionString = string.Empty;
 
-        private List<string> characterID = new List<string>();
-
-        private List<string> createrID = new List<string>();
-
         public Form_Main()
         {
             InitializeComponent();
-            //this.connectionString = ConfigurationManager.ConnectionStrings["mhgk"].ConnectionString;
             this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
         }
 
@@ -74,6 +69,9 @@ namespace Mahogaku_Database
         {
             // データ取得
             List<CharacterData> data = getData();
+
+            // 属性で絞り込み
+            data = filterWithType(data);
 
             // 表示
             display(data);
@@ -143,9 +141,6 @@ ORDER BY
                     doc.Creater = creater;
 
                     data.Add(doc);
-
-                    this.characterID.Add(doc.ID);
-                    this.createrID.Add(doc.Creater.ID);
                 }
 
                 return data;
@@ -165,6 +160,47 @@ ORDER BY
                     cn.Close();
                 }
             }
+        }
+
+        /// <summary>
+        /// 属性で絞り込み
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private List<CharacterData> filterWithType(List<CharacterData> data)
+        {
+            // チェックボックスからフィルターを作成
+            string filter = string.Empty;
+            if (this.checkBox_Power.Checked)
+            {
+                filter += this.checkBox_Power.Text;
+            }
+            if (this.checkBox_Castor.Checked)
+            {
+                filter += this.checkBox_Castor.Text;
+            }
+            if (this.checkBox_Technical.Checked)
+            {
+                filter += this.checkBox_Technical.Text;
+            }
+            if (this.checkBox_Unknown.Checked)
+            {
+                filter += this.checkBox_Unknown.Text;
+            }
+
+            foreach (CharacterData doc in data)
+            {
+                // 属性がフィルターに存在するか判定
+                if (filter.Contains(doc.Type))
+                {
+                    continue;
+                }
+
+                // 存在しなければ削除
+                data.Remove(doc);
+            }
+
+            return data;
         }
 
         /// <summary>
