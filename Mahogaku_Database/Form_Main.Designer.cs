@@ -53,9 +53,10 @@
             // button_GetData
             // 
             this.button_GetData.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_GetData.Location = new System.Drawing.Point(797, 377);
+            this.button_GetData.Location = new System.Drawing.Point(1063, 471);
+            this.button_GetData.Margin = new System.Windows.Forms.Padding(4);
             this.button_GetData.Name = "button_GetData";
-            this.button_GetData.Size = new System.Drawing.Size(75, 23);
+            this.button_GetData.Size = new System.Drawing.Size(100, 29);
             this.button_GetData.TabIndex = 0;
             this.button_GetData.Text = "取得";
             this.button_GetData.UseVisualStyleBackColor = true;
@@ -79,10 +80,11 @@
             this.listView_Display.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_Display.FullRowSelect = true;
             this.listView_Display.GridLines = true;
-            this.listView_Display.Location = new System.Drawing.Point(12, 12);
+            this.listView_Display.Location = new System.Drawing.Point(16, 15);
+            this.listView_Display.Margin = new System.Windows.Forms.Padding(4);
             this.listView_Display.MultiSelect = false;
             this.listView_Display.Name = "listView_Display";
-            this.listView_Display.Size = new System.Drawing.Size(860, 359);
+            this.listView_Display.Size = new System.Drawing.Size(1145, 448);
             this.listView_Display.TabIndex = 1;
             this.listView_Display.UseCompatibleStateImageBehavior = false;
             this.listView_Display.View = System.Windows.Forms.View.Details;
@@ -121,7 +123,7 @@
             // columnHeader_Grade
             // 
             this.columnHeader_Grade.Text = "学年";
-            this.columnHeader_Grade.Width = 80;
+            this.columnHeader_Grade.Width = 85;
             // 
             // columnHeader_Skill
             // 
@@ -151,9 +153,10 @@
             // button_Insert
             // 
             this.button_Insert.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Insert.Location = new System.Drawing.Point(12, 377);
+            this.button_Insert.Location = new System.Drawing.Point(16, 471);
+            this.button_Insert.Margin = new System.Windows.Forms.Padding(4);
             this.button_Insert.Name = "button_Insert";
-            this.button_Insert.Size = new System.Drawing.Size(75, 23);
+            this.button_Insert.Size = new System.Drawing.Size(100, 29);
             this.button_Insert.TabIndex = 2;
             this.button_Insert.Text = "登録";
             this.button_Insert.UseVisualStyleBackColor = true;
@@ -162,9 +165,10 @@
             // button_Update
             // 
             this.button_Update.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Update.Location = new System.Drawing.Point(93, 377);
+            this.button_Update.Location = new System.Drawing.Point(124, 471);
+            this.button_Update.Margin = new System.Windows.Forms.Padding(4);
             this.button_Update.Name = "button_Update";
-            this.button_Update.Size = new System.Drawing.Size(75, 23);
+            this.button_Update.Size = new System.Drawing.Size(100, 29);
             this.button_Update.TabIndex = 3;
             this.button_Update.Text = "編集";
             this.button_Update.UseVisualStyleBackColor = true;
@@ -175,54 +179,62 @@
             this.checkBox_Power.AutoSize = true;
             this.checkBox_Power.Checked = true;
             this.checkBox_Power.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_Power.Location = new System.Drawing.Point(245, 382);
+            this.checkBox_Power.Location = new System.Drawing.Point(327, 478);
+            this.checkBox_Power.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Power.Name = "checkBox_Power";
-            this.checkBox_Power.Size = new System.Drawing.Size(36, 16);
+            this.checkBox_Power.Size = new System.Drawing.Size(44, 19);
             this.checkBox_Power.TabIndex = 4;
             this.checkBox_Power.Text = "力";
             this.checkBox_Power.UseVisualStyleBackColor = true;
+            this.checkBox_Power.CheckedChanged += new System.EventHandler(this.checkBox_Type_CheckedChanged);
             // 
             // checkBox_Castor
             // 
             this.checkBox_Castor.AutoSize = true;
             this.checkBox_Castor.Checked = true;
             this.checkBox_Castor.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_Castor.Location = new System.Drawing.Point(287, 382);
+            this.checkBox_Castor.Location = new System.Drawing.Point(383, 478);
+            this.checkBox_Castor.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Castor.Name = "checkBox_Castor";
-            this.checkBox_Castor.Size = new System.Drawing.Size(36, 16);
+            this.checkBox_Castor.Size = new System.Drawing.Size(44, 19);
             this.checkBox_Castor.TabIndex = 5;
             this.checkBox_Castor.Text = "魔";
             this.checkBox_Castor.UseVisualStyleBackColor = true;
+            this.checkBox_Castor.CheckedChanged += new System.EventHandler(this.checkBox_Type_CheckedChanged);
             // 
             // checkBox_Technical
             // 
             this.checkBox_Technical.AutoSize = true;
             this.checkBox_Technical.Checked = true;
             this.checkBox_Technical.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_Technical.Location = new System.Drawing.Point(329, 382);
+            this.checkBox_Technical.Location = new System.Drawing.Point(439, 478);
+            this.checkBox_Technical.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Technical.Name = "checkBox_Technical";
-            this.checkBox_Technical.Size = new System.Drawing.Size(36, 16);
+            this.checkBox_Technical.Size = new System.Drawing.Size(44, 19);
             this.checkBox_Technical.TabIndex = 6;
             this.checkBox_Technical.Text = "技";
             this.checkBox_Technical.UseVisualStyleBackColor = true;
+            this.checkBox_Technical.CheckedChanged += new System.EventHandler(this.checkBox_Type_CheckedChanged);
             // 
             // checkBox_Unknown
             // 
             this.checkBox_Unknown.AutoSize = true;
             this.checkBox_Unknown.Checked = true;
             this.checkBox_Unknown.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_Unknown.Location = new System.Drawing.Point(371, 382);
+            this.checkBox_Unknown.Location = new System.Drawing.Point(495, 478);
+            this.checkBox_Unknown.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Unknown.Name = "checkBox_Unknown";
-            this.checkBox_Unknown.Size = new System.Drawing.Size(48, 16);
+            this.checkBox_Unknown.Size = new System.Drawing.Size(59, 19);
             this.checkBox_Unknown.TabIndex = 7;
             this.checkBox_Unknown.Text = "不明";
             this.checkBox_Unknown.UseVisualStyleBackColor = true;
+            this.checkBox_Unknown.CheckedChanged += new System.EventHandler(this.checkBox_Type_CheckedChanged);
             // 
             // Form_Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 412);
+            this.ClientSize = new System.Drawing.Size(1179, 515);
             this.Controls.Add(this.checkBox_Unknown);
             this.Controls.Add(this.checkBox_Technical);
             this.Controls.Add(this.checkBox_Castor);
@@ -231,6 +243,7 @@
             this.Controls.Add(this.button_Insert);
             this.Controls.Add(this.listView_Display);
             this.Controls.Add(this.button_GetData);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form_Main";
             this.Text = "まほがくでーたべーす！";

@@ -6,8 +6,6 @@
 	/// </summary>
     public class CharacterData
     {
-		// TODO: クラスにあってDBにないフィールド
-
 		/// <summary>
 		/// ID
 		/// </summary>

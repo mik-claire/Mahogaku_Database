@@ -383,14 +383,14 @@ ORDER BY
             }
 
             // 部活
-            string club = "未所属";
+            string club = string.Empty;
             if (this.textBox_Club.Text.Trim() != string.Empty)
             {
                 club = this.textBox_Club.Text.Trim();
             }
 
             // 組織
-            string organization = "未所属";
+            string organization = string.Empty;
             if (this.textBox_Organization.Text.Trim() != string.Empty)
             {
                 organization = this.textBox_Organization.Text.Trim();
@@ -462,6 +462,8 @@ ORDER BY
             doc.Age = this.textBox_Age.Text.Trim();
             doc.Grade = this.textBox_Grade.Text.Trim();
             doc.Skill = skill;
+            doc.Club = club;
+            doc.Organization = organization;
             doc.Remarks = this.textBox_Remarks.Text.Trim();
             doc.URLToPixiv = this.textBox_URLToPixiv.Text.Trim();
             doc.Creater = new CreaterData();
@@ -471,7 +473,9 @@ ORDER BY
             {
                 // データ更新
                 update(doc, this.Character.ID);
+                MessageBox.Show("Success!!");
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch(Exception ex)
             {

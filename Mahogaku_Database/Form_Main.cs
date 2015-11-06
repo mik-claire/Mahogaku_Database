@@ -188,19 +188,20 @@ ORDER BY
                 filter += this.checkBox_Unknown.Text;
             }
 
+            List<CharacterData> filteredData = new List<CharacterData>();
             foreach (CharacterData doc in data)
             {
                 // 属性がフィルターに存在するか判定
-                if (filter.Contains(doc.Type))
+                if (!filter.Contains(doc.Type))
                 {
                     continue;
                 }
 
-                // 存在しなければ削除
-                data.Remove(doc);
+                // 存在擦れば追加
+                filteredData.Add(doc);
             }
 
-            return data;
+            return filteredData;
         }
 
         /// <summary>
@@ -416,6 +417,28 @@ ORDER BY
             menu.Items.Add(menuItem_CharacterSheets);
 
             menu.Show(Cursor.Position);
+        }
+
+        /// <summary>
+        /// 属性チェックボックス
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBox_Type_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // 更新
+                loadDisplay();
+            }
+            catch (Exception ex)
+            {
+                string message = "Error!!" + Environment.NewLine + ex.Message;
+                MessageBox.Show(message,
+                    "Error!!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }
