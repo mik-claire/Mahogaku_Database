@@ -53,6 +53,13 @@ namespace Mahogaku_Database
                 return;
             }
 
+            // TwitterIDから @ を削除
+            if (twitter.Length != 0 &&
+                twitter[0] == '@')
+            {
+                twitter = twitter.Substring(1, twitter.Length - 1);
+            }
+
             string message = string.Format(@"
 以下の内容で登録します。
 よろしいですか？
@@ -93,10 +100,26 @@ TwitterID : {3}",
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error!!" + Environment.NewLine + ex.Message,
-                    "Error!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                string errorMessage = "Error!!" + Environment.NewLine + ex.Message;
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    errorMessage = "データベースに接続できませんでした。" + Environment.NewLine +
+                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
+                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
+                        Environment.NewLine +
+                        "https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(errorMessage,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(errorMessage,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 

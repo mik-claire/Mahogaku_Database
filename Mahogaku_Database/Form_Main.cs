@@ -31,10 +31,31 @@ namespace Mahogaku_Database
             catch (Exception ex)
             {
                 string message = "Error!!" + Environment.NewLine + ex.Message;
-                MessageBox.Show(message,
-                    "Error!!",
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    message = "データベースに接続できませんでした。" + Environment.NewLine +
+                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
+                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
+                        Environment.NewLine +
+                        "https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                MessageBox.Show("ツールを終了します。",
+                    "Information",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Information);
+                this.Close();
             }
         }
 
@@ -54,11 +75,26 @@ namespace Mahogaku_Database
             }
             catch(Exception ex)
             {
-                string message = "Error!!" + Environment.NewLine + ex.Message; 
-                MessageBox.Show(message,
-                    "Error!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                string message = "Error!!" + Environment.NewLine + ex.Message;
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    message = "データベースに接続できませんでした。" + Environment.NewLine +
+                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
+                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
+                        Environment.NewLine +
+                        "https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -434,10 +470,25 @@ ORDER BY
             catch (Exception ex)
             {
                 string message = "Error!!" + Environment.NewLine + ex.Message;
-                MessageBox.Show(message,
-                    "Error!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    message = "データベースに接続できませんでした。" + Environment.NewLine +
+                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
+                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
+                        Environment.NewLine +
+                        "https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
     }

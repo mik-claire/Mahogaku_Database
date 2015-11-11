@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.VisualBasic;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -34,10 +35,25 @@ namespace Mahogaku_Database
             catch (Exception ex)
             {
                 string message = "Error!!" + Environment.NewLine + ex.Message;
-                MessageBox.Show(message,
-                    "Error!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    message = "データベースに接続できませんでした。" + Environment.NewLine +
+                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
+                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
+                        Environment.NewLine +
+                        "https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -279,7 +295,8 @@ ORDER BY
             }
 
             // 年齢
-            if (this.textBox_Age.Text.Trim() == string.Empty)
+            string age = this.textBox_Age.Text.Trim();
+            if (age == string.Empty)
             {
                 MessageBox.Show("年齢が未入力です。",
                     "Error!!",
@@ -287,9 +304,11 @@ ORDER BY
                     MessageBoxIcon.Error);
                 return;
             }
+            age = Strings.StrConv(age, VbStrConv.Narrow);
 
             // 学年
-            if (this.textBox_Grade.Text.Trim() == string.Empty)
+            string grade = this.textBox_Grade.Text.Trim();
+            if (grade == string.Empty)
             {
                 MessageBox.Show("学年が未入力です。",
                     "Error!!",
@@ -297,6 +316,7 @@ ORDER BY
                     MessageBoxIcon.Error);
                 return;
             }
+            grade = Strings.StrConv(grade, VbStrConv.Narrow);
 
             // キャラクターシートURL
             if (this.textBox_URLToPixiv.Text.Trim() == string.Empty)
@@ -368,8 +388,8 @@ ORDER BY
                  this.comboBox_Sex.SelectedItem.ToString(),
                  this.comboBox_Type.SelectedItem.ToString(),
                  this.textBox_Race.Text.Trim(),
-                 this.textBox_Age.Text.Trim(),
-                 this.textBox_Grade.Text.Trim(),
+                 age,
+                 grade,
                  skill,
                  club,
                  organization,
@@ -392,8 +412,8 @@ ORDER BY
             doc.Kana = this.textBox_Kana.Text.Trim();
             doc.Sex = this.sexID[this.comboBox_Sex.SelectedIndex];
             doc.Race = this.textBox_Race.Text.Trim();
-            doc.Age = this.textBox_Age.Text.Trim();
-            doc.Grade = this.textBox_Grade.Text.Trim();
+            doc.Age = age;
+            doc.Grade = grade;
             doc.Skill = skill;
             doc.Club = club;
             doc.Organization = organization;
@@ -412,11 +432,26 @@ ORDER BY
             }
             catch(Exception ex)
             {
-                string message = "Error!!" + Environment.NewLine + ex.Message; 
-                MessageBox.Show(message,
-                    "Error!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                string message = "Error!!" + Environment.NewLine + ex.Message;
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    message = "データベースに接続できませんでした。" + Environment.NewLine +
+                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
+                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
+                        Environment.NewLine +
+                        "https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 

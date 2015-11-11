@@ -50,7 +50,7 @@
             this.label1.Location = new System.Drawing.Point(18, 24);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 19);
+            this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "*名前";
             // 
@@ -60,8 +60,8 @@
             this.textBox_Name.Location = new System.Drawing.Point(168, 19);
             this.textBox_Name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_Name.Name = "textBox_Name";
-            this.textBox_Name.Size = new System.Drawing.Size(268, 24);
-            this.textBox_Name.TabIndex = 1;
+            this.textBox_Name.Size = new System.Drawing.Size(268, 21);
+            this.textBox_Name.TabIndex = 0;
             // 
             // label2
             // 
@@ -70,7 +70,7 @@
             this.label2.Location = new System.Drawing.Point(18, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 19);
+            this.label2.Size = new System.Drawing.Size(60, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "*パスワード";
             // 
@@ -80,8 +80,8 @@
             this.textBox_Pass.Location = new System.Drawing.Point(168, 58);
             this.textBox_Pass.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_Pass.Name = "textBox_Pass";
-            this.textBox_Pass.Size = new System.Drawing.Size(268, 24);
-            this.textBox_Pass.TabIndex = 3;
+            this.textBox_Pass.Size = new System.Drawing.Size(268, 21);
+            this.textBox_Pass.TabIndex = 1;
             // 
             // textBox_Confirm
             // 
@@ -89,8 +89,8 @@
             this.textBox_Confirm.Location = new System.Drawing.Point(168, 99);
             this.textBox_Confirm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_Confirm.Name = "textBox_Confirm";
-            this.textBox_Confirm.Size = new System.Drawing.Size(268, 24);
-            this.textBox_Confirm.TabIndex = 5;
+            this.textBox_Confirm.Size = new System.Drawing.Size(268, 21);
+            this.textBox_Confirm.TabIndex = 2;
             // 
             // label3
             // 
@@ -99,7 +99,7 @@
             this.label3.Location = new System.Drawing.Point(18, 103);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 19);
+            this.label3.Size = new System.Drawing.Size(98, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "*パスワード (確認)";
             // 
@@ -109,8 +109,8 @@
             this.textBox_Pixiv.Location = new System.Drawing.Point(168, 138);
             this.textBox_Pixiv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_Pixiv.Name = "textBox_Pixiv";
-            this.textBox_Pixiv.Size = new System.Drawing.Size(268, 24);
-            this.textBox_Pixiv.TabIndex = 7;
+            this.textBox_Pixiv.Size = new System.Drawing.Size(268, 21);
+            this.textBox_Pixiv.TabIndex = 3;
             // 
             // label4
             // 
@@ -119,7 +119,7 @@
             this.label4.Location = new System.Drawing.Point(18, 142);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 19);
+            this.label4.Size = new System.Drawing.Size(55, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "*PixivID";
             // 
@@ -129,8 +129,8 @@
             this.textBox_Twitter.Location = new System.Drawing.Point(168, 177);
             this.textBox_Twitter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_Twitter.Name = "textBox_Twitter";
-            this.textBox_Twitter.Size = new System.Drawing.Size(268, 24);
-            this.textBox_Twitter.TabIndex = 9;
+            this.textBox_Twitter.Size = new System.Drawing.Size(268, 21);
+            this.textBox_Twitter.TabIndex = 4;
             // 
             // label5
             // 
@@ -139,7 +139,7 @@
             this.label5.Location = new System.Drawing.Point(18, 182);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 19);
+            this.label5.Size = new System.Drawing.Size(63, 15);
             this.label5.TabIndex = 8;
             this.label5.Text = "TwitterID";
             // 
@@ -150,7 +150,7 @@
             this.label6.Location = new System.Drawing.Point(18, 228);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(356, 108);
+            this.label6.Size = new System.Drawing.Size(280, 84);
             this.label6.TabIndex = 10;
             this.label6.Text = "* が付いているものは必須項目です。\r\nパスワードは、半角英数8文字～16文字で設定可能です。\r\nPixivIDは\r\nhttp://www.pixiv.net/m" +
     "ember.php?id=「xxxxxxxx」\r\nの部分の数字を入力して下さい。\r\nTwitterIDは「@」なしで入力して下さい。";
@@ -162,7 +162,7 @@
             this.button_OK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(112, 37);
-            this.button_OK.TabIndex = 11;
+            this.button_OK.TabIndex = 5;
             this.button_OK.Text = "OK";
             this.button_OK.UseVisualStyleBackColor = true;
             this.button_OK.Click += new System.EventHandler(this.button_OK_Click);
@@ -174,14 +174,14 @@
             this.button_Cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(112, 37);
-            this.button_Cancel.TabIndex = 12;
+            this.button_Cancel.TabIndex = 6;
             this.button_Cancel.Text = "キャンセル";
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
             // Form_InsertCreater
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 413);
             this.Controls.Add(this.button_Cancel);
