@@ -27,7 +27,7 @@ namespace Mahogaku_Database
             this.textBox_Twitter.Text = this.Twitter;
         }
 
-        private void button_OK_Click(object sender, EventArgs e)
+        private void validateAndUpdate()
         {
             string name = this.textBox_Name.Text.Trim();
             string pass = this.textBox_Pass.Text.Trim();
@@ -115,6 +115,11 @@ TwitterID : {2}",
             }
         }
 
+        private void button_OK_Click(object sender, EventArgs e)
+        {
+            validateAndUpdate();
+        }
+
         private void insertCreater(CreaterData doc)
         {
             string sql = string.Format(@"
@@ -166,6 +171,16 @@ WHERE
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox_Twitter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData != Keys.Enter)
+            {
+                return;
+            }
+
+            validateAndUpdate();
         }
     }
 }

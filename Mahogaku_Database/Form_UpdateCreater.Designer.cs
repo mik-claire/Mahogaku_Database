@@ -109,6 +109,7 @@
             this.textBox_Twitter.Name = "textBox_Twitter";
             this.textBox_Twitter.Size = new System.Drawing.Size(268, 21);
             this.textBox_Twitter.TabIndex = 3;
+            this.textBox_Twitter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Twitter_KeyDown);
             // 
             // label5
             // 

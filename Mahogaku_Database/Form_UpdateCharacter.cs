@@ -303,13 +303,7 @@ ORDER BY
             }
         }
 
-
-        /// <summary>
-        /// 「OK」
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button_OK_Click(object sender, EventArgs e)
+        private void validateAndUpdate()
         {
             #region 入力チェック
             // パスワード
@@ -497,7 +491,7 @@ ORDER BY
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string message = "Error!!" + Environment.NewLine + ex.Message;
                 if (ex.Message.StartsWith("Unable to connect to any of the specified "))
@@ -522,6 +516,16 @@ ORDER BY
             }
 
             this.Close();
+        }
+
+        /// <summary>
+        /// 「OK」
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_OK_Click(object sender, EventArgs e)
+        {
+            validateAndUpdate();
         }
 
         /// <summary>
@@ -615,6 +619,16 @@ WHERE
                 DialogResult dr = f.ShowDialog();
                 setData();
             }
+        }
+
+        private void textBox_Pass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData != Keys.Enter)
+            {
+                return;
+            }
+
+            validateAndUpdate();
         }
     }
 }

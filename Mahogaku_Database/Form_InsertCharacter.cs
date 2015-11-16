@@ -263,6 +263,11 @@ ORDER BY
         /// <param name="e"></param>
         private void button_OK_Click(object sender, EventArgs e)
         {
+            validateAndInsert();
+        }
+
+        private void validateAndInsert()
+        {
             #region 入力チェック
             // 名前
             if (this.textBox_Name.Text.Trim() == string.Empty)
@@ -405,7 +410,7 @@ ORDER BY
             {
                 return;
             }
-
+            
             CharacterData doc = new CharacterData();
             doc.Type = this.typeID[this.comboBox_Type.SelectedIndex];
             doc.Name = this.textBox_Name.Text.Trim();
@@ -430,7 +435,7 @@ ORDER BY
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string message = "Error!!" + Environment.NewLine + ex.Message;
                 if (ex.Message.StartsWith("Unable to connect to any of the specified "))
@@ -556,6 +561,16 @@ VALUES (
                 DialogResult dr = f.ShowDialog();
                 setData();
             }
+        }
+
+        private void comboBox_Creater_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData != Keys.Enter)
+            {
+                return;
+            }
+
+            validateAndInsert();
         }
     }
 }

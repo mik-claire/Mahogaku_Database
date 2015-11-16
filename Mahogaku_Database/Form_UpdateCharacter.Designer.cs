@@ -355,6 +355,7 @@
             this.textBox_Pass.Name = "textBox_Pass";
             this.textBox_Pass.Size = new System.Drawing.Size(211, 21);
             this.textBox_Pass.TabIndex = 13;
+            this.textBox_Pass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Pass_KeyDown);
             // 
             // label_21
             // 

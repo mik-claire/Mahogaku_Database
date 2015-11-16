@@ -17,6 +17,11 @@ namespace Mahogaku_Database
 
         private void button_OK_Click(object sender, EventArgs e)
         {
+            validateAndInsert();
+        }
+
+        private void validateAndInsert()
+        {
             string name = this.textBox_Name.Text.Trim();
             string pass = this.textBox_Pass.Text.Trim();
             string confirm = this.textBox_Confirm.Text.Trim();
@@ -177,6 +182,16 @@ TWITTER
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox_Twitter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData != Keys.Enter)
+            {
+                return;
+            }
+
+            validateAndInsert();
         }
     }
 }

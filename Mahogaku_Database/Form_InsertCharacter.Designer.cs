@@ -58,6 +58,8 @@
             this.comboBox_Creater = new System.Windows.Forms.ComboBox();
             this.label_13 = new System.Windows.Forms.Label();
             this.button_ShowCreaters = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_01
@@ -94,7 +96,7 @@
             // 
             this.label_04.AutoSize = true;
             this.label_04.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_04.Location = new System.Drawing.Point(12, 190);
+            this.label_04.Location = new System.Drawing.Point(12, 191);
             this.label_04.Name = "label_04";
             this.label_04.Size = new System.Drawing.Size(29, 14);
             this.label_04.TabIndex = 3;
@@ -104,7 +106,7 @@
             // 
             this.label_11.AutoSize = true;
             this.label_11.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_11.Location = new System.Drawing.Point(12, 277);
+            this.label_11.Location = new System.Drawing.Point(12, 278);
             this.label_11.Name = "label_11";
             this.label_11.Size = new System.Drawing.Size(29, 14);
             this.label_11.TabIndex = 4;
@@ -158,7 +160,7 @@
             // button_OK
             // 
             this.button_OK.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_OK.Location = new System.Drawing.Point(136, 456);
+            this.button_OK.Location = new System.Drawing.Point(136, 493);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 13;
@@ -169,7 +171,7 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Cancel.Location = new System.Drawing.Point(217, 456);
+            this.button_Cancel.Location = new System.Drawing.Point(217, 493);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 14;
@@ -181,7 +183,7 @@
             // 
             this.label_06.AutoSize = true;
             this.label_06.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_06.Location = new System.Drawing.Point(12, 372);
+            this.label_06.Location = new System.Drawing.Point(12, 409);
             this.label_06.Name = "label_06";
             this.label_06.Size = new System.Drawing.Size(255, 70);
             this.label_06.TabIndex = 12;
@@ -290,7 +292,7 @@
             // 
             this.label_19.AutoSize = true;
             this.label_19.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_19.Location = new System.Drawing.Point(12, 215);
+            this.label_19.Location = new System.Drawing.Point(12, 216);
             this.label_19.Name = "label_19";
             this.label_19.Size = new System.Drawing.Size(51, 14);
             this.label_19.TabIndex = 32;
@@ -308,7 +310,7 @@
             // 
             this.label_20.AutoSize = true;
             this.label_20.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_20.Location = new System.Drawing.Point(12, 240);
+            this.label_20.Location = new System.Drawing.Point(12, 241);
             this.label_20.Name = "label_20";
             this.label_20.Size = new System.Drawing.Size(51, 14);
             this.label_20.TabIndex = 34;
@@ -319,16 +321,17 @@
             this.comboBox_Creater.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Creater.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Creater.FormattingEnabled = true;
-            this.comboBox_Creater.Location = new System.Drawing.Point(105, 340);
+            this.comboBox_Creater.Location = new System.Drawing.Point(105, 377);
             this.comboBox_Creater.Name = "comboBox_Creater";
             this.comboBox_Creater.Size = new System.Drawing.Size(186, 21);
             this.comboBox_Creater.TabIndex = 12;
+            this.comboBox_Creater.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_Creater_KeyDown);
             // 
             // label_13
             // 
             this.label_13.AutoSize = true;
             this.label_13.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_13.Location = new System.Drawing.Point(12, 343);
+            this.label_13.Location = new System.Drawing.Point(12, 380);
             this.label_13.Name = "label_13";
             this.label_13.Size = new System.Drawing.Size(84, 14);
             this.label_13.TabIndex = 22;
@@ -337,7 +340,7 @@
             // button_ShowCreaters
             // 
             this.button_ShowCreaters.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_ShowCreaters.Location = new System.Drawing.Point(15, 456);
+            this.button_ShowCreaters.Location = new System.Drawing.Point(15, 493);
             this.button_ShowCreaters.Name = "button_ShowCreaters";
             this.button_ShowCreaters.Size = new System.Drawing.Size(90, 23);
             this.button_ShowCreaters.TabIndex = 15;
@@ -345,11 +348,31 @@
             this.button_ShowCreaters.UseVisualStyleBackColor = true;
             this.button_ShowCreaters.Click += new System.EventHandler(this.button_ShowCreaters_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox1.Location = new System.Drawing.Point(81, 349);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(211, 21);
+            this.textBox1.TabIndex = 35;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(12, 342);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 28);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "佑さんの\r\nwikiのURL";
+            // 
             // Form_InsertCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 491);
+            this.ClientSize = new System.Drawing.Size(304, 528);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button_ShowCreaters);
             this.Controls.Add(this.comboBox_Creater);
             this.Controls.Add(this.textBox_Organization);
@@ -422,5 +445,7 @@
         private System.Windows.Forms.ComboBox comboBox_Creater;
         private System.Windows.Forms.Label label_13;
         private System.Windows.Forms.Button button_ShowCreaters;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
