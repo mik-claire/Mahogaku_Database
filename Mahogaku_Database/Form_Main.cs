@@ -136,7 +136,7 @@ SELECT
   CH.RACE AS RACE, CH.AGE AS AGE, CH.GRADE AS GRADE,
   CH.SKILL AS SKILL, CH.CLUB AS CLUB, CH.ORGANIZATION AS ORG,
   CH.REMARKS AS REM, CR.ID AS CRID, CR.NAME AS CRNAME,
-  CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.URL AS SHEET,
+  CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CR.WIKI AS WIKI, CH.URL AS SHEET,
   CR.PASSWORD AS PASSWORD
 FROM
   `CHARACTER` CH JOIN CREATER CR
@@ -166,6 +166,7 @@ ORDER BY
                     doc.Club = reader["CLUB"].ToString();
                     doc.Organization = reader["ORG"].ToString();
                     doc.Remarks = reader["REM"].ToString();
+                    doc.URLToWiki = reader["WIKI"].ToString();
                     doc.URLToPixiv = reader["SHEET"].ToString();
 
                     CreaterData creater = new CreaterData();
@@ -276,6 +277,11 @@ ORDER BY
                 {
                     tag += @"https://twitter.com/" + doc.Creater.TwitterID;
                 }
+                tag += ",";
+                if (doc.URLToWiki != null)
+                {
+                    tag += doc.URLToWiki;
+                }
                 tag += "," + doc.URLToPixiv;
                 item.Tag = tag;
 
@@ -368,8 +374,9 @@ ORDER BY
                 creater.ID = item.SubItems[13].Text;
                 doc.Creater = creater;
                 string[] urlArray = item.Tag.ToString().Split(',');
+                doc.URLToWiki = urlArray[2];
                 string url = string.Empty;
-                for (int i = 2; i < urlArray.Length; i++)
+                for (int i = 3; i < urlArray.Length; i++)
                 {
                     url += urlArray[i] + ",";
                 }
@@ -432,13 +439,26 @@ ORDER BY
                 menu.Items.Add(menuItem_CreaterTwitter);
             }
 
+            // wikiへのリンクが設定されていれば追加
+            if (urlArray[2] != string.Empty)
+            {
+                ToolStripMenuItem menuItem_Wiki = new ToolStripMenuItem();
+                menuItem_Wiki.Text = "まほがくキャラまとめwikiを開く";
+                menuItem_Wiki.Click += delegate
+                {
+                    System.Diagnostics.Process.Start(urlArray[2]);
+                };
+                menu.Items.Add(menuItem_Wiki);
+            }
+
             // 設定されているキャラクターシート
             ToolStripMenuItem menuItem_CharacterSheets = new ToolStripMenuItem();
             menuItem_CharacterSheets.Text = "キャラクターシートを開く";
             foreach (string url in urlArray)
             {
                 if (url == urlArray[0] ||
-                    url == urlArray[1])
+                    url == urlArray[1] ||
+                    url == urlArray[2])
                 {
                     continue;
                 }

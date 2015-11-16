@@ -71,6 +71,11 @@
 		/// </summary>
 		public CreaterData Creater { get; set; }
 
+        /// <summary>
+        /// まほがくキャラまとめwikiへのURL
+        /// </summary>
+        public string URLToWiki { get; set; }
+
 		/// <summary>
 		/// PixivへのURL
 		/// 「,」区切りで複数設定可能

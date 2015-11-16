@@ -383,11 +383,12 @@ ORDER BY
 部活 : {8}
 組織 : {9}
 備考 : {10}
+WikiURL : {11}
 キャラクターシートURL :
-{11}
+{12}
 
 親御さん情報
-名前 : {12}",
+名前 : {13}",
                  this.textBox_Name.Text.Trim(),
                  this.textBox_Kana.Text.Trim(),
                  this.comboBox_Sex.SelectedItem.ToString(),
@@ -399,6 +400,7 @@ ORDER BY
                  club,
                  organization,
                  this.textBox_Remarks.Text.Trim(),
+                 this.textBox_Wiki.Text.Trim(),
                  url,
                  this.comboBox_Creater.Text.Trim()
                  ),
@@ -423,6 +425,7 @@ ORDER BY
             doc.Club = club;
             doc.Organization = organization;
             doc.Remarks = this.textBox_Remarks.Text.Trim();
+            doc.URLToWiki = this.textBox_Wiki.Text.Trim();
             doc.URLToPixiv = this.textBox_URLToPixiv.Text.Trim();
             doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
@@ -481,6 +484,7 @@ INSERT INTO
   ORGANIZATION,
   REMARKS,
   CREATER_ID,
+  WIKI,
   URL
 )
 VALUES (
@@ -495,8 +499,9 @@ VALUES (
   '{8}',
   '{9}',
   '{10}',
-  {11},
-  '{12}'
+  '{11}',
+  '{12}',
+  '{13}'
 );
 ";
             sql = string.Format(sql,
@@ -512,6 +517,7 @@ VALUES (
                 doc.Organization,
                 doc.Remarks,
                 doc.Creater.ID,
+                doc.URLToWiki,
                 doc.URLToPixiv);
 
             executeQuery(sql);

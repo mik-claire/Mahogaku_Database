@@ -58,8 +58,8 @@
             this.comboBox_Creater = new System.Windows.Forms.ComboBox();
             this.label_13 = new System.Windows.Forms.Label();
             this.button_ShowCreaters = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_Wiki = new System.Windows.Forms.TextBox();
+            this.label_21 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_01
@@ -183,7 +183,7 @@
             // 
             this.label_06.AutoSize = true;
             this.label_06.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_06.Location = new System.Drawing.Point(12, 409);
+            this.label_06.Location = new System.Drawing.Point(12, 406);
             this.label_06.Name = "label_06";
             this.label_06.Size = new System.Drawing.Size(255, 70);
             this.label_06.TabIndex = 12;
@@ -274,7 +274,7 @@
             // 
             this.label_17.AutoSize = true;
             this.label_17.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_17.Location = new System.Drawing.Point(10, 309);
+            this.label_17.Location = new System.Drawing.Point(12, 308);
             this.label_17.Name = "label_17";
             this.label_17.Size = new System.Drawing.Size(63, 28);
             this.label_17.TabIndex = 29;
@@ -331,7 +331,7 @@
             // 
             this.label_13.AutoSize = true;
             this.label_13.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_13.Location = new System.Drawing.Point(12, 380);
+            this.label_13.Location = new System.Drawing.Point(12, 379);
             this.label_13.Name = "label_13";
             this.label_13.Size = new System.Drawing.Size(84, 14);
             this.label_13.TabIndex = 22;
@@ -348,31 +348,31 @@
             this.button_ShowCreaters.UseVisualStyleBackColor = true;
             this.button_ShowCreaters.Click += new System.EventHandler(this.button_ShowCreaters_Click);
             // 
-            // textBox1
+            // textBox_Wiki
             // 
-            this.textBox1.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(81, 349);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(211, 21);
-            this.textBox1.TabIndex = 35;
+            this.textBox_Wiki.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox_Wiki.Location = new System.Drawing.Point(81, 349);
+            this.textBox_Wiki.Name = "textBox_Wiki";
+            this.textBox_Wiki.Size = new System.Drawing.Size(211, 21);
+            this.textBox_Wiki.TabIndex = 35;
             // 
-            // label1
+            // label_21
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(12, 342);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 28);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "佑さんの\r\nwikiのURL";
+            this.label_21.AutoSize = true;
+            this.label_21.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label_21.Location = new System.Drawing.Point(12, 342);
+            this.label_21.Name = "label_21";
+            this.label_21.Size = new System.Drawing.Size(59, 28);
+            this.label_21.TabIndex = 36;
+            this.label_21.Text = "佑さんの\r\nwikiのURL";
             // 
             // Form_InsertCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(304, 528);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox_Wiki);
+            this.Controls.Add(this.label_21);
             this.Controls.Add(this.button_ShowCreaters);
             this.Controls.Add(this.comboBox_Creater);
             this.Controls.Add(this.textBox_Organization);
@@ -445,7 +445,7 @@
         private System.Windows.Forms.ComboBox comboBox_Creater;
         private System.Windows.Forms.Label label_13;
         private System.Windows.Forms.Button button_ShowCreaters;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_Wiki;
+        private System.Windows.Forms.Label label_21;
     }
 }

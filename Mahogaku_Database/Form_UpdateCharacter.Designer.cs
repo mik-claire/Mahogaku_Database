@@ -60,6 +60,8 @@
             this.button_ShowCreaters = new System.Windows.Forms.Button();
             this.textBox_Pass = new System.Windows.Forms.TextBox();
             this.label_21 = new System.Windows.Forms.Label();
+            this.textBox_Wiki = new System.Windows.Forms.TextBox();
+            this.label_22 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_01
@@ -160,7 +162,7 @@
             // button_OK
             // 
             this.button_OK.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_OK.Location = new System.Drawing.Point(136, 506);
+            this.button_OK.Location = new System.Drawing.Point(134, 546);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 14;
@@ -171,7 +173,7 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Cancel.Location = new System.Drawing.Point(217, 506);
+            this.button_Cancel.Location = new System.Drawing.Point(215, 546);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 15;
@@ -183,7 +185,7 @@
             // 
             this.label_06.AutoSize = true;
             this.label_06.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_06.Location = new System.Drawing.Point(12, 372);
+            this.label_06.Location = new System.Drawing.Point(12, 406);
             this.label_06.Name = "label_06";
             this.label_06.Size = new System.Drawing.Size(281, 98);
             this.label_06.TabIndex = 12;
@@ -274,7 +276,7 @@
             // 
             this.label_17.AutoSize = true;
             this.label_17.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_17.Location = new System.Drawing.Point(10, 309);
+            this.label_17.Location = new System.Drawing.Point(12, 310);
             this.label_17.Name = "label_17";
             this.label_17.Size = new System.Drawing.Size(63, 28);
             this.label_17.TabIndex = 29;
@@ -322,7 +324,7 @@
             this.comboBox_Creater.Enabled = false;
             this.comboBox_Creater.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Creater.FormattingEnabled = true;
-            this.comboBox_Creater.Location = new System.Drawing.Point(105, 340);
+            this.comboBox_Creater.Location = new System.Drawing.Point(103, 380);
             this.comboBox_Creater.Name = "comboBox_Creater";
             this.comboBox_Creater.Size = new System.Drawing.Size(186, 21);
             this.comboBox_Creater.TabIndex = 12;
@@ -331,7 +333,7 @@
             // 
             this.label_13.AutoSize = true;
             this.label_13.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_13.Location = new System.Drawing.Point(12, 343);
+            this.label_13.Location = new System.Drawing.Point(12, 382);
             this.label_13.Name = "label_13";
             this.label_13.Size = new System.Drawing.Size(84, 14);
             this.label_13.TabIndex = 22;
@@ -340,7 +342,7 @@
             // button_ShowCreaters
             // 
             this.button_ShowCreaters.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_ShowCreaters.Location = new System.Drawing.Point(15, 506);
+            this.button_ShowCreaters.Location = new System.Drawing.Point(13, 546);
             this.button_ShowCreaters.Name = "button_ShowCreaters";
             this.button_ShowCreaters.Size = new System.Drawing.Size(90, 23);
             this.button_ShowCreaters.TabIndex = 16;
@@ -351,7 +353,7 @@
             // textBox_Pass
             // 
             this.textBox_Pass.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Pass.Location = new System.Drawing.Point(84, 478);
+            this.textBox_Pass.Location = new System.Drawing.Point(81, 516);
             this.textBox_Pass.Name = "textBox_Pass";
             this.textBox_Pass.Size = new System.Drawing.Size(211, 21);
             this.textBox_Pass.TabIndex = 13;
@@ -361,17 +363,37 @@
             // 
             this.label_21.AutoSize = true;
             this.label_21.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_21.Location = new System.Drawing.Point(15, 478);
+            this.label_21.Location = new System.Drawing.Point(12, 518);
             this.label_21.Name = "label_21";
             this.label_21.Size = new System.Drawing.Size(49, 14);
             this.label_21.TabIndex = 38;
             this.label_21.Text = "パスワード";
             // 
+            // textBox_Wiki
+            // 
+            this.textBox_Wiki.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox_Wiki.Location = new System.Drawing.Point(81, 348);
+            this.textBox_Wiki.Name = "textBox_Wiki";
+            this.textBox_Wiki.Size = new System.Drawing.Size(211, 21);
+            this.textBox_Wiki.TabIndex = 39;
+            // 
+            // label_22
+            // 
+            this.label_22.AutoSize = true;
+            this.label_22.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label_22.Location = new System.Drawing.Point(12, 344);
+            this.label_22.Name = "label_22";
+            this.label_22.Size = new System.Drawing.Size(59, 28);
+            this.label_22.TabIndex = 40;
+            this.label_22.Text = "佑さんの\r\nwikiのURL";
+            // 
             // Form_UpdateCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 541);
+            this.ClientSize = new System.Drawing.Size(304, 577);
+            this.Controls.Add(this.textBox_Wiki);
+            this.Controls.Add(this.label_22);
             this.Controls.Add(this.textBox_Pass);
             this.Controls.Add(this.label_21);
             this.Controls.Add(this.button_ShowCreaters);
@@ -448,5 +470,7 @@
         private System.Windows.Forms.Button button_ShowCreaters;
         private System.Windows.Forms.TextBox textBox_Pass;
         private System.Windows.Forms.Label label_21;
+        private System.Windows.Forms.TextBox textBox_Wiki;
+        private System.Windows.Forms.Label label_22;
     }
 }

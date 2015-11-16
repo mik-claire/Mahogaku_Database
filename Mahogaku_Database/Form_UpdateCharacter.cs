@@ -439,6 +439,7 @@ ORDER BY
 部活 : {8}
 組織 : {9}
 備考 : {10}
+WikiURL : {11}
 キャラクターシートURL :
 {11}
 
@@ -455,6 +456,7 @@ ORDER BY
                  club,
                  organization,
                  this.textBox_Remarks.Text.Trim(),
+                 this.textBox_Wiki.Text.Trim(),
                  url,
                  this.comboBox_Creater.Text.Trim()
                  ),
@@ -479,6 +481,7 @@ ORDER BY
             doc.Club = club;
             doc.Organization = organization;
             doc.Remarks = this.textBox_Remarks.Text.Trim();
+            doc.URLToWiki = this.textBox_Wiki.Text.Trim();
             doc.URLToPixiv = this.textBox_URLToPixiv.Text.Trim();
             doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
@@ -551,9 +554,10 @@ SET
   ORGANIZATION = '{9}',
   REMARKS = '{10}',
   CREATER_ID = '{11}',
-  URL = '{12}'
+  WIKI = '{12}',
+  URL = '{13}'
 WHERE
-  ID = '{13}'
+  ID = '{14}'
 ;
 ";
             sql = string.Format(sql,
@@ -569,6 +573,7 @@ WHERE
                 doc.Organization,
                 doc.Remarks,
                 doc.Creater.ID,
+                doc.URLToWiki,
                 doc.URLToPixiv,
                 id);
 
