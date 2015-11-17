@@ -314,6 +314,9 @@ ORDER BY
 
                 this.listView_Display.Items.Add(item);
             }
+
+            this.listView_Display.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.listView_Display.Columns[0].Width = 50;
         }
 
         /// <summary>
