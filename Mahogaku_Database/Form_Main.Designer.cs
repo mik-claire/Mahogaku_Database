@@ -97,12 +97,12 @@
             // columnHeader_Name
             // 
             this.columnHeader_Name.Text = "名前";
-            this.columnHeader_Name.Width = 180;
+            this.columnHeader_Name.Width = 175;
             // 
             // ColumnHeader_Kana
             // 
             this.ColumnHeader_Kana.Text = "読み仮名";
-            this.ColumnHeader_Kana.Width = 180;
+            this.ColumnHeader_Kana.Width = 220;
             // 
             // columnHeader_Sex
             // 
@@ -117,12 +117,12 @@
             // columnHeader_Age
             // 
             this.columnHeader_Age.Text = "実年齢";
-            this.columnHeader_Age.Width = 120;
+            this.columnHeader_Age.Width = 125;
             // 
             // columnHeader_Grade
             // 
             this.columnHeader_Grade.Text = "学年";
-            this.columnHeader_Grade.Width = 100;
+            this.columnHeader_Grade.Width = 125;
             // 
             // columnHeader_Skill
             // 
@@ -132,17 +132,17 @@
             // columnHeader_Club
             // 
             this.columnHeader_Club.Text = "部活";
-            this.columnHeader_Club.Width = 150;
+            this.columnHeader_Club.Width = 135;
             // 
             // columnHeader_Organization
             // 
             this.columnHeader_Organization.Text = "組織";
-            this.columnHeader_Organization.Width = 100;
+            this.columnHeader_Organization.Width = 150;
             // 
             // columnHeader_Remarks
             // 
             this.columnHeader_Remarks.Text = "備考";
-            this.columnHeader_Remarks.Width = 300;
+            this.columnHeader_Remarks.Width = 450;
             // 
             // columnHeader_Creater
             // 

@@ -129,7 +129,7 @@
             this.comboBox_Sex.FormattingEnabled = true;
             this.comboBox_Sex.Location = new System.Drawing.Point(84, 65);
             this.comboBox_Sex.Name = "comboBox_Sex";
-            this.comboBox_Sex.Size = new System.Drawing.Size(45, 23);
+            this.comboBox_Sex.Size = new System.Drawing.Size(55, 23);
             this.comboBox_Sex.TabIndex = 2;
             // 
             // comboBox_Type
@@ -139,7 +139,7 @@
             this.comboBox_Type.FormattingEnabled = true;
             this.comboBox_Type.Location = new System.Drawing.Point(84, 92);
             this.comboBox_Type.Name = "comboBox_Type";
-            this.comboBox_Type.Size = new System.Drawing.Size(45, 23);
+            this.comboBox_Type.Size = new System.Drawing.Size(55, 23);
             this.comboBox_Type.TabIndex = 3;
             // 
             // textBox_Skill
@@ -173,7 +173,7 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Cancel.Location = new System.Drawing.Point(547, 337);
+            this.button_Cancel.Location = new System.Drawing.Point(547, 336);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 15;
@@ -190,8 +190,8 @@
             this.label_06.Size = new System.Drawing.Size(281, 112);
             this.label_06.TabIndex = 12;
             this.label_06.Text = "* が付いているものは必須項目です。\r\n学年は「高等部2年」や「教師」のように入力してください。\r\nアルファベット・数字・記号はなるべく半角で入力してください。\r" +
-    "\n備考・キャラクターシートURLに\r\n複数の項目を入力する場合、「,」で区切って下さい。\r\nまた、なるべく「,」は使用しないでください。\r\n\r\nパスワードは親御" +
-    "さん登録時に設定したものを入力してください。";
+    "\n備考・キャラクターシートURLに\r\n複数の項目を入力する場合、改行で区切って下さい。\r\nまた、なるべく「,」は使用しないでください。\r\n\r\nパスワードは親御さ" +
+    "ん登録時に設定したものを入力してください。";
             // 
             // textBox_Kana
             // 
@@ -344,7 +344,7 @@
             // button_ShowCreaters
             // 
             this.button_ShowCreaters.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_ShowCreaters.Location = new System.Drawing.Point(345, 337);
+            this.button_ShowCreaters.Location = new System.Drawing.Point(345, 336);
             this.button_ShowCreaters.Name = "button_ShowCreaters";
             this.button_ShowCreaters.Size = new System.Drawing.Size(90, 23);
             this.button_ShowCreaters.TabIndex = 16;

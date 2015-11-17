@@ -292,21 +292,21 @@
             // comboBox_Type
             // 
             this.comboBox_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Type.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBox_Type.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Type.FormattingEnabled = true;
-            this.comboBox_Type.Location = new System.Drawing.Point(84, 93);
+            this.comboBox_Type.Location = new System.Drawing.Point(84, 92);
             this.comboBox_Type.Name = "comboBox_Type";
-            this.comboBox_Type.Size = new System.Drawing.Size(55, 21);
+            this.comboBox_Type.Size = new System.Drawing.Size(55, 23);
             this.comboBox_Type.TabIndex = 47;
             // 
             // comboBox_Sex
             // 
             this.comboBox_Sex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Sex.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBox_Sex.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Sex.FormattingEnabled = true;
-            this.comboBox_Sex.Location = new System.Drawing.Point(84, 66);
+            this.comboBox_Sex.Location = new System.Drawing.Point(84, 65);
             this.comboBox_Sex.Name = "comboBox_Sex";
-            this.comboBox_Sex.Size = new System.Drawing.Size(55, 21);
+            this.comboBox_Sex.Size = new System.Drawing.Size(55, 23);
             this.comboBox_Sex.TabIndex = 46;
             // 
             // textBox_Name
