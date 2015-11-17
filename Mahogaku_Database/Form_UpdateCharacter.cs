@@ -579,11 +579,10 @@ WHERE
             param.Add(new string[] { "urlToPixiv", doc.URLToPixiv });
             param.Add(new string[] { "id", id });
 
-
             executeQuery(sql, param);
         }
 
-        private void executeQuery(string sql, List<string[]> param)
+        private void executeQuery(string sql, List<string[]> data)
         {
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -596,9 +595,10 @@ WHERE
 
                 cmd.CommandText = sql;
 
-                foreach (string[] ary in param)
+                foreach (string[] ary in data)
                 {
-                    cmd.Parameters.AddWithValue(ary[0], ary[1]);
+                    MySqlParameter param = new MySqlParameter(ary[0], ary[1]);
+                    cmd.Parameters.Add(param);
                 }
 
                 cmd.ExecuteNonQuery();

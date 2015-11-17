@@ -525,7 +525,7 @@ VALUES (
             executeQuery(sql, param);
         }
 
-        private void executeQuery(string sql, List<string[]> param)
+        private void executeQuery(string sql, List<string[]> data)
         {
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -538,9 +538,10 @@ VALUES (
 
                 cmd.CommandText = sql;
 
-                foreach (string[] ary in param)
+                foreach (string[] ary in data)
                 {
-                    cmd.Parameters.AddWithValue(ary[0], ary[1]);
+                    MySqlParameter param = new MySqlParameter(ary[0], ary[1]);
+                    cmd.Parameters.Add(param);
                 }
 
                 cmd.ExecuteNonQuery();
