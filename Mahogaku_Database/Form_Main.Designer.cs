@@ -112,17 +112,17 @@
             // columnHeader_Race
             // 
             this.columnHeader_Race.Text = "種族";
-            this.columnHeader_Race.Width = 90;
+            this.columnHeader_Race.Width = 120;
             // 
             // columnHeader_Age
             // 
-            this.columnHeader_Age.Text = "年齢";
-            this.columnHeader_Age.Width = 50;
+            this.columnHeader_Age.Text = "実年齢";
+            this.columnHeader_Age.Width = 120;
             // 
             // columnHeader_Grade
             // 
             this.columnHeader_Grade.Text = "学年";
-            this.columnHeader_Grade.Width = 85;
+            this.columnHeader_Grade.Width = 100;
             // 
             // columnHeader_Skill
             // 
@@ -132,7 +132,7 @@
             // columnHeader_Club
             // 
             this.columnHeader_Club.Text = "部活";
-            this.columnHeader_Club.Width = 100;
+            this.columnHeader_Club.Width = 150;
             // 
             // columnHeader_Organization
             // 

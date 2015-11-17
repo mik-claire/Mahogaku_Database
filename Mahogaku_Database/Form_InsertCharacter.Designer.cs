@@ -199,9 +199,9 @@
             this.label_09.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label_09.Location = new System.Drawing.Point(12, 149);
             this.label_09.Name = "label_09";
-            this.label_09.Size = new System.Drawing.Size(36, 14);
+            this.label_09.Size = new System.Drawing.Size(47, 14);
             this.label_09.TabIndex = 66;
-            this.label_09.Text = "*年齢";
+            this.label_09.Text = "*実年齢";
             // 
             // textBox_Race
             // 
@@ -245,10 +245,10 @@
             this.label_06.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label_06.Location = new System.Drawing.Point(333, 178);
             this.label_06.Name = "label_06";
-            this.label_06.Size = new System.Drawing.Size(255, 70);
+            this.label_06.Size = new System.Drawing.Size(266, 84);
             this.label_06.TabIndex = 59;
-            this.label_06.Text = "* が付いているものは必須項目です。\r\n学年は「高等部2年」や「教師」のように入力してください。\r\nアルファベット・数字はなるべく半角で入力してください。\r\n所属" +
-    "・備考・キャラクターシートURLに\r\n複数の項目を入力する場合、「,」で区切って下さい。";
+            this.label_06.Text = "* が付いているものは必須項目です。\r\n学年は「高等部2年」や「教師」のように入力してください。\r\nアルファベット・数字・記号はなるべく半角で入力してください。\r" +
+    "\n備考・キャラクターシートURLに\r\n複数の項目を入力する場合、改行で区切って下さい。\r\nまた、なるべく「,」は使用しないでください。";
             // 
             // button_Cancel
             // 

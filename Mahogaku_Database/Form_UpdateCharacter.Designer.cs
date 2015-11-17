@@ -125,21 +125,21 @@
             // comboBox_Sex
             // 
             this.comboBox_Sex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Sex.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBox_Sex.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Sex.FormattingEnabled = true;
-            this.comboBox_Sex.Location = new System.Drawing.Point(84, 66);
+            this.comboBox_Sex.Location = new System.Drawing.Point(84, 65);
             this.comboBox_Sex.Name = "comboBox_Sex";
-            this.comboBox_Sex.Size = new System.Drawing.Size(45, 21);
+            this.comboBox_Sex.Size = new System.Drawing.Size(45, 23);
             this.comboBox_Sex.TabIndex = 2;
             // 
             // comboBox_Type
             // 
             this.comboBox_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Type.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBox_Type.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Type.FormattingEnabled = true;
-            this.comboBox_Type.Location = new System.Drawing.Point(84, 93);
+            this.comboBox_Type.Location = new System.Drawing.Point(84, 92);
             this.comboBox_Type.Name = "comboBox_Type";
-            this.comboBox_Type.Size = new System.Drawing.Size(45, 21);
+            this.comboBox_Type.Size = new System.Drawing.Size(45, 23);
             this.comboBox_Type.TabIndex = 3;
             // 
             // textBox_Skill
@@ -187,10 +187,11 @@
             this.label_06.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label_06.Location = new System.Drawing.Point(333, 178);
             this.label_06.Name = "label_06";
-            this.label_06.Size = new System.Drawing.Size(281, 98);
+            this.label_06.Size = new System.Drawing.Size(281, 112);
             this.label_06.TabIndex = 12;
-            this.label_06.Text = "* が付いているものは必須項目です。\r\n学年は「高等部2年」や「教師」のように入力してください。\r\nアルファベット・数字はなるべく半角で入力してください。\r\n所属" +
-    "・備考・キャラクターシートURLに\r\n複数の項目を入力する場合、「,」で区切って下さい。\r\n\r\nパスワードは親御さん登録時に設定したものを入力してください。";
+            this.label_06.Text = "* が付いているものは必須項目です。\r\n学年は「高等部2年」や「教師」のように入力してください。\r\nアルファベット・数字・記号はなるべく半角で入力してください。\r" +
+    "\n備考・キャラクターシートURLに\r\n複数の項目を入力する場合、「,」で区切って下さい。\r\nまた、なるべく「,」は使用しないでください。\r\n\r\nパスワードは親御" +
+    "さん登録時に設定したものを入力してください。";
             // 
             // textBox_Kana
             // 
@@ -242,9 +243,9 @@
             this.label_09.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label_09.Location = new System.Drawing.Point(12, 149);
             this.label_09.Name = "label_09";
-            this.label_09.Size = new System.Drawing.Size(36, 14);
+            this.label_09.Size = new System.Drawing.Size(47, 14);
             this.label_09.TabIndex = 17;
-            this.label_09.Text = "*年齢";
+            this.label_09.Text = "*実年齢";
             // 
             // textBox_Grade
             // 
