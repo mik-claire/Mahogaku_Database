@@ -234,7 +234,7 @@ ORDER BY
                     continue;
                 }
 
-                // 存在擦れば追加
+                // 存在すれば追加
                 filteredData.Add(doc);
             }
 
