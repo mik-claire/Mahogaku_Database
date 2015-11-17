@@ -422,7 +422,7 @@ ORDER BY
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            string url = this.textBox_URLToPixiv.Text.Trim().Replace(",", Environment.NewLine);
+            string url = this.textBox_URLToPixiv.Text.Trim();
             #endregion
 
             DialogResult dr = MessageBox.Show(string.Format(@"
@@ -439,12 +439,13 @@ ORDER BY
 部活 : {8}
 組織 : {9}
 備考 : {10}
-WikiURL : {11}
 キャラクターシートURL :
 {11}
+WikiURL :
+{12}
 
 親御さん情報
-名前 : {12}",
+名前 : {13}",
                  this.textBox_Name.Text.Trim(),
                  this.textBox_Kana.Text.Trim(),
                  this.comboBox_Sex.SelectedItem.ToString(),
@@ -456,8 +457,8 @@ WikiURL : {11}
                  club,
                  organization,
                  this.textBox_Remarks.Text.Trim(),
-                 this.textBox_Wiki.Text.Trim(),
                  url,
+                 this.textBox_Wiki.Text.Trim() != string.Empty ? this.textBox_Wiki.Text.Trim() : "なし",
                  this.comboBox_Creater.Text.Trim()
                  ),
                 "Question.",
@@ -480,9 +481,9 @@ WikiURL : {11}
             doc.Skill = skill;
             doc.Club = club;
             doc.Organization = organization;
-            doc.Remarks = this.textBox_Remarks.Text.Trim();
+            doc.Remarks = this.textBox_Remarks.Text.Trim().Replace(Environment.NewLine, ",");
             doc.URLToWiki = this.textBox_Wiki.Text.Trim();
-            doc.URLToPixiv = this.textBox_URLToPixiv.Text.Trim();
+            doc.URLToPixiv = url.Replace(Environment.NewLine, ",");
             doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
 
@@ -542,45 +543,47 @@ WikiURL : {11}
 UPDATE
   `CHARACTER`
 SET
-  NAME = '{0}',
-  KANA = '{1}',
-  TYPE_ID = {2},
-  SEX_ID = {3},
-  RACE = '{4}',
-  AGE = '{5}',
-  GRADE = '{6}',
-  SKILL = '{7}',
-  CLUB = '{8}',
-  ORGANIZATION = '{9}',
-  REMARKS = '{10}',
-  CREATER_ID = '{11}',
-  WIKI = '{12}',
-  URL = '{13}'
+  NAME = @name,
+  KANA = @kana,
+  TYPE_ID = @type,
+  SEX_ID = @sex,
+  RACE = @race,
+  AGE = @age,
+  GRADE = @grade,
+  SKILL = @skill,
+  CLUB = @club,
+  ORGANIZATION = @organization,
+  REMARKS = @remarks,
+  CREATER_ID = @createrId,
+  WIKI = @urlToWiki,
+  URL = @urlToPixiv
 WHERE
-  ID = '{14}'
+  ID = @id
 ;
 ";
-            sql = string.Format(sql,
-                doc.Name,
-                doc.Kana,
-                doc.Type,
-                doc.Sex,
-                doc.Race,
-                doc.Age,
-                doc.Grade,
-                doc.Skill,
-                doc.Club,
-                doc.Organization,
-                doc.Remarks,
-                doc.Creater.ID,
-                doc.URLToWiki,
-                doc.URLToPixiv,
-                id);
 
-            executeQuery(sql);
+            List<string[]> param = new List<string[]>();
+            param.Add(new string[] { "name", doc.Name });
+            param.Add(new string[] { "kana", doc.Kana });
+            param.Add(new string[] { "type", doc.Type });
+            param.Add(new string[] { "sex", doc.Sex });
+            param.Add(new string[] { "race", doc.Race });
+            param.Add(new string[] { "age", doc.Age });
+            param.Add(new string[] { "grade", doc.Grade });
+            param.Add(new string[] { "skill", doc.Skill });
+            param.Add(new string[] { "club", doc.Club });
+            param.Add(new string[] { "organization", doc.Organization });
+            param.Add(new string[] { "remarks", doc.Remarks });
+            param.Add(new string[] { "createrId", doc.Creater.ID });
+            param.Add(new string[] { "urlToWiki", doc.URLToWiki });
+            param.Add(new string[] { "urlToPixiv", doc.URLToPixiv });
+            param.Add(new string[] { "id", id });
+
+
+            executeQuery(sql, param);
         }
 
-        private void executeQuery(string sql)
+        private void executeQuery(string sql, List<string[]> param)
         {
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -592,6 +595,12 @@ WHERE
                 cmd = cn.CreateCommand();
 
                 cmd.CommandText = sql;
+
+                foreach (string[] ary in param)
+                {
+                    cmd.Parameters.AddWithValue(ary[0], ary[1]);
+                }
+
                 cmd.ExecuteNonQuery();
             }
             finally

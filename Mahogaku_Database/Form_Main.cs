@@ -369,7 +369,7 @@ ORDER BY
                 doc.Skill = item.SubItems[7].Text;
                 doc.Club = item.SubItems[8].Text;
                 doc.Organization = item.SubItems[9].Text;
-                doc.Remarks = item.SubItems[10].Text;
+                doc.Remarks = item.SubItems[10].Text.Replace(",", Environment.NewLine);
                 CreaterData creater = new CreaterData();
                 creater.ID = item.SubItems[13].Text;
                 doc.Creater = creater;
@@ -378,7 +378,7 @@ ORDER BY
                 string url = string.Empty;
                 for (int i = 3; i < urlArray.Length; i++)
                 {
-                    url += urlArray[i] + ",";
+                    url += urlArray[i] + Environment.NewLine;
                 }
                 doc.URLToPixiv = url.Substring(0, url.Length - 1);
                 f.Character = doc;
@@ -509,6 +509,14 @@ ORDER BY
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void button_ShowCreaters_Click(object sender, EventArgs e)
+        {
+            using (Form_Creater f = new Form_Creater())
+            {
+                DialogResult dr = f.ShowDialog();
             }
         }
     }

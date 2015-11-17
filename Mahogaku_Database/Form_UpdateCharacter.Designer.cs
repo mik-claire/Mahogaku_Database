@@ -68,7 +68,7 @@
             // 
             this.label_01.AutoSize = true;
             this.label_01.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_01.Location = new System.Drawing.Point(12, 13);
+            this.label_01.Location = new System.Drawing.Point(12, 14);
             this.label_01.Name = "label_01";
             this.label_01.Size = new System.Drawing.Size(36, 14);
             this.label_01.TabIndex = 0;
@@ -78,7 +78,7 @@
             // 
             this.label_02.AutoSize = true;
             this.label_02.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_02.Location = new System.Drawing.Point(12, 63);
+            this.label_02.Location = new System.Drawing.Point(12, 68);
             this.label_02.Name = "label_02";
             this.label_02.Size = new System.Drawing.Size(36, 14);
             this.label_02.TabIndex = 1;
@@ -88,7 +88,7 @@
             // 
             this.label_03.AutoSize = true;
             this.label_03.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_03.Location = new System.Drawing.Point(12, 89);
+            this.label_03.Location = new System.Drawing.Point(12, 95);
             this.label_03.Name = "label_03";
             this.label_03.Size = new System.Drawing.Size(36, 14);
             this.label_03.TabIndex = 2;
@@ -98,7 +98,7 @@
             // 
             this.label_04.AutoSize = true;
             this.label_04.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_04.Location = new System.Drawing.Point(12, 190);
+            this.label_04.Location = new System.Drawing.Point(20, 203);
             this.label_04.Name = "label_04";
             this.label_04.Size = new System.Drawing.Size(29, 14);
             this.label_04.TabIndex = 3;
@@ -108,7 +108,7 @@
             // 
             this.label_11.AutoSize = true;
             this.label_11.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_11.Location = new System.Drawing.Point(12, 277);
+            this.label_11.Location = new System.Drawing.Point(20, 313);
             this.label_11.Name = "label_11";
             this.label_11.Size = new System.Drawing.Size(29, 14);
             this.label_11.TabIndex = 4;
@@ -117,7 +117,7 @@
             // textBox_Name
             // 
             this.textBox_Name.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Name.Location = new System.Drawing.Point(81, 12);
+            this.textBox_Name.Location = new System.Drawing.Point(84, 12);
             this.textBox_Name.Name = "textBox_Name";
             this.textBox_Name.Size = new System.Drawing.Size(211, 21);
             this.textBox_Name.TabIndex = 0;
@@ -127,7 +127,7 @@
             this.comboBox_Sex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Sex.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Sex.FormattingEnabled = true;
-            this.comboBox_Sex.Location = new System.Drawing.Point(81, 62);
+            this.comboBox_Sex.Location = new System.Drawing.Point(84, 66);
             this.comboBox_Sex.Name = "comboBox_Sex";
             this.comboBox_Sex.Size = new System.Drawing.Size(45, 21);
             this.comboBox_Sex.TabIndex = 2;
@@ -137,7 +137,7 @@
             this.comboBox_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Type.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Type.FormattingEnabled = true;
-            this.comboBox_Type.Location = new System.Drawing.Point(81, 88);
+            this.comboBox_Type.Location = new System.Drawing.Point(84, 93);
             this.comboBox_Type.Name = "comboBox_Type";
             this.comboBox_Type.Size = new System.Drawing.Size(45, 21);
             this.comboBox_Type.TabIndex = 3;
@@ -145,7 +145,7 @@
             // textBox_Skill
             // 
             this.textBox_Skill.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Skill.Location = new System.Drawing.Point(81, 189);
+            this.textBox_Skill.Location = new System.Drawing.Point(84, 201);
             this.textBox_Skill.Name = "textBox_Skill";
             this.textBox_Skill.Size = new System.Drawing.Size(211, 21);
             this.textBox_Skill.TabIndex = 7;
@@ -153,16 +153,16 @@
             // textBox_Remarks
             // 
             this.textBox_Remarks.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Remarks.Location = new System.Drawing.Point(81, 264);
+            this.textBox_Remarks.Location = new System.Drawing.Point(84, 282);
             this.textBox_Remarks.Multiline = true;
             this.textBox_Remarks.Name = "textBox_Remarks";
-            this.textBox_Remarks.Size = new System.Drawing.Size(211, 43);
+            this.textBox_Remarks.Size = new System.Drawing.Size(211, 78);
             this.textBox_Remarks.TabIndex = 10;
             // 
             // button_OK
             // 
             this.button_OK.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_OK.Location = new System.Drawing.Point(134, 546);
+            this.button_OK.Location = new System.Drawing.Point(466, 336);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 14;
@@ -173,7 +173,7 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Cancel.Location = new System.Drawing.Point(215, 546);
+            this.button_Cancel.Location = new System.Drawing.Point(547, 337);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 15;
@@ -185,7 +185,7 @@
             // 
             this.label_06.AutoSize = true;
             this.label_06.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_06.Location = new System.Drawing.Point(12, 406);
+            this.label_06.Location = new System.Drawing.Point(333, 178);
             this.label_06.Name = "label_06";
             this.label_06.Size = new System.Drawing.Size(281, 98);
             this.label_06.TabIndex = 12;
@@ -195,7 +195,7 @@
             // textBox_Kana
             // 
             this.textBox_Kana.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Kana.Location = new System.Drawing.Point(81, 37);
+            this.textBox_Kana.Location = new System.Drawing.Point(84, 39);
             this.textBox_Kana.Name = "textBox_Kana";
             this.textBox_Kana.Size = new System.Drawing.Size(211, 21);
             this.textBox_Kana.TabIndex = 1;
@@ -204,7 +204,7 @@
             // 
             this.label_07.AutoSize = true;
             this.label_07.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_07.Location = new System.Drawing.Point(12, 38);
+            this.label_07.Location = new System.Drawing.Point(12, 41);
             this.label_07.Name = "label_07";
             this.label_07.Size = new System.Drawing.Size(50, 14);
             this.label_07.TabIndex = 13;
@@ -213,7 +213,7 @@
             // textBox_Race
             // 
             this.textBox_Race.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Race.Location = new System.Drawing.Point(81, 114);
+            this.textBox_Race.Location = new System.Drawing.Point(84, 120);
             this.textBox_Race.Name = "textBox_Race";
             this.textBox_Race.Size = new System.Drawing.Size(211, 21);
             this.textBox_Race.TabIndex = 4;
@@ -222,7 +222,7 @@
             // 
             this.label_08.AutoSize = true;
             this.label_08.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_08.Location = new System.Drawing.Point(12, 115);
+            this.label_08.Location = new System.Drawing.Point(12, 122);
             this.label_08.Name = "label_08";
             this.label_08.Size = new System.Drawing.Size(36, 14);
             this.label_08.TabIndex = 15;
@@ -231,7 +231,7 @@
             // textBox_Age
             // 
             this.textBox_Age.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Age.Location = new System.Drawing.Point(81, 139);
+            this.textBox_Age.Location = new System.Drawing.Point(84, 147);
             this.textBox_Age.Name = "textBox_Age";
             this.textBox_Age.Size = new System.Drawing.Size(211, 21);
             this.textBox_Age.TabIndex = 5;
@@ -240,7 +240,7 @@
             // 
             this.label_09.AutoSize = true;
             this.label_09.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_09.Location = new System.Drawing.Point(12, 140);
+            this.label_09.Location = new System.Drawing.Point(12, 149);
             this.label_09.Name = "label_09";
             this.label_09.Size = new System.Drawing.Size(36, 14);
             this.label_09.TabIndex = 17;
@@ -249,7 +249,7 @@
             // textBox_Grade
             // 
             this.textBox_Grade.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Grade.Location = new System.Drawing.Point(81, 164);
+            this.textBox_Grade.Location = new System.Drawing.Point(84, 174);
             this.textBox_Grade.Name = "textBox_Grade";
             this.textBox_Grade.Size = new System.Drawing.Size(211, 21);
             this.textBox_Grade.TabIndex = 6;
@@ -258,7 +258,7 @@
             // 
             this.label_10.AutoSize = true;
             this.label_10.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_10.Location = new System.Drawing.Point(12, 165);
+            this.label_10.Location = new System.Drawing.Point(12, 176);
             this.label_10.Name = "label_10";
             this.label_10.Size = new System.Drawing.Size(36, 14);
             this.label_10.TabIndex = 19;
@@ -267,25 +267,26 @@
             // textBox_URLToPixiv
             // 
             this.textBox_URLToPixiv.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_URLToPixiv.Location = new System.Drawing.Point(81, 315);
+            this.textBox_URLToPixiv.Location = new System.Drawing.Point(408, 12);
+            this.textBox_URLToPixiv.Multiline = true;
             this.textBox_URLToPixiv.Name = "textBox_URLToPixiv";
-            this.textBox_URLToPixiv.Size = new System.Drawing.Size(211, 21);
+            this.textBox_URLToPixiv.Size = new System.Drawing.Size(211, 78);
             this.textBox_URLToPixiv.TabIndex = 11;
             // 
             // label_17
             // 
             this.label_17.AutoSize = true;
             this.label_17.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_17.Location = new System.Drawing.Point(12, 310);
+            this.label_17.Location = new System.Drawing.Point(325, 38);
             this.label_17.Name = "label_17";
             this.label_17.Size = new System.Drawing.Size(63, 28);
             this.label_17.TabIndex = 29;
-            this.label_17.Text = "*キャラクター\r\nシートURL";
+            this.label_17.Text = "*キャラクター\r\n　シートURL";
             // 
             // textBox_Club
             // 
             this.textBox_Club.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Club.Location = new System.Drawing.Point(81, 214);
+            this.textBox_Club.Location = new System.Drawing.Point(84, 228);
             this.textBox_Club.Name = "textBox_Club";
             this.textBox_Club.Size = new System.Drawing.Size(211, 21);
             this.textBox_Club.TabIndex = 8;
@@ -294,7 +295,7 @@
             // 
             this.label_19.AutoSize = true;
             this.label_19.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_19.Location = new System.Drawing.Point(12, 215);
+            this.label_19.Location = new System.Drawing.Point(20, 230);
             this.label_19.Name = "label_19";
             this.label_19.Size = new System.Drawing.Size(51, 14);
             this.label_19.TabIndex = 32;
@@ -303,7 +304,7 @@
             // textBox_Organization
             // 
             this.textBox_Organization.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Organization.Location = new System.Drawing.Point(81, 239);
+            this.textBox_Organization.Location = new System.Drawing.Point(84, 255);
             this.textBox_Organization.Name = "textBox_Organization";
             this.textBox_Organization.Size = new System.Drawing.Size(211, 21);
             this.textBox_Organization.TabIndex = 9;
@@ -312,7 +313,7 @@
             // 
             this.label_20.AutoSize = true;
             this.label_20.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_20.Location = new System.Drawing.Point(12, 240);
+            this.label_20.Location = new System.Drawing.Point(20, 257);
             this.label_20.Name = "label_20";
             this.label_20.Size = new System.Drawing.Size(51, 14);
             this.label_20.TabIndex = 34;
@@ -324,25 +325,25 @@
             this.comboBox_Creater.Enabled = false;
             this.comboBox_Creater.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Creater.FormattingEnabled = true;
-            this.comboBox_Creater.Location = new System.Drawing.Point(103, 380);
+            this.comboBox_Creater.Location = new System.Drawing.Point(408, 128);
             this.comboBox_Creater.Name = "comboBox_Creater";
-            this.comboBox_Creater.Size = new System.Drawing.Size(186, 21);
+            this.comboBox_Creater.Size = new System.Drawing.Size(211, 21);
             this.comboBox_Creater.TabIndex = 12;
             // 
             // label_13
             // 
             this.label_13.AutoSize = true;
             this.label_13.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_13.Location = new System.Drawing.Point(12, 382);
+            this.label_13.Location = new System.Drawing.Point(325, 130);
             this.label_13.Name = "label_13";
-            this.label_13.Size = new System.Drawing.Size(84, 14);
+            this.label_13.Size = new System.Drawing.Size(53, 14);
             this.label_13.TabIndex = 22;
-            this.label_13.Text = "*親御さんの名前";
+            this.label_13.Text = "*親御さん";
             // 
             // button_ShowCreaters
             // 
             this.button_ShowCreaters.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_ShowCreaters.Location = new System.Drawing.Point(13, 546);
+            this.button_ShowCreaters.Location = new System.Drawing.Point(345, 337);
             this.button_ShowCreaters.Name = "button_ShowCreaters";
             this.button_ShowCreaters.Size = new System.Drawing.Size(90, 23);
             this.button_ShowCreaters.TabIndex = 16;
@@ -353,7 +354,7 @@
             // textBox_Pass
             // 
             this.textBox_Pass.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Pass.Location = new System.Drawing.Point(81, 516);
+            this.textBox_Pass.Location = new System.Drawing.Point(403, 306);
             this.textBox_Pass.Name = "textBox_Pass";
             this.textBox_Pass.Size = new System.Drawing.Size(211, 21);
             this.textBox_Pass.TabIndex = 13;
@@ -363,7 +364,7 @@
             // 
             this.label_21.AutoSize = true;
             this.label_21.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_21.Location = new System.Drawing.Point(12, 518);
+            this.label_21.Location = new System.Drawing.Point(333, 308);
             this.label_21.Name = "label_21";
             this.label_21.Size = new System.Drawing.Size(49, 14);
             this.label_21.TabIndex = 38;
@@ -372,7 +373,7 @@
             // textBox_Wiki
             // 
             this.textBox_Wiki.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox_Wiki.Location = new System.Drawing.Point(81, 348);
+            this.textBox_Wiki.Location = new System.Drawing.Point(408, 96);
             this.textBox_Wiki.Name = "textBox_Wiki";
             this.textBox_Wiki.Size = new System.Drawing.Size(211, 21);
             this.textBox_Wiki.TabIndex = 39;
@@ -381,7 +382,7 @@
             // 
             this.label_22.AutoSize = true;
             this.label_22.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_22.Location = new System.Drawing.Point(12, 344);
+            this.label_22.Location = new System.Drawing.Point(333, 93);
             this.label_22.Name = "label_22";
             this.label_22.Size = new System.Drawing.Size(59, 28);
             this.label_22.TabIndex = 40;
@@ -391,7 +392,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 577);
+            this.ClientSize = new System.Drawing.Size(634, 371);
             this.Controls.Add(this.textBox_Wiki);
             this.Controls.Add(this.label_22);
             this.Controls.Add(this.textBox_Pass);
@@ -426,10 +427,10 @@
             this.Controls.Add(this.label_03);
             this.Controls.Add(this.label_02);
             this.Controls.Add(this.label_01);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form_UpdateCharacter";
-            this.Text = "キャラクター編集";
+            this.Text = "キャラクター情報編集";
             this.Load += new System.EventHandler(this.Form_Insert_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

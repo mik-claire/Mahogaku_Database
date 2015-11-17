@@ -239,7 +239,7 @@ FROM CREATER ORDER BY NAME ASC
             using (Form_UpdateCreater f = new Form_UpdateCreater())
             {
                 f.ID = item.SubItems[4].Text;
-                f.Name = item.SubItems[0].Text;
+                f.UserName = item.SubItems[0].Text;
                 f.Pass = item.SubItems[3].Text;
                 f.Pixiv = item.SubItems[1].Text;
                 f.Twitter = item.SubItems[2].Text.Substring(1, item.SubItems[2].Text.Length - 1);

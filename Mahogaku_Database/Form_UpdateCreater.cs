@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Mahogaku_Database
@@ -7,7 +8,7 @@ namespace Mahogaku_Database
     public partial class Form_UpdateCreater : Form
     {
         public string ID { get; set; }
-        public string Name { get; set; }
+        public string UserName { get; set; }
         public string Pass { get; set; }
         public string Pixiv { get; set; }
         public string Twitter { get; set; }
@@ -22,7 +23,7 @@ namespace Mahogaku_Database
 
         private void Form_UpdateCreater_Load(object sender, EventArgs e)
         {
-            this.textBox_Name.Text = this.Name;
+            this.textBox_Name.Text = this.UserName;
             this.textBox_Pixiv.Text = this.Pixiv;
             this.textBox_Twitter.Text = this.Twitter;
         }
@@ -54,6 +55,13 @@ namespace Mahogaku_Database
                 return;
             }
 
+            // TwitterIDから @ を削除
+            if (twitter.Length != 0 &&
+                twitter[0] == '@')
+            {
+                twitter = twitter.Substring(1, twitter.Length - 1);
+            }
+
             string message = string.Format(@"
 以下の内容で編集します。
 よろしいですか？
@@ -63,7 +71,7 @@ PixivID : {1}
 TwitterID : {2}",
                 name,
                 pixiv,
-                twitter != string.Empty ? twitter : "なし"
+                twitter != string.Empty ? "@" + twitter : "なし"
 );
             DialogResult dr = MessageBox.Show(message,
                 "Question.",
@@ -84,7 +92,7 @@ TwitterID : {2}",
             try
             {
                 // 登録
-                insertCreater(doc);
+                updateCreater(doc);
 
                 MessageBox.Show("Success!");
                 this.DialogResult = DialogResult.OK;
@@ -120,28 +128,29 @@ TwitterID : {2}",
             validateAndUpdate();
         }
 
-        private void insertCreater(CreaterData doc)
+        private void updateCreater(CreaterData doc)
         {
-            string sql = string.Format(@"
+            string sql = @"
 UPDATE
  CREATER 
 SET
-  NAME = '{0}',
-  PIXIV = '{1}',
-  TWITTER = '{2}'
+  NAME = @name,
+  PIXIV = @pixiv,
+  TWITTER = @twitter
 WHERE
-  ID = '{3}'
+  ID = @id
 ;
-",
-            doc.Name,
-            doc.PixivID,
-            doc.TwitterID,
-            doc.ID);
+";
+            List<string[]> param = new List<string[]>();
+            param.Add(new string[] { "name", doc.Name });
+            param.Add(new string[] { "pixiv", doc.PixivID });
+            param.Add(new string[] { "twitter", doc.TwitterID });
+            param.Add(new string[] { "id", doc.ID });
 
-            executeQuery(sql);
+            executeQuery(sql, param);
         }
 
-        private void executeQuery(string sql)
+        private void executeQuery(string sql, List<string[]> param)
         {
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -153,6 +162,12 @@ WHERE
                 cmd = cn.CreateCommand();
 
                 cmd.CommandText = sql;
+
+                foreach (string[] ary in param)
+                {
+                    cmd.Parameters.AddWithValue(ary[0], ary[1]);
+                }
+
                 cmd.ExecuteNonQuery();
             }
             finally
@@ -173,7 +188,7 @@ WHERE
             this.Close();
         }
 
-        private void textBox_Twitter_KeyDown(object sender, KeyEventArgs e)
+        private void textBox_Pass_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData != Keys.Enter)
             {

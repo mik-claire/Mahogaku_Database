@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -76,7 +77,7 @@ TwitterID : {3}",
                 name,
                 pass,
                 pixiv,
-                twitter != string.Empty ? twitter : "なし"
+                twitter != string.Empty ? "@" + twitter : "なし"
 );
             DialogResult dr = MessageBox.Show(message,
                 "Question.",
@@ -130,29 +131,31 @@ TwitterID : {3}",
 
         private void insertCreater(CreaterData doc)
         {
-            string sql = string.Format(@"
-INSERT INTO
-CREATER (
-NAME,
-PASSWORD,
-PIXIV,
-TWITTER
+            string sql = @"
+INSERT INTO CREATER
+(
+  NAME,
+  PASSWORD,
+  PIXIV,
+  TWITTER
 ) VALUES (
-'{0}',
-'{1}',
-'{2}',
-'{3}'
+@name,
+@pass,
+@pixiv,
+@twitter
 );
-",
-            doc.Name,
-            doc.Password,
-            doc.PixivID,
-            doc.TwitterID);
+";
 
-            executeQuery(sql);
+            List<string[]> param = new List<string[]>();
+            param.Add(new string[] { "name", doc.Name });
+            param.Add(new string[] { "pass", doc.Password });
+            param.Add(new string[] { "pixiv", doc.PixivID });
+            param.Add(new string[] { "twitter", doc.TwitterID });
+
+            executeQuery(sql, param);
         }
 
-        private void executeQuery(string sql)
+        private void executeQuery(string sql, List<string[]> param)
         {
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -164,6 +167,12 @@ TWITTER
                 cmd = cn.CreateCommand();
 
                 cmd.CommandText = sql;
+
+                foreach (string[] ary in param)
+                {
+                    cmd.Parameters.AddWithValue(ary[0], ary[1]);
+                }
+
                 cmd.ExecuteNonQuery();
             }
             finally

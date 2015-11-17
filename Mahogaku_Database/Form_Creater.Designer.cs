@@ -46,9 +46,10 @@
             this.listView_Display.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.listView_Display.FullRowSelect = true;
             this.listView_Display.GridLines = true;
+            this.listView_Display.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView_Display.Location = new System.Drawing.Point(12, 12);
             this.listView_Display.Name = "listView_Display";
-            this.listView_Display.Size = new System.Drawing.Size(350, 238);
+            this.listView_Display.Size = new System.Drawing.Size(435, 259);
             this.listView_Display.TabIndex = 0;
             this.listView_Display.UseCompatibleStateImageBehavior = false;
             this.listView_Display.View = System.Windows.Forms.View.Details;
@@ -57,7 +58,7 @@
             // columnHeader_Name
             // 
             this.columnHeader_Name.Text = "名前";
-            this.columnHeader_Name.Width = 120;
+            this.columnHeader_Name.Width = 130;
             // 
             // columnHeader_Pixiv
             // 
@@ -72,10 +73,10 @@
             // button_GetData
             // 
             this.button_GetData.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_GetData.Location = new System.Drawing.Point(287, 256);
+            this.button_GetData.Location = new System.Drawing.Point(372, 277);
             this.button_GetData.Name = "button_GetData";
             this.button_GetData.Size = new System.Drawing.Size(75, 23);
-            this.button_GetData.TabIndex = 3;
+            this.button_GetData.TabIndex = 2;
             this.button_GetData.Text = "取得";
             this.button_GetData.UseVisualStyleBackColor = true;
             this.button_GetData.Click += new System.EventHandler(this.button_GetData_Click);
@@ -83,10 +84,10 @@
             // button_Insert
             // 
             this.button_Insert.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Insert.Location = new System.Drawing.Point(93, 258);
+            this.button_Insert.Location = new System.Drawing.Point(12, 277);
             this.button_Insert.Name = "button_Insert";
             this.button_Insert.Size = new System.Drawing.Size(75, 23);
-            this.button_Insert.TabIndex = 2;
+            this.button_Insert.TabIndex = 0;
             this.button_Insert.Text = "登録";
             this.button_Insert.UseVisualStyleBackColor = true;
             this.button_Insert.Click += new System.EventHandler(this.button_Insert_Click);
@@ -94,7 +95,7 @@
             // button_Update
             // 
             this.button_Update.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Update.Location = new System.Drawing.Point(12, 258);
+            this.button_Update.Location = new System.Drawing.Point(93, 277);
             this.button_Update.Name = "button_Update";
             this.button_Update.Size = new System.Drawing.Size(75, 23);
             this.button_Update.TabIndex = 1;
@@ -106,14 +107,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 291);
+            this.ClientSize = new System.Drawing.Size(459, 312);
             this.Controls.Add(this.button_Update);
             this.Controls.Add(this.button_Insert);
             this.Controls.Add(this.button_GetData);
             this.Controls.Add(this.listView_Display);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form_Creater";
-            this.Text = "Form_Creater";
+            this.Text = "親御さん情報";
             this.Load += new System.EventHandler(this.Form_Creater_Load);
             this.ResumeLayout(false);
 

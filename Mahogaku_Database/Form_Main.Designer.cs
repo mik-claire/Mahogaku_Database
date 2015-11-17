@@ -48,6 +48,7 @@
             this.checkBox_Castor = new System.Windows.Forms.CheckBox();
             this.checkBox_Technical = new System.Windows.Forms.CheckBox();
             this.checkBox_Unknown = new System.Windows.Forms.CheckBox();
+            this.button_ShowCreaters = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_GetData
@@ -222,11 +223,23 @@
             this.checkBox_Unknown.UseVisualStyleBackColor = true;
             this.checkBox_Unknown.CheckedChanged += new System.EventHandler(this.checkBox_Type_CheckedChanged);
             // 
+            // button_ShowCreaters
+            // 
+            this.button_ShowCreaters.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_ShowCreaters.Location = new System.Drawing.Point(701, 377);
+            this.button_ShowCreaters.Name = "button_ShowCreaters";
+            this.button_ShowCreaters.Size = new System.Drawing.Size(90, 23);
+            this.button_ShowCreaters.TabIndex = 66;
+            this.button_ShowCreaters.Text = "親御さん情報";
+            this.button_ShowCreaters.UseVisualStyleBackColor = true;
+            this.button_ShowCreaters.Click += new System.EventHandler(this.button_ShowCreaters_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 412);
+            this.Controls.Add(this.button_ShowCreaters);
             this.Controls.Add(this.checkBox_Unknown);
             this.Controls.Add(this.checkBox_Technical);
             this.Controls.Add(this.checkBox_Castor);
@@ -235,6 +248,7 @@
             this.Controls.Add(this.button_Insert);
             this.Controls.Add(this.listView_Display);
             this.Controls.Add(this.button_GetData);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form_Main";
             this.Text = "まほがくでーたべーす！";
@@ -266,6 +280,7 @@
         private System.Windows.Forms.CheckBox checkBox_Castor;
         private System.Windows.Forms.CheckBox checkBox_Technical;
         private System.Windows.Forms.CheckBox checkBox_Unknown;
+        private System.Windows.Forms.Button button_ShowCreaters;
     }
 }
 
