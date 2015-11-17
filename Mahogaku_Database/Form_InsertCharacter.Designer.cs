@@ -94,7 +94,6 @@
             // comboBox_Creater
             // 
             this.comboBox_Creater.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Creater.Enabled = false;
             this.comboBox_Creater.Font = new System.Drawing.Font("Meiryo UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox_Creater.FormattingEnabled = true;
             this.comboBox_Creater.Location = new System.Drawing.Point(408, 128);
