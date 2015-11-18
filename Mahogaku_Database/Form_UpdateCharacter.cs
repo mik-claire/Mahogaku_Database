@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Mahogaku_Database
@@ -13,6 +14,7 @@ namespace Mahogaku_Database
         public string Pass { get; set; }
 
         private string connectionString = string.Empty;
+        private string picturePath = string.Empty;
 
         List<string> sexID = new List<string>();
         List<string> typeID = new List<string>();
@@ -130,7 +132,11 @@ namespace Mahogaku_Database
             this.textBox_Organization.Text = this.Character.Organization;
             this.textBox_Remarks.Text = this.Character.Remarks;
             this.textBox_URLToPixiv.Text = this.Character.URLToPixiv;
-            refleshImage(System.Text.Encoding.ASCII.GetBytes(this.Character.ImageData));
+
+            if (this.Character.ImageData.Length != 0)
+            {
+                refleshImage(this.Character.ImageData);
+            }
 
             int selectedCreater = 0;
             for (int i = 0; i < creater.Count; i++)
@@ -488,8 +494,7 @@ WikiURL :
             doc.URLToPixiv = url.Replace(Environment.NewLine, ",");
             doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
-            doc.ImageData = this.pictureBox_Character.Image != null ? System.Text.Encoding.ASCII.GetString(
-                convertImageToByteArray(this.pictureBox_Character.Image)) : string.Empty;
+            doc.ImageData = this.picturePath != string.Empty ? File.ReadAllBytes(this.picturePath) : new byte[] { };
 
             try
             {
@@ -582,13 +587,12 @@ WHERE
             param.Add(new string[] { "createrId", doc.Creater.ID });
             param.Add(new string[] { "urlToWiki", doc.URLToWiki });
             param.Add(new string[] { "urlToPixiv", doc.URLToPixiv });
-            param.Add(new string[] { "image", doc.ImageData });
             param.Add(new string[] { "id", id });
 
-            executeQuery(sql, param);
+            executeQuery(sql, param, doc.ImageData);
         }
 
-        private void executeQuery(string sql, List<string[]> data)
+        private void executeQuery(string sql, List<string[]> data, byte[] image)
         {
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -606,6 +610,8 @@ WHERE
                     MySqlParameter param = new MySqlParameter(ary[0], ary[1]);
                     cmd.Parameters.Add(param);
                 }
+
+                cmd.Parameters.Add(new MySqlParameter("image", image));
 
                 cmd.ExecuteNonQuery();
             }
@@ -663,6 +669,7 @@ WHERE
 
             try
             {
+                this.picturePath = ofd.FileName;
                 refleshImage(ofd.FileName);
             }
             catch (Exception)
@@ -700,21 +707,8 @@ WHERE
         /// <param name="imageData"></param>
         private void refleshImage(byte[] imageData)
         {
-            Image img = null;
-
-            try
-            {
-                img = convertByteArrayToImage(imageData);
-                this.pictureBox_Character.Image = img;
-                this.pictureBox_Character.Refresh();
-            }
-            finally
-            {
-                if (img != null)
-                {
-                    img.Dispose();
-                }
-            }
+            this.pictureBox_Character.Image = convertByteArrayToImage(imageData);
+            this.pictureBox_Character.Refresh();
         }
 
         /// <summary>
@@ -724,8 +718,8 @@ WHERE
         /// <returns>変換後Image</returns>
         private Image convertByteArrayToImage(byte[] data)
         {
-            ImageConverter converter = new ImageConverter();
-            Image img = (Image)converter.ConvertFrom(data);
+            MemoryStream ms = new MemoryStream(data);
+            Image img = Image.FromStream(ms);
 
             return img;
         }
@@ -738,6 +732,15 @@ WHERE
         private byte[] convertImageToByteArray(Image img)
         {
             ImageConverter converter = new ImageConverter();
+            byte[] data = (byte[])converter.ConvertTo(img, typeof(byte[]));
+
+            return data;
+        }
+
+        private byte[] convertPicturePathToByteArray(string filePath)
+        {
+            ImageConverter converter = new ImageConverter();
+            Image img = Image.FromFile(filePath);
             byte[] data = (byte[])converter.ConvertTo(img, typeof(byte[]));
 
             return data;

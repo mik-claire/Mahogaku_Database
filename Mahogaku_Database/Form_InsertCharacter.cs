@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Mahogaku_Database
@@ -10,6 +11,7 @@ namespace Mahogaku_Database
     public partial class Form_InsertCharacter : Form
     {
         private string connectionString = string.Empty;
+        private string picturePath = string.Empty;
 
         List<string> sexID = new List<string>();
         List<string> typeID = new List<string>();
@@ -431,8 +433,7 @@ WikiURL : {12}
             doc.URLToPixiv = url.Replace(Environment.NewLine, ",");
             doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
-            doc.ImageData = this.pictureBox_Character.Image != null ? System.Text.Encoding.ASCII.GetString(
-                convertImageToByteArray(this.pictureBox_Character.Image)) : string.Empty;
+            doc.ImageData = this.picturePath != string.Empty ? File.ReadAllBytes(this.picturePath) : new byte[] { };
 
             try
             {
@@ -526,12 +527,11 @@ VALUES (
             param.Add(new string[] { "createrId", doc.Creater.ID });
             param.Add(new string[] { "urlToWiki", doc.URLToWiki });
             param.Add(new string[] { "urlToPixiv", doc.URLToPixiv });
-            param.Add(new string[] { "image", doc.ImageData });
 
-            executeQuery(sql, param);
+            executeQuery(sql, param, doc.ImageData);
         }
 
-        private void executeQuery(string sql, List<string[]> data)
+        private void executeQuery(string sql, List<string[]> data, byte[] image)
         {
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -549,6 +549,8 @@ VALUES (
                     MySqlParameter param = new MySqlParameter(ary[0], ary[1]);
                     cmd.Parameters.Add(param);
                 }
+
+                cmd.Parameters.Add(new MySqlParameter("image", image));
 
                 cmd.ExecuteNonQuery();
             }

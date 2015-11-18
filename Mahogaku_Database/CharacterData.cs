@@ -85,6 +85,6 @@
         /// <summary>
         /// 画像データ
         /// </summary>
-        public string ImageData { get; set; }
+        public byte[] ImageData { get; set; }
     }
 }

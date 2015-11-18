@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Mahogaku_Database
@@ -153,6 +154,7 @@ ORDER BY
                 reader = cmd.ExecuteReader();
                 
                 List<CharacterData> data = new List<CharacterData>();
+                this.imageList.Clear();
                 while (reader.Read())
                 {
                     CharacterData doc = new CharacterData();
@@ -181,7 +183,11 @@ ORDER BY
 
                     data.Add(doc);
 
-                    byte[] imageData = System.Text.Encoding.ASCII.GetBytes(reader["IMAGE"].ToString());
+                    byte[] imageData = new byte[0];
+                    if (reader["IMAGE"].ToString() != string.Empty)
+                    {
+                        imageData = (byte[])reader["IMAGE"];
+                    }
                     this.imageList.Add(imageData);
                 }
 
@@ -390,7 +396,7 @@ ORDER BY
                 doc.URLToPixiv = url.Substring(0, url.Length - 1);
                 f.Character = doc;
                 f.Pass = item.SubItems[8].Text;
-                doc.ImageData = System.Text.Encoding.ASCII.GetString(this.imageList[this.listView_Display.SelectedIndices[0]]);
+                doc.ImageData = this.imageList[this.listView_Display.SelectedIndices[0]];
 
                 DialogResult dr = f.ShowDialog();
                 if (dr != DialogResult.OK)
@@ -639,8 +645,12 @@ ORDER BY
             this.textBox_CreaterName.Text = item.SubItems[5].Text;
             this.textBox_CreaterPixiv.Text = urlArray[0].Substring(35, urlArray[0].Length - 35);
             this.textBox_CreaterTwitter.Text = urlArray[1].Substring(20, urlArray[1].Length - 20);
-            this.pictureBox_Character.Image = convertByteArrayToImage(imageList[this.listView_Display.SelectedIndices[0]]);
-            this.pictureBox_Character.Refresh();
+
+            if (this.imageList[this.listView_Display.SelectedIndices[0]].Length != 0)
+            {
+                this.pictureBox_Character.Image = convertByteArrayToImage(this.imageList[this.listView_Display.SelectedIndices[0]]);
+                this.pictureBox_Character.Refresh();
+            }
 
             this.button_CharacterLink.Enabled = true;
             this.button_CreaterLink.Enabled = true;
@@ -792,8 +802,8 @@ ORDER BY
         /// <returns>変換後Image</returns>
         private Image convertByteArrayToImage(byte[] data)
         {
-            ImageConverter converter = new ImageConverter();
-            Image img = (Image)converter.ConvertFrom(data);
+            MemoryStream ms = new MemoryStream(data);
+            Image img = Image.FromStream(ms);
 
             return img;
         }
