@@ -360,20 +360,20 @@ ORDER BY
             using (Form_UpdateCharacter f = new Form_UpdateCharacter())
             {
                 CharacterData doc = new CharacterData();
-                doc.ID = item.SubItems[12].Text;
+                doc.ID = item.SubItems[6].Text;
                 doc.Name = item.SubItems[1].Text;
-                doc.Kana = item.SubItems[2].Text;
-                doc.Sex = item.SubItems[3].Text;
+                doc.Kana = item.SubItems[9].Text;
+                doc.Sex = item.SubItems[2].Text;
                 doc.Type = item.SubItems[0].Text;
-                doc.Race = item.SubItems[4].Text;
-                doc.Age = item.SubItems[5].Text;
-                doc.Grade = item.SubItems[6].Text;
-                doc.Skill = item.SubItems[7].Text;
-                doc.Club = item.SubItems[8].Text;
-                doc.Organization = item.SubItems[9].Text;
-                doc.Remarks = item.SubItems[10].Text.Replace(",", Environment.NewLine);
+                doc.Race = item.SubItems[10].Text;
+                doc.Age = item.SubItems[11].Text;
+                doc.Grade = item.SubItems[3].Text;
+                doc.Skill = item.SubItems[4].Text;
+                doc.Club = item.SubItems[12].Text;
+                doc.Organization = item.SubItems[13].Text;
+                doc.Remarks = item.SubItems[14].Text.Replace(",", Environment.NewLine);
                 CreaterData creater = new CreaterData();
-                creater.ID = item.SubItems[13].Text;
+                creater.ID = item.SubItems[7].Text;
                 doc.Creater = creater;
                 string[] urlArray = item.Tag.ToString().Split(',');
                 doc.URLToWiki = urlArray[2];
@@ -384,7 +384,7 @@ ORDER BY
                 }
                 doc.URLToPixiv = url.Substring(0, url.Length - 1);
                 f.Character = doc;
-                f.Pass = item.SubItems[14].Text;
+                f.Pass = item.SubItems[8].Text;
 
                 DialogResult dr = f.ShowDialog();
                 if (dr != DialogResult.OK)
