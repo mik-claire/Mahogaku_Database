@@ -62,6 +62,9 @@
             this.label_21 = new System.Windows.Forms.Label();
             this.textBox_Wiki = new System.Windows.Forms.TextBox();
             this.label_22 = new System.Windows.Forms.Label();
+            this.pictureBox_Character = new System.Windows.Forms.PictureBox();
+            this.button_Picture = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).BeginInit();
             this.SuspendLayout();
             // 
             // label_01
@@ -162,7 +165,7 @@
             // button_OK
             // 
             this.button_OK.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_OK.Location = new System.Drawing.Point(466, 336);
+            this.button_OK.Location = new System.Drawing.Point(621, 336);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 14;
@@ -173,7 +176,7 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Cancel.Location = new System.Drawing.Point(547, 336);
+            this.button_Cancel.Location = new System.Drawing.Point(702, 336);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 15;
@@ -187,11 +190,11 @@
             this.label_06.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label_06.Location = new System.Drawing.Point(333, 178);
             this.label_06.Name = "label_06";
-            this.label_06.Size = new System.Drawing.Size(281, 112);
+            this.label_06.Size = new System.Drawing.Size(374, 98);
             this.label_06.TabIndex = 12;
             this.label_06.Text = "* が付いているものは必須項目です。\r\n学年は「高等部2年」や「教師」のように入力してください。\r\nアルファベット・数字・記号はなるべく半角で入力してください。\r" +
-    "\n備考・キャラクターシートURLに\r\n複数の項目を入力する場合、改行で区切って下さい。\r\nまた、なるべく「,」は使用しないでください。\r\n\r\nパスワードは親御さ" +
-    "ん登録時に設定したものを入力してください。";
+    "\n備考・キャラクターシートURLに複数の項目を入力する場合、改行で区切って下さい。\r\nまた、なるべく「,」は使用しないでください。\r\n\r\nパスワードは親御さん登" +
+    "録時に設定したものを入力してください。";
             // 
             // textBox_Kana
             // 
@@ -344,7 +347,7 @@
             // button_ShowCreaters
             // 
             this.button_ShowCreaters.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_ShowCreaters.Location = new System.Drawing.Point(345, 336);
+            this.button_ShowCreaters.Location = new System.Drawing.Point(336, 336);
             this.button_ShowCreaters.Name = "button_ShowCreaters";
             this.button_ShowCreaters.Size = new System.Drawing.Size(90, 23);
             this.button_ShowCreaters.TabIndex = 16;
@@ -385,15 +388,38 @@
             this.label_22.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label_22.Location = new System.Drawing.Point(333, 93);
             this.label_22.Name = "label_22";
-            this.label_22.Size = new System.Drawing.Size(59, 28);
+            this.label_22.Size = new System.Drawing.Size(56, 28);
             this.label_22.TabIndex = 40;
-            this.label_22.Text = "佑さんの\r\nwikiのURL";
+            this.label_22.Text = "キャラクター\r\nwikiURL";
+            // 
+            // pictureBox_Character
+            // 
+            this.pictureBox_Character.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox_Character.Location = new System.Drawing.Point(627, 12);
+            this.pictureBox_Character.Name = "pictureBox_Character";
+            this.pictureBox_Character.Size = new System.Drawing.Size(150, 200);
+            this.pictureBox_Character.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_Character.TabIndex = 41;
+            this.pictureBox_Character.TabStop = false;
+            // 
+            // button_Picture
+            // 
+            this.button_Picture.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_Picture.Location = new System.Drawing.Point(516, 336);
+            this.button_Picture.Name = "button_Picture";
+            this.button_Picture.Size = new System.Drawing.Size(99, 23);
+            this.button_Picture.TabIndex = 42;
+            this.button_Picture.Text = "画像アップロード";
+            this.button_Picture.UseVisualStyleBackColor = true;
+            this.button_Picture.Click += new System.EventHandler(this.button_Picture_Click);
             // 
             // Form_UpdateCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 371);
+            this.ClientSize = new System.Drawing.Size(789, 371);
+            this.Controls.Add(this.button_Picture);
+            this.Controls.Add(this.pictureBox_Character);
             this.Controls.Add(this.textBox_Wiki);
             this.Controls.Add(this.label_22);
             this.Controls.Add(this.textBox_Pass);
@@ -433,6 +459,7 @@
             this.Name = "Form_UpdateCharacter";
             this.Text = "キャラクター情報編集";
             this.Load += new System.EventHandler(this.Form_Insert_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,5 +501,7 @@
         private System.Windows.Forms.Label label_21;
         private System.Windows.Forms.TextBox textBox_Wiki;
         private System.Windows.Forms.Label label_22;
+        private System.Windows.Forms.PictureBox pictureBox_Character;
+        private System.Windows.Forms.Button button_Picture;
     }
 }

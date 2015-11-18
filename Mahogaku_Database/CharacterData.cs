@@ -81,5 +81,10 @@
 		/// 「,」区切りで複数設定可能
 		/// </summary>
 		public string URLToPixiv { get; set; }
+
+        /// <summary>
+        /// 画像データ
+        /// </summary>
+        public string ImageData { get; set; }
     }
 }

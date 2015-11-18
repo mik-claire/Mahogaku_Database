@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Mahogaku_Database
@@ -430,6 +431,8 @@ WikiURL : {12}
             doc.URLToPixiv = url.Replace(Environment.NewLine, ",");
             doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
+            doc.ImageData = this.pictureBox_Character.Image != null ? System.Text.Encoding.ASCII.GetString(
+                convertImageToByteArray(this.pictureBox_Character.Image)) : string.Empty;
 
             try
             {
@@ -486,7 +489,8 @@ INSERT INTO
   REMARKS,
   CREATER_ID,
   WIKI,
-  URL
+  URL,
+  IMAGE
 )
 VALUES (
   @name,
@@ -502,7 +506,8 @@ VALUES (
   @remarks,
   @createrId,
   @urlToWiki,
-  @urlToPixiv
+  @urlToPixiv,
+  @image
 );
 ";
 
@@ -521,6 +526,7 @@ VALUES (
             param.Add(new string[] { "createrId", doc.Creater.ID });
             param.Add(new string[] { "urlToWiki", doc.URLToWiki });
             param.Add(new string[] { "urlToPixiv", doc.URLToPixiv });
+            param.Add(new string[] { "image", doc.ImageData });
 
             executeQuery(sql, param);
         }
@@ -586,6 +592,58 @@ VALUES (
             }
 
             validateAndInsert();
+        }
+
+        private void button_Picture_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "画像ファイル(*.png, *.jpg, *.gif)|*.png;*.jpg;*.gif";
+            DialogResult dr = ofd.ShowDialog();
+            if (dr != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                refleshImage(ofd.FileName);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error!!");
+            }
+        }
+
+        private void refleshImage(string fileName)
+        {
+            Bitmap img = null;
+
+            try
+            {
+                img = new Bitmap(fileName);
+                this.pictureBox_Character.Image = (Image)img;
+                this.pictureBox_Character.Refresh();
+            }
+            finally
+            {
+                if (img != null)
+                {
+                    img.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Image -> byte[]
+        /// </summary>
+        /// <param name="img">変換元Image</param>
+        /// <returns>変換後byte[]</returns>
+        private byte[] convertImageToByteArray(Image img)
+        {
+            ImageConverter converter = new ImageConverter();
+            byte[] data = (byte[])converter.ConvertTo(img, typeof(byte[]));
+
+            return data;
         }
     }
 }

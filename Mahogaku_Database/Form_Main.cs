@@ -16,6 +16,8 @@ namespace Mahogaku_Database
             this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
         }
 
+        List<byte[]> imageList = new List<byte[]>();
+
         /// <summary>
         /// フォームロード
         /// </summary>
@@ -137,7 +139,7 @@ SELECT
   CH.SKILL AS SKILL, CH.CLUB AS CLUB, CH.ORGANIZATION AS ORG,
   CH.REMARKS AS REM, CR.ID AS CRID, CR.NAME AS CRNAME,
   CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.WIKI AS WIKI, CH.URL AS SHEET,
-  CR.PASSWORD AS PASSWORD
+  CR.PASSWORD AS PASSWORD, CH.IMAGE AS IMAGE
 FROM
   `CHARACTER` CH JOIN CREATER CR
   ON CH.CREATER_ID = CR.ID JOIN TYPE T
@@ -178,6 +180,9 @@ ORDER BY
                     doc.Creater = creater;
 
                     data.Add(doc);
+
+                    byte[] imageData = System.Text.Encoding.ASCII.GetBytes(reader["IMAGE"].ToString());
+                    this.imageList.Add(imageData);
                 }
 
                 return data;
@@ -385,6 +390,7 @@ ORDER BY
                 doc.URLToPixiv = url.Substring(0, url.Length - 1);
                 f.Character = doc;
                 f.Pass = item.SubItems[8].Text;
+                doc.ImageData = System.Text.Encoding.ASCII.GetString(this.imageList[this.listView_Display.SelectedIndices[0]]);
 
                 DialogResult dr = f.ShowDialog();
                 if (dr != DialogResult.OK)
@@ -554,6 +560,11 @@ ORDER BY
             }
         }
 
+        /// <summary>
+        /// 「親御さん情報一覧」
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_ShowCreaters_Click(object sender, EventArgs e)
         {
             using (Form_Creater f = new Form_Creater())
@@ -562,11 +573,19 @@ ORDER BY
             }
         }
 
+        /// <summary>
+        /// 項目変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView_Display_SelectedIndexChanged(object sender, EventArgs e)
         {
             displayDetail();
         }
 
+        /// <summary>
+        /// 詳細表示
+        /// </summary>
         private void displayDetail()
         {
             if (this.listView_Display.SelectedItems.Count < 1)
@@ -587,6 +606,8 @@ ORDER BY
                 this.textBox_CreaterName.Text = string.Empty;
                 this.textBox_CreaterPixiv.Text = string.Empty;
                 this.textBox_CreaterTwitter.Text = string.Empty;
+                this.pictureBox_Character.Image = null;
+                this.pictureBox_Character.Refresh();
 
                 this.button_CharacterLink.Enabled = false;
                 this.button_CreaterLink.Enabled = false;
@@ -618,11 +639,18 @@ ORDER BY
             this.textBox_CreaterName.Text = item.SubItems[5].Text;
             this.textBox_CreaterPixiv.Text = urlArray[0].Substring(35, urlArray[0].Length - 35);
             this.textBox_CreaterTwitter.Text = urlArray[1].Substring(20, urlArray[1].Length - 20);
+            this.pictureBox_Character.Image = convertByteArrayToImage(imageList[this.listView_Display.SelectedIndices[0]]);
+            this.pictureBox_Character.Refresh();
 
             this.button_CharacterLink.Enabled = true;
             this.button_CreaterLink.Enabled = true;
         }
 
+        /// <summary>
+        /// キャラクター「リンクを開く」
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_CharacterLink_Click(object sender, EventArgs e)
         {
             if (this.listView_Display.SelectedItems.Count < 1)
@@ -691,6 +719,11 @@ ORDER BY
             menu.Show(Cursor.Position);
         }
 
+        /// <summary>
+        /// 親御さん「リンクを開く」
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_CreaterLink_Click(object sender, EventArgs e)
         {
             if (this.listView_Display.SelectedItems.Count < 1)
@@ -750,6 +783,19 @@ ORDER BY
         private void listView_Display_Leave(object sender, EventArgs e)
         {
             displayDetail();
+        }
+
+        /// <summary>
+        /// byte[] -> Image
+        /// </summary>
+        /// <param name="data">変換元byte[]</param>
+        /// <returns>変換後Image</returns>
+        private Image convertByteArrayToImage(byte[] data)
+        {
+            ImageConverter converter = new ImageConverter();
+            Image img = (Image)converter.ConvertFrom(data);
+
+            return img;
         }
     }
 }
