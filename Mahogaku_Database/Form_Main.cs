@@ -254,19 +254,19 @@ ORDER BY
                 string[] record = {
                                       doc.Type,
                                       doc.Name,
-                                      //doc.Kana,
                                       doc.Sex,
-                                      //doc.Race,
-                                      //doc.Age,
                                       doc.Grade,
                                       doc.Skill,
-                                      //doc.Club,
-                                      //doc.Organization,
-                                      //doc.Remarks,
                                       doc.Creater.Name,
                                       doc.ID,
                                       doc.Creater.ID,
-                                      doc.Creater.Password
+                                      doc.Creater.Password,
+                                      doc.Kana,
+                                      doc.Race,
+                                      doc.Age,
+                                      doc.Club,
+                                      doc.Organization,
+                                      doc.Remarks
                                   };
                 ListViewItem item = new ListViewItem(record);
                 item.UseItemStyleForSubItems = false;
@@ -315,7 +315,6 @@ ORDER BY
                 this.listView_Display.Items.Add(item);
             }
 
-            this.listView_Display.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             this.listView_Display.Columns[0].Width = 50;
         }
 
@@ -521,6 +520,50 @@ ORDER BY
             {
                 DialogResult dr = f.ShowDialog();
             }
+        }
+
+        private void listView_Display_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listView_Display.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+            ListViewItem item = this.listView_Display.SelectedItems[0];
+            string remarks = item.SubItems[14].Text.Replace(",", Environment.NewLine);
+            string[] urlArray = item.Tag.ToString().Split(',');
+            string sheet = string.Empty;
+            for (int i = 3; i < urlArray.Length; i++)
+            {
+                sheet += urlArray[i] + Environment.NewLine;
+            }
+
+            this.textBox_Name.Text = item.SubItems[1].Text;
+            this.textBox_Kana.Text = item.SubItems[9].Text;
+            this.textBox_Sex.Text = item.SubItems[2].Text;
+            this.textBox_Type.Text = item.SubItems[0].Text;
+            this.textBox_Race.Text = item.SubItems[10].Text;
+            this.textBox_Age.Text = item.SubItems[11].Text;
+            this.textBox_Grade.Text = item.SubItems[3].Text;
+            this.textBox_Skill.Text = item.SubItems[4].Text;
+            this.textBox_Club.Text = item.SubItems[12].Text;
+            this.textBox_Organization.Text = item.SubItems[13].Text;
+            this.textBox_Remarks.Text = remarks;
+            this.textBox_Sheet.Text = sheet;
+            this.textBox_Wiki.Text = urlArray[2];
+            this.textBox_CreaterName.Text = item.SubItems[5].Text;
+            this.textBox_CreaterPixiv.Text = urlArray[0].Substring(35, urlArray[0].Length - 35);
+            this.textBox_CreaterTwitter.Text = urlArray[1].Substring(20, urlArray[1].Length - 20);
+        }
+
+        private void button_CharacterLink_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_CreaterLink_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
