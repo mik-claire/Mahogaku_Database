@@ -79,9 +79,9 @@
             this.label_22.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label_22.Location = new System.Drawing.Point(333, 93);
             this.label_22.Name = "label_22";
-            this.label_22.Size = new System.Drawing.Size(59, 28);
+            this.label_22.Size = new System.Drawing.Size(56, 28);
             this.label_22.TabIndex = 74;
-            this.label_22.Text = "佑さんの\r\nwikiのURL";
+            this.label_22.Text = "キャラクター\r\nwikiURL";
             // 
             // button_ShowCreaters
             // 
