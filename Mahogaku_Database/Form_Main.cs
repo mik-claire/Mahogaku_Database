@@ -315,7 +315,7 @@ ORDER BY
                 this.listView_Display.Items.Add(item);
             }
 
-            this.listView_Display.Columns[0].Width = 50;
+            displayDetail();
         }
 
         /// <summary>
@@ -425,7 +425,17 @@ ORDER BY
             menuItem_CreaterPixiv.Text = "Pixivユーザーページを開く";
             menuItem_CreaterPixiv.Click += delegate
             {
-                System.Diagnostics.Process.Start(urlArray[0]);
+                try
+                {
+                    System.Diagnostics.Process.Start(urlArray[0]);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("存在しないURLです。",
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             };
             menu.Items.Add(menuItem_CreaterPixiv);
             
@@ -436,7 +446,17 @@ ORDER BY
                 menuItem_CreaterTwitter.Text = "Twitterユーザーページを開く";
                 menuItem_CreaterTwitter.Click += delegate
                 {
-                    System.Diagnostics.Process.Start(urlArray[1]);
+                    try
+                    {
+                        System.Diagnostics.Process.Start(urlArray[1]);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("存在しないURLです。",
+                            "Error!!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
                 };
                 menu.Items.Add(menuItem_CreaterTwitter);
             }
@@ -448,7 +468,17 @@ ORDER BY
                 menuItem_Wiki.Text = "まほがくキャラまとめwikiを開く";
                 menuItem_Wiki.Click += delegate
                 {
-                    System.Diagnostics.Process.Start(urlArray[2]);
+                    try
+                    {
+                        System.Diagnostics.Process.Start(urlArray[2]);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("存在しないURLです。",
+                            "Error!!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
                 };
                 menu.Items.Add(menuItem_Wiki);
             }
@@ -468,7 +498,17 @@ ORDER BY
                 characterSheet.Text = url;
                 characterSheet.Click += delegate
                 {
-                    System.Diagnostics.Process.Start(url);
+                    try
+                    {
+                        System.Diagnostics.Process.Start(url);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("存在しないURLです。",
+                            "Error!!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
                 };
                 menuItem_CharacterSheets.DropDownItems.Add(characterSheet);
             }
@@ -524,8 +564,32 @@ ORDER BY
 
         private void listView_Display_SelectedIndexChanged(object sender, EventArgs e)
         {
+            displayDetail();
+        }
+
+        private void displayDetail()
+        {
             if (this.listView_Display.SelectedItems.Count < 1)
             {
+                this.textBox_Name.Text = string.Empty;
+                this.textBox_Kana.Text = string.Empty;
+                this.textBox_Sex.Text = string.Empty;
+                this.textBox_Type.Text = string.Empty;
+                this.textBox_Race.Text = string.Empty;
+                this.textBox_Age.Text = string.Empty;
+                this.textBox_Grade.Text = string.Empty;
+                this.textBox_Skill.Text = string.Empty;
+                this.textBox_Club.Text = string.Empty;
+                this.textBox_Organization.Text = string.Empty;
+                this.textBox_Remarks.Text = string.Empty;
+                this.textBox_Sheet.Text = string.Empty;
+                this.textBox_Wiki.Text = string.Empty;
+                this.textBox_CreaterName.Text = string.Empty;
+                this.textBox_CreaterPixiv.Text = string.Empty;
+                this.textBox_CreaterTwitter.Text = string.Empty;
+
+                this.button_CharacterLink.Enabled = false;
+                this.button_CreaterLink.Enabled = false;
                 return;
             }
 
@@ -554,16 +618,138 @@ ORDER BY
             this.textBox_CreaterName.Text = item.SubItems[5].Text;
             this.textBox_CreaterPixiv.Text = urlArray[0].Substring(35, urlArray[0].Length - 35);
             this.textBox_CreaterTwitter.Text = urlArray[1].Substring(20, urlArray[1].Length - 20);
+
+            this.button_CharacterLink.Enabled = true;
+            this.button_CreaterLink.Enabled = true;
         }
 
         private void button_CharacterLink_Click(object sender, EventArgs e)
         {
+            if (this.listView_Display.SelectedItems.Count < 1)
+            {
+                return;
+            }
 
+            ListViewItem item = this.listView_Display.SelectedItems[0];
+
+            string[] urlArray = item.Tag.ToString().Split(',');
+            ContextMenuStrip menu = new ContextMenuStrip();
+
+            // 設定されているキャラクターシート
+            ToolStripMenuItem menuItem_CharacterSheets = new ToolStripMenuItem();
+            int cnt = 1;
+            foreach (string url in urlArray)
+            {
+                if (url == urlArray[0] ||
+                    url == urlArray[1] ||
+                    url == urlArray[2])
+                {
+                    continue;
+                }
+                ToolStripMenuItem characterSheet = new ToolStripMenuItem();
+                characterSheet.Text = string.Format("{0}行目のキャラクターシートを開く", cnt);
+                cnt++;
+                characterSheet.Click += delegate
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(url);
+                    }
+                    catch(Exception)
+                    {
+                        MessageBox.Show("存在しないURLです。",
+                            "Error!!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                };
+                menu.Items.Add(characterSheet);
+            }
+
+            // wikiへのリンクが設定されていれば追加
+            if (urlArray[2] != string.Empty)
+            {
+                ToolStripMenuItem menuItem_Wiki = new ToolStripMenuItem();
+                menuItem_Wiki.Text = "まほがくキャラまとめwikiを開く";
+                menuItem_Wiki.Click += delegate
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(urlArray[2]);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("存在しないURLです。",
+                            "Error!!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                };
+                menu.Items.Add(menuItem_Wiki);
+            }
+
+            menu.Show(Cursor.Position);
         }
 
         private void button_CreaterLink_Click(object sender, EventArgs e)
         {
+            if (this.listView_Display.SelectedItems.Count < 1)
+            {
+                return;
+            }
 
+            ListViewItem item = this.listView_Display.SelectedItems[0];
+
+            string[] urlArray = item.Tag.ToString().Split(',');
+            ContextMenuStrip menu = new ContextMenuStrip();
+            
+            // Pixivのユーザーページ
+            ToolStripMenuItem menuItem_CreaterPixiv = new ToolStripMenuItem();
+            menuItem_CreaterPixiv.Text = "Pixivユーザーページを開く";
+            menuItem_CreaterPixiv.Click += delegate
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(urlArray[0]);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("存在しないURLです。",
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            };
+            menu.Items.Add(menuItem_CreaterPixiv);
+
+            // TwitterURLが設定されていれば追加
+            if (urlArray[1] != string.Empty)
+            {
+                ToolStripMenuItem menuItem_CreaterTwitter = new ToolStripMenuItem();
+                menuItem_CreaterTwitter.Text = "Twitterユーザーページを開く";
+                menuItem_CreaterTwitter.Click += delegate
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(urlArray[1]);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("存在しないURLです。",
+                            "Error!!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                };
+                menu.Items.Add(menuItem_CreaterTwitter);
+            }
+
+            menu.Show(Cursor.Position);
+        }
+
+        private void listView_Display_Leave(object sender, EventArgs e)
+        {
+            displayDetail();
         }
     }
 }

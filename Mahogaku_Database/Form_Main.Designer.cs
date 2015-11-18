@@ -117,6 +117,7 @@
             this.listView_Display.UseCompatibleStateImageBehavior = false;
             this.listView_Display.View = System.Windows.Forms.View.Details;
             this.listView_Display.SelectedIndexChanged += new System.EventHandler(this.listView_Display_SelectedIndexChanged);
+            this.listView_Display.Leave += new System.EventHandler(this.listView_Display_Leave);
             this.listView_Display.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_Display_MouseClick);
             // 
             // columnHeader_Type
@@ -533,6 +534,7 @@
             // 
             // button_CharacterLink
             // 
+            this.button_CharacterLink.Enabled = false;
             this.button_CharacterLink.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button_CharacterLink.Location = new System.Drawing.Point(797, 605);
             this.button_CharacterLink.Name = "button_CharacterLink";
@@ -636,6 +638,7 @@
             // 
             // button_CreaterLink
             // 
+            this.button_CreaterLink.Enabled = false;
             this.button_CreaterLink.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button_CreaterLink.Location = new System.Drawing.Point(797, 678);
             this.button_CreaterLink.Name = "button_CreaterLink";
