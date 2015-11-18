@@ -32,15 +32,9 @@
             this.listView_Display = new System.Windows.Forms.ListView();
             this.columnHeader_Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnHeader_Kana = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Sex = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Race = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Age = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Grade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Skill = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Club = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Organization = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Remarks = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Creater = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button_Insert = new System.Windows.Forms.Button();
             this.button_Update = new System.Windows.Forms.Button();
@@ -67,15 +61,9 @@
             this.listView_Display.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader_Type,
             this.columnHeader_Name,
-            this.ColumnHeader_Kana,
             this.columnHeader_Sex,
-            this.columnHeader_Race,
-            this.columnHeader_Age,
             this.columnHeader_Grade,
             this.columnHeader_Skill,
-            this.columnHeader_Club,
-            this.columnHeader_Organization,
-            this.columnHeader_Remarks,
             this.columnHeader_Creater});
             this.listView_Display.Font = new System.Drawing.Font("Meiryo UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_Display.FullRowSelect = true;
@@ -99,25 +87,10 @@
             this.columnHeader_Name.Text = "名前";
             this.columnHeader_Name.Width = 175;
             // 
-            // ColumnHeader_Kana
-            // 
-            this.ColumnHeader_Kana.Text = "読み仮名";
-            this.ColumnHeader_Kana.Width = 220;
-            // 
             // columnHeader_Sex
             // 
             this.columnHeader_Sex.Text = "性別";
             this.columnHeader_Sex.Width = 50;
-            // 
-            // columnHeader_Race
-            // 
-            this.columnHeader_Race.Text = "種族";
-            this.columnHeader_Race.Width = 120;
-            // 
-            // columnHeader_Age
-            // 
-            this.columnHeader_Age.Text = "実年齢";
-            this.columnHeader_Age.Width = 125;
             // 
             // columnHeader_Grade
             // 
@@ -128,21 +101,6 @@
             // 
             this.columnHeader_Skill.Text = "魔砲";
             this.columnHeader_Skill.Width = 180;
-            // 
-            // columnHeader_Club
-            // 
-            this.columnHeader_Club.Text = "部活";
-            this.columnHeader_Club.Width = 135;
-            // 
-            // columnHeader_Organization
-            // 
-            this.columnHeader_Organization.Text = "組織";
-            this.columnHeader_Organization.Width = 150;
-            // 
-            // columnHeader_Remarks
-            // 
-            this.columnHeader_Remarks.Text = "備考";
-            this.columnHeader_Remarks.Width = 450;
             // 
             // columnHeader_Creater
             // 
@@ -266,14 +224,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader_Sex;
         private System.Windows.Forms.ColumnHeader columnHeader_Type;
         private System.Windows.Forms.ColumnHeader columnHeader_Skill;
-        private System.Windows.Forms.ColumnHeader columnHeader_Remarks;
         private System.Windows.Forms.Button button_Insert;
-        private System.Windows.Forms.ColumnHeader ColumnHeader_Kana;
-        private System.Windows.Forms.ColumnHeader columnHeader_Race;
-        private System.Windows.Forms.ColumnHeader columnHeader_Age;
         private System.Windows.Forms.ColumnHeader columnHeader_Grade;
-        private System.Windows.Forms.ColumnHeader columnHeader_Club;
-        private System.Windows.Forms.ColumnHeader columnHeader_Organization;
         private System.Windows.Forms.ColumnHeader columnHeader_Creater;
         private System.Windows.Forms.Button button_Update;
         private System.Windows.Forms.CheckBox checkBox_Power;
