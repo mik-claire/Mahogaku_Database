@@ -754,5 +754,11 @@ WHERE
 
             return data;
         }
+
+        private void button_PictureReset_Click(object sender, EventArgs e)
+        {
+            this.picturePath = string.Empty;
+            this.pictureBox_Character.Image = null;
+        }
     }
 }

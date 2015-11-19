@@ -596,7 +596,7 @@ VALUES (
             validateAndInsert();
         }
 
-        private void button_Picture_Click(object sender, EventArgs e)
+        private void button_PictureUpload_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "画像ファイル(*.png, *.jpg, *.gif)|*.png;*.jpg;*.gif";
@@ -647,6 +647,12 @@ VALUES (
             byte[] data = (byte[])converter.ConvertTo(img, typeof(byte[]));
 
             return data;
+        }
+
+        private void button_PictureReset_Click(object sender, EventArgs e)
+        {
+            this.picturePath = string.Empty;
+            this.pictureBox_Character.Image = null;
         }
     }
 }

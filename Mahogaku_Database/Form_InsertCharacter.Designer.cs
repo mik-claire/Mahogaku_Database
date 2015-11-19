@@ -60,8 +60,9 @@
             this.label_03 = new System.Windows.Forms.Label();
             this.label_02 = new System.Windows.Forms.Label();
             this.label_01 = new System.Windows.Forms.Label();
-            this.button_Picture = new System.Windows.Forms.Button();
+            this.button_PictureUpload = new System.Windows.Forms.Button();
             this.pictureBox_Character = new System.Windows.Forms.PictureBox();
+            this.button_PictureReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).BeginInit();
             this.SuspendLayout();
             // 
@@ -370,16 +371,16 @@
             this.label_01.TabIndex = 41;
             this.label_01.Text = "*名前";
             // 
-            // button_Picture
+            // button_PictureUpload
             // 
-            this.button_Picture.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Picture.Location = new System.Drawing.Point(516, 336);
-            this.button_Picture.Name = "button_Picture";
-            this.button_Picture.Size = new System.Drawing.Size(99, 23);
-            this.button_Picture.TabIndex = 76;
-            this.button_Picture.Text = "画像アップロード";
-            this.button_Picture.UseVisualStyleBackColor = true;
-            this.button_Picture.Click += new System.EventHandler(this.button_Picture_Click);
+            this.button_PictureUpload.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_PictureUpload.Location = new System.Drawing.Point(432, 336);
+            this.button_PictureUpload.Name = "button_PictureUpload";
+            this.button_PictureUpload.Size = new System.Drawing.Size(99, 23);
+            this.button_PictureUpload.TabIndex = 76;
+            this.button_PictureUpload.Text = "画像アップロード";
+            this.button_PictureUpload.UseVisualStyleBackColor = true;
+            this.button_PictureUpload.Click += new System.EventHandler(this.button_PictureUpload_Click);
             // 
             // pictureBox_Character
             // 
@@ -391,12 +392,24 @@
             this.pictureBox_Character.TabIndex = 75;
             this.pictureBox_Character.TabStop = false;
             // 
+            // button_PictureReset
+            // 
+            this.button_PictureReset.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_PictureReset.Location = new System.Drawing.Point(537, 336);
+            this.button_PictureReset.Name = "button_PictureReset";
+            this.button_PictureReset.Size = new System.Drawing.Size(78, 23);
+            this.button_PictureReset.TabIndex = 77;
+            this.button_PictureReset.Text = "画像リセット";
+            this.button_PictureReset.UseVisualStyleBackColor = true;
+            this.button_PictureReset.Click += new System.EventHandler(this.button_PictureReset_Click);
+            // 
             // Form_InsertCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 371);
-            this.Controls.Add(this.button_Picture);
+            this.Controls.Add(this.button_PictureReset);
+            this.Controls.Add(this.button_PictureUpload);
             this.Controls.Add(this.pictureBox_Character);
             this.Controls.Add(this.textBox_Wiki);
             this.Controls.Add(this.label_22);
@@ -475,8 +488,9 @@
         private System.Windows.Forms.Label label_03;
         private System.Windows.Forms.Label label_02;
         private System.Windows.Forms.Label label_01;
-        private System.Windows.Forms.Button button_Picture;
+        private System.Windows.Forms.Button button_PictureUpload;
         private System.Windows.Forms.PictureBox pictureBox_Character;
+        private System.Windows.Forms.Button button_PictureReset;
 
     }
 }

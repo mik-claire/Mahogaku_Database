@@ -64,6 +64,7 @@
             this.label_22 = new System.Windows.Forms.Label();
             this.pictureBox_Character = new System.Windows.Forms.PictureBox();
             this.button_Picture = new System.Windows.Forms.Button();
+            this.button_PictureReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).BeginInit();
             this.SuspendLayout();
             // 
@@ -405,7 +406,7 @@
             // button_Picture
             // 
             this.button_Picture.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button_Picture.Location = new System.Drawing.Point(516, 336);
+            this.button_Picture.Location = new System.Drawing.Point(432, 336);
             this.button_Picture.Name = "button_Picture";
             this.button_Picture.Size = new System.Drawing.Size(99, 23);
             this.button_Picture.TabIndex = 42;
@@ -413,11 +414,23 @@
             this.button_Picture.UseVisualStyleBackColor = true;
             this.button_Picture.Click += new System.EventHandler(this.button_Picture_Click);
             // 
+            // button_PictureReset
+            // 
+            this.button_PictureReset.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_PictureReset.Location = new System.Drawing.Point(537, 336);
+            this.button_PictureReset.Name = "button_PictureReset";
+            this.button_PictureReset.Size = new System.Drawing.Size(78, 23);
+            this.button_PictureReset.TabIndex = 78;
+            this.button_PictureReset.Text = "画像リセット";
+            this.button_PictureReset.UseVisualStyleBackColor = true;
+            this.button_PictureReset.Click += new System.EventHandler(this.button_PictureReset_Click);
+            // 
             // Form_UpdateCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 371);
+            this.Controls.Add(this.button_PictureReset);
             this.Controls.Add(this.button_Picture);
             this.Controls.Add(this.pictureBox_Character);
             this.Controls.Add(this.textBox_Wiki);
@@ -503,5 +516,6 @@
         private System.Windows.Forms.Label label_22;
         private System.Windows.Forms.PictureBox pictureBox_Character;
         private System.Windows.Forms.Button button_Picture;
+        private System.Windows.Forms.Button button_PictureReset;
     }
 }
