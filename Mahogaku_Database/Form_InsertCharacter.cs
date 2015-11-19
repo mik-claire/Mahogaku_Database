@@ -608,6 +608,7 @@ VALUES (
 
             try
             {
+                this.picturePath = ofd.FileName;
                 refleshImage(ofd.FileName);
             }
             catch (Exception)

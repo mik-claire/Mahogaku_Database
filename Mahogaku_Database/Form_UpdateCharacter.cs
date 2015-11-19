@@ -494,7 +494,16 @@ WikiURL :
             doc.URLToPixiv = url.Replace(Environment.NewLine, ",");
             doc.Creater = new CreaterData();
             doc.Creater.ID = this.createrID[this.comboBox_Creater.SelectedIndex];
-            doc.ImageData = this.picturePath != string.Empty ? File.ReadAllBytes(this.picturePath) : new byte[] { };
+            byte[] imageData = new byte[0];
+            if (this.picturePath != string.Empty)
+            {
+                imageData = File.ReadAllBytes(this.picturePath);
+            }
+            else if (this.pictureBox_Character.Image != null)
+            {
+                imageData = convertImageToByteArray(this.pictureBox_Character.Image);
+            }
+            doc.ImageData = imageData;
 
             try
             {
