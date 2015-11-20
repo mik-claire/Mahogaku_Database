@@ -140,7 +140,7 @@ SELECT
   CH.SKILL AS SKILL, CH.CLUB AS CLUB, CH.ORGANIZATION AS ORG,
   CH.REMARKS AS REM, CR.ID AS CRID, CR.NAME AS CRNAME,
   CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.WIKI AS WIKI, CH.URL AS SHEET,
-  CR.PASSWORD AS PASSWORD, CH.IMAGE AS IMAGE
+  CR.PASSWORD AS PASSWORD
 FROM
   `CHARACTER` CH JOIN CREATER CR
   ON CH.CREATER_ID = CR.ID JOIN TYPE T
@@ -182,13 +182,13 @@ ORDER BY
                     doc.Creater = creater;
 
                     data.Add(doc);
-
+                    /*
                     byte[] imageData = new byte[0];
                     if (reader["IMAGE"].ToString() != string.Empty)
                     {
                         imageData = (byte[])reader["IMAGE"];
                     }
-                    this.imageList.Add(imageData);
+                    this.imageList.Add(imageData);*/
                 }
 
                 return data;
@@ -645,11 +645,19 @@ ORDER BY
             this.textBox_CreaterName.Text = item.SubItems[5].Text;
             this.textBox_CreaterPixiv.Text = urlArray[0].Substring(35, urlArray[0].Length - 35);
             this.textBox_CreaterTwitter.Text = urlArray[1].Substring(20, urlArray[1].Length - 20);
-
+            /*
             if (this.imageList[this.listView_Display.SelectedIndices[0]].Length != 0)
             {
                 this.pictureBox_Character.Image = convertByteArrayToImage(this.imageList[this.listView_Display.SelectedIndices[0]]);
                 this.pictureBox_Character.Refresh();
+            }
+            */
+
+            byte[] imageData = getImage(item.SubItems[6].Text);
+            if (imageData.Length != 0)
+            {
+                //this.pictureBox_Character.Image = convertByteArrayToImage(imageData);
+                //this.pictureBox_Character.Refresh();
             }
 
             this.button_CharacterLink.Enabled = true;
@@ -806,6 +814,60 @@ ORDER BY
             Image img = Image.FromStream(ms);
 
             return img;
+        }
+
+        private byte[] getImage(string id)
+        {
+            string sql = @"
+SELECT
+  IMAGE
+FROM
+  `CHARACTER`
+WHERE
+  ID = @id
+;
+";
+
+            MySqlConnection cn = null;
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
+
+            try
+            {
+                cn = new MySqlConnection(this.connectionString);
+                cn.Open();
+
+                cmd = cn.CreateCommand();
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new MySqlParameter("id", id));
+
+                reader = cmd.ExecuteReader();
+                reader.Read();
+
+                byte[] imageData = new byte[0];
+                if (reader["IMAGE"].ToString() == string.Empty)
+                {
+                    return imageData;
+                }
+
+                imageData = (byte[])reader["IMAGE"];
+                return imageData;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+                if (cn != null)
+                {
+                    cn.Close();
+                }
+            }
         }
     }
 }
