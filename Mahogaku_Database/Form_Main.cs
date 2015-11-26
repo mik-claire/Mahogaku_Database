@@ -17,7 +17,8 @@ namespace Mahogaku_Database
             this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
         }
 
-        List<byte[]> imageList = new List<byte[]>();
+        private List<byte[]> imageList = new List<byte[]>();
+        private bool isGettingImage = false;
 
         /// <summary>
         /// フォームロード
@@ -60,6 +61,8 @@ namespace Mahogaku_Database
                     MessageBoxIcon.Information);
                 this.Close();
             }
+
+            this.backgroundWorker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -99,6 +102,8 @@ namespace Mahogaku_Database
                         MessageBoxIcon.Error);
                 }
             }
+
+            this.backgroundWorker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -645,19 +650,12 @@ ORDER BY
             this.textBox_CreaterName.Text = item.SubItems[5].Text;
             this.textBox_CreaterPixiv.Text = urlArray[0].Substring(35, urlArray[0].Length - 35);
             this.textBox_CreaterTwitter.Text = urlArray[1].Substring(20, urlArray[1].Length - 20);
-            /*
-            if (this.imageList[this.listView_Display.SelectedIndices[0]].Length != 0)
+            
+            if (!this.isGettingImage &&
+                this.imageList[this.listView_Display.SelectedIndices[0]].Length != 0)
             {
                 this.pictureBox_Character.Image = convertByteArrayToImage(this.imageList[this.listView_Display.SelectedIndices[0]]);
                 this.pictureBox_Character.Refresh();
-            }
-            */
-
-            byte[] imageData = getImage(item.SubItems[6].Text);
-            if (imageData.Length != 0)
-            {
-                //this.pictureBox_Character.Image = convertByteArrayToImage(imageData);
-                //this.pictureBox_Character.Refresh();
             }
 
             this.button_CharacterLink.Enabled = true;
@@ -816,15 +814,13 @@ ORDER BY
             return img;
         }
 
-        private byte[] getImage(string id)
+        private List<byte[]> getImage()
         {
             string sql = @"
 SELECT
   IMAGE
 FROM
   `CHARACTER`
-WHERE
-  ID = @id
 ;
 ";
 
@@ -839,19 +835,22 @@ WHERE
 
                 cmd = cn.CreateCommand();
                 cmd.CommandText = sql;
-                cmd.Parameters.Add(new MySqlParameter("id", id));
 
                 reader = cmd.ExecuteReader();
-                reader.Read();
 
-                byte[] imageData = new byte[0];
-                if (reader["IMAGE"].ToString() == string.Empty)
+                List<byte[]> data = new List<byte[]>();
+                while (reader.Read())
                 {
-                    return imageData;
+                    byte[] imageData = new byte[0];
+                    if (reader["IMAGE"].ToString() != string.Empty)
+                    {
+                        imageData = (byte[])reader["IMAGE"];
+                    }
+
+                    data.Add(imageData);
                 }
 
-                imageData = (byte[])reader["IMAGE"];
-                return imageData;
+                return data;
             }
             finally
             {
@@ -868,6 +867,43 @@ WHERE
                     cn.Close();
                 }
             }
+        }
+
+        private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            this.isGettingImage = true;
+            try
+            {
+                this.imageList = getImage();
+            }
+            catch (Exception ex)
+            {
+                string message = "Error!!" + Environment.NewLine + ex.Message;
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    message = "データベースに接続できませんでした。" + Environment.NewLine +
+                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
+                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
+                        Environment.NewLine +
+                        "https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            this.isGettingImage = false;
         }
     }
 }

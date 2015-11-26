@@ -83,6 +83,7 @@
             this.textBox_CreaterName = new System.Windows.Forms.TextBox();
             this.label_18 = new System.Windows.Forms.Label();
             this.button_CreaterLink = new System.Windows.Forms.Button();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).BeginInit();
             this.SuspendLayout();
             // 
@@ -649,6 +650,11 @@
             this.button_CreaterLink.UseVisualStyleBackColor = true;
             this.button_CreaterLink.Click += new System.EventHandler(this.button_CreaterLink_Click);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -769,6 +775,7 @@
         private System.Windows.Forms.TextBox textBox_CreaterName;
         private System.Windows.Forms.Label label_18;
         private System.Windows.Forms.Button button_CreaterLink;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
 
