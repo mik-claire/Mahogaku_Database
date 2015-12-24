@@ -37,14 +37,16 @@ namespace Mahogaku_Database
             }
             catch (Exception ex)
             {
-                string message = "Error!!" + Environment.NewLine + ex.Message;
+                string message = @"Error!!
+
+" + ex.Message;
                 if (ex.Message.StartsWith("Unable to connect to any of the specified "))
                 {
-                    message = "データベースに接続できませんでした。" + Environment.NewLine +
-                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
-                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
-                        Environment.NewLine +
-                        "https://twitter.com/mikaze_Atlantis";
+                    message = @"データベースに接続できませんでした。
+サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。
+現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。
+
+https://twitter.com/mikaze_Atlantis";
                     MessageBox.Show(message,
                         "Error!!",
                         MessageBoxButtons.OK,
@@ -112,14 +114,13 @@ namespace Mahogaku_Database
 
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
-SELECT
+select
   *
-FROM
-  SEX S
-ORDER BY
-  S.ID ASC
-;
-";
+from
+  SEX
+order by
+  ID asc
+;";
                 reader = cmd.ExecuteReader();
 
                 List<string[]> data = new List<string[]>();
@@ -164,14 +165,13 @@ ORDER BY
 
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
-SELECT
+select
   *
-FROM
-  TYPE T
-ORDER BY
-  T.ID ASC
-;
-";
+from
+  TYPE
+order by
+  ID asc
+;";
                 reader = cmd.ExecuteReader();
 
                 List<string[]> data = new List<string[]>();
@@ -216,25 +216,24 @@ ORDER BY
 
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
-SELECT
-  ID,
-  NAME,
-  PASSWORD
-FROM
-  CREATER C
-ORDER BY
-  C.NAME ASC
-;
-";
+select
+  ID id,
+  NAME name,
+  PASSWORD pass
+from
+  CREATER
+order by
+  C.NAME asc
+;";
                 reader = cmd.ExecuteReader();
 
                 List<string[]> data = new List<string[]>();
                 while (reader.Read())
                 {
                     string[] doc = {
-                                       reader["ID"].ToString(),
-                                       reader["NAME"].ToString(),
-                                       reader["PASSWORD"].ToString()
+                                       reader["id"].ToString(),
+                                       reader["name"].ToString(),
+                                       reader["pass"].ToString()
                                    };
                     data.Add(doc);
                 }
@@ -475,7 +474,7 @@ WikiURL : {12}
         private void insert(CharacterData doc)
         {
             string sql = @"
-INSERT INTO
+insert into 
 `CHARACTER` (
   NAME,
   KANA,
@@ -493,7 +492,7 @@ INSERT INTO
   URL,
   IMAGE
 )
-VALUES (
+values (
   @name,
   @kana,
   @type,
@@ -509,8 +508,7 @@ VALUES (
   @urlToWiki,
   @urlToPixiv,
   @image
-);
-";
+);";
 
             List<string[]> param = new List<string[]>();
             param.Add(new string[] { "name", doc.Name });

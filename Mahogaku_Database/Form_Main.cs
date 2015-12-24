@@ -34,14 +34,16 @@ namespace Mahogaku_Database
             }
             catch (Exception ex)
             {
-                string message = "Error!!" + Environment.NewLine + ex.Message;
+                string message = @"Error!!
+
+" + ex.Message;
                 if (ex.Message.StartsWith("Unable to connect to any of the specified "))
                 {
-                    message = "データベースに接続できませんでした。" + Environment.NewLine +
-                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
-                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
-                        Environment.NewLine +
-                        "https://twitter.com/mikaze_Atlantis";
+                    message = @"データベースに接続できませんでした。
+サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。
+現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。
+
+https://twitter.com/mikaze_Atlantis";
                     MessageBox.Show(message,
                         "Error!!",
                         MessageBoxButtons.OK,
@@ -138,24 +140,38 @@ namespace Mahogaku_Database
 
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
-SELECT
-  CH.ID AS ID, CH.NAME AS NAME, CH.KANA AS KANA,
-  T.NAME AS TYPE, S.NAME AS SEX,
-  CH.RACE AS RACE, CH.AGE AS AGE, CH.GRADE AS GRADE,
-  CH.SKILL AS SKILL, CH.CLUB AS CLUB, CH.ORGANIZATION AS ORG,
-  CH.REMARKS AS REM, CR.ID AS CRID, CR.NAME AS CRNAME,
-  CR.PIXIV AS PIXIV, CR.TWITTER AS TWITTER, CH.WIKI AS WIKI, CH.URL AS SHEET,
-  CR.PASSWORD AS PASSWORD
-FROM
-  `CHARACTER` CH JOIN CREATER CR
-  ON CH.CREATER_ID = CR.ID JOIN TYPE T
-  ON CH.TYPE_ID = T.ID JOIN SEX S
-  ON CH.SEX_ID = S.ID
-ORDER BY
-  T.ID ASC,
-  CH.KANA ASC
-;
-";
+select
+  ch.ID as id,
+  ch.NAME as name,
+  ch.KANA as kana,
+  t.NAME as type, 
+  g.NAME as gender,
+  ch.RACE as race, 
+  ch.AGE as age, 
+  ch.GRADE as grade,
+  ch.SKILL as skill, 
+  ch.CLUB as club,
+  ch.ORGANIZATION as org,
+  ch.REMARKS as rem, 
+  cr.ID as cr_id, 
+  cr.NAME as cr_name,
+  cr.PIXIV as pixiv, 
+  cr.TWITTER as twitter, 
+  ch.WIKI as wiki, 
+  ch.URL as sheet,
+  cr.PASSWORD as pass
+from
+  `CHARACTER` ch
+  join CREATER cr
+    on ch.CREATER_ID = cr.ID
+    join TYPE t
+      on ch.TYPE_ID = t.ID 
+      join SEX g
+        on ch.SEX_ID = g.ID
+order by
+  t.ID asc,
+  ch.KANA asc
+;";
                 reader = cmd.ExecuteReader();
                 
                 List<CharacterData> data = new List<CharacterData>();
@@ -163,27 +179,27 @@ ORDER BY
                 while (reader.Read())
                 {
                     CharacterData doc = new CharacterData();
-                    doc.ID = reader["ID"].ToString();
-                    doc.Name = reader["NAME"].ToString();
-                    doc.Kana = reader["KANA"].ToString();
-                    doc.Type = reader["TYPE"].ToString();
-                    doc.Race = reader["RACE"].ToString();
-                    doc.Sex = reader["SEX"].ToString();
-                    doc.Age = reader["AGE"].ToString();
-                    doc.Grade = reader["GRADE"].ToString();
-                    doc.Skill = reader["SKILL"].ToString();
-                    doc.Club = reader["CLUB"].ToString();
-                    doc.Organization = reader["ORG"].ToString();
-                    doc.Remarks = reader["REM"].ToString();
-                    doc.URLToWiki = reader["WIKI"].ToString();
-                    doc.URLToPixiv = reader["SHEET"].ToString();
+                    doc.ID = reader["id"].ToString();
+                    doc.Name = reader["name"].ToString();
+                    doc.Kana = reader["kana"].ToString();
+                    doc.Type = reader["tyoe"].ToString();
+                    doc.Race = reader["race"].ToString();
+                    doc.Sex = reader["gender"].ToString();
+                    doc.Age = reader["age"].ToString();
+                    doc.Grade = reader["grade"].ToString();
+                    doc.Skill = reader["skill"].ToString();
+                    doc.Club = reader["club"].ToString();
+                    doc.Organization = reader["org"].ToString();
+                    doc.Remarks = reader["rem"].ToString();
+                    doc.URLToWiki = reader["wiki"].ToString();
+                    doc.URLToPixiv = reader["sheet"].ToString();
 
                     CreaterData creater = new CreaterData();
-                    creater.ID = reader["CRID"].ToString();
-                    creater.Name = reader["CRNAME"].ToString();
-                    creater.PixivID = reader["PIXIV"].ToString();
-                    creater.TwitterID = reader["TWITTER"].ToString();
-                    creater.Password = reader["PASSWORD"].ToString();
+                    creater.ID = reader["cr_id"].ToString();
+                    creater.Name = reader["cr_name"].ToString();
+                    creater.PixivID = reader["pixiv"].ToString();
+                    creater.TwitterID = reader["twitter"].ToString();
+                    creater.Password = reader["pass"].ToString();
                     doc.Creater = creater;
 
                     data.Add(doc);
@@ -548,14 +564,16 @@ ORDER BY
             }
             catch (Exception ex)
             {
-                string message = "Error!!" + Environment.NewLine + ex.Message;
+                string message = @"Error!!
+
+" + ex.Message;
                 if (ex.Message.StartsWith("Unable to connect to any of the specified "))
                 {
-                    message = "データベースに接続できませんでした。" + Environment.NewLine +
-                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
-                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
-                        Environment.NewLine +
-                        "https://twitter.com/mikaze_Atlantis";
+                    message = @"データベースに接続できませんでした。
+サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。
+現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。
+
+https://twitter.com/mikaze_Atlantis";
                     MessageBox.Show(message,
                         "Error!!",
                         MessageBoxButtons.OK,
@@ -817,12 +835,11 @@ ORDER BY
         private List<byte[]> getImage()
         {
             string sql = @"
-SELECT
+select
   IMAGE
-FROM
+from
   `CHARACTER`
-;
-";
+;";
 
             MySqlConnection cn = null;
             MySqlCommand cmd = null;
@@ -869,6 +886,11 @@ FROM
             }
         }
 
+        /// <summary>
+        /// バックグラウンド処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             this.isGettingImage = true;
@@ -878,14 +900,16 @@ FROM
             }
             catch (Exception ex)
             {
-                string message = "Error!!" + Environment.NewLine + ex.Message;
+                string message = @"Error!!
+
+" + ex.Message;
                 if (ex.Message.StartsWith("Unable to connect to any of the specified "))
                 {
-                    message = "データベースに接続できませんでした。" + Environment.NewLine +
-                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
-                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
-                        Environment.NewLine +
-                        "https://twitter.com/mikaze_Atlantis";
+                    message = @"データベースに接続できませんでした。
+サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。
+現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。
+
+https://twitter.com/mikaze_Atlantis";
                     MessageBox.Show(message,
                         "Error!!",
                         MessageBoxButtons.OK,
@@ -901,6 +925,11 @@ FROM
             }
         }
 
+        /// <summary>
+        /// バックグラウンド処理完了時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             this.isGettingImage = false;

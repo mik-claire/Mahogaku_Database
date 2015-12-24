@@ -66,7 +66,7 @@ namespace Mahogaku_Database
                 twitter = twitter.Substring(1, twitter.Length - 1);
             }
 
-            string message = string.Format(@"
+            string confirmMessage = string.Format(@"
 以下の内容で登録します。
 よろしいですか？
 
@@ -79,7 +79,7 @@ TwitterID : {3}",
                 pixiv,
                 twitter != string.Empty ? "@" + twitter : "なし"
 );
-            DialogResult dr = MessageBox.Show(message,
+            DialogResult dr = MessageBox.Show(confirmMessage,
                 "Question.",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question);
@@ -106,22 +106,24 @@ TwitterID : {3}",
             }
             catch (Exception ex)
             {
-                string errorMessage = "Error!!" + Environment.NewLine + ex.Message;
+                string message = @"Error!!
+
+" + ex.Message;
                 if (ex.Message.StartsWith("Unable to connect to any of the specified "))
                 {
-                    errorMessage = "データベースに接続できませんでした。" + Environment.NewLine +
-                        "サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。" + Environment.NewLine +
-                        "現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。" + Environment.NewLine +
-                        Environment.NewLine +
-                        "https://twitter.com/mikaze_Atlantis";
-                    MessageBox.Show(errorMessage,
+                    message = @"データベースに接続できませんでした。
+サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。
+現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。
+
+https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
                         "Error!!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show(errorMessage,
+                    MessageBox.Show(message,
                         "Error!!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -132,19 +134,20 @@ TwitterID : {3}",
         private void insertCreater(CreaterData doc)
         {
             string sql = @"
-INSERT INTO CREATER
+insert into
+CREATER
 (
   NAME,
   PASSWORD,
   PIXIV,
   TWITTER
-) VALUES (
+)
+values (
 @name,
 @pass,
 @pixiv,
 @twitter
-);
-";
+);";
 
             List<string[]> param = new List<string[]>();
             param.Add(new string[] { "name", doc.Name });

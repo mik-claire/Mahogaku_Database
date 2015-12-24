@@ -26,11 +26,28 @@ namespace Mahogaku_Database
             }
             catch (Exception ex)
             {
-                string message = "Error!!" + Environment.NewLine + ex.Message;
-                MessageBox.Show(message,
-                    "Error!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                string message = @"Error!!
+
+" + ex.Message;
+                if (ex.Message.StartsWith("Unable to connect to any of the specified "))
+                {
+                    message = @"データベースに接続できませんでした。
+サーバーが立ち上がっていない可能性がありますので、今しばらくお待ち下さい。
+現在のサーバーの状況は、以下のTwitterアカウントにて随時報告されております。
+
+https://twitter.com/mikaze_Atlantis";
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(message,
+                        "Error!!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -72,21 +89,28 @@ namespace Mahogaku_Database
 
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
-SELECT ID, NAME, PASSWORD, PIXIV, TWITTER
-FROM CREATER ORDER BY NAME ASC
-;
-";
+select
+  ID as id,
+  NAME as name,
+  PASSWORD as pass,
+  PIXIV as pixiv,
+  TWITTER as twitter
+from
+  CREATER
+order by
+  NAME asc
+;";
                 reader = cmd.ExecuteReader();
 
                 List<CreaterData> data = new List<CreaterData>();
                 while (reader.Read())
                 {
                     CreaterData doc = new CreaterData();
-                    doc.ID = reader["ID"].ToString();
-                    doc.Name = reader["NAME"].ToString();
-                    doc.PixivID = reader["PIXIV"].ToString();
-                    doc.TwitterID = reader["TWITTER"].ToString();
-                    doc.Password = reader["PASSWORD"].ToString();
+                    doc.ID = reader["id"].ToString();
+                    doc.Name = reader["name"].ToString();
+                    doc.PixivID = reader["pixiv"].ToString();
+                    doc.TwitterID = reader["twitter"].ToString();
+                    doc.Password = reader["pass"].ToString();
                     data.Add(doc);
                 }
 
