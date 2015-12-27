@@ -23,7 +23,7 @@ namespace Mahogaku_Database
         public Form_UpdateCharacter()
         {
             InitializeComponent();
-            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
+            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=myUser;Pwd=1RewT3vf";
         }
 
         /// <summary>
@@ -133,6 +133,7 @@ https://twitter.com/mikaze_Atlantis";
             this.textBox_Club.Text = this.Character.Club;
             this.textBox_Organization.Text = this.Character.Organization;
             this.textBox_Remarks.Text = this.Character.Remarks;
+            this.textBox_Wiki.Text = this.Character.URLToWiki;
             this.textBox_URLToPixiv.Text = this.Character.URLToPixiv;
 
             if (this.Character.ImageData.Length != 0)
@@ -170,9 +171,9 @@ https://twitter.com/mikaze_Atlantis";
 select
   *
 from
-  SEX
+  gender
 order by
-  ID asc
+  id asc
 ;
 ";
                 reader = cmd.ExecuteReader();
@@ -181,8 +182,8 @@ order by
                 while (reader.Read())
                 {
                     string[] doc = {
-                                       reader["ID"].ToString(),
-                                       reader["NAME"].ToString()
+                                       reader["id"].ToString(),
+                                       reader["name"].ToString()
                                    };
                     data.Add(doc);
                 }
@@ -222,9 +223,9 @@ order by
 select
   *
 from
-  TYPE
+  type
 order by
-  ID asc
+  id asc
 ;
 ";
                 reader = cmd.ExecuteReader();
@@ -233,8 +234,8 @@ order by
                 while (reader.Read())
                 {
                     string[] doc = {
-                                       reader["ID"].ToString(),
-                                       reader["NAME"].ToString()
+                                       reader["id"].ToString(),
+                                       reader["name"].ToString()
                                    };
                     data.Add(doc);
                 }
@@ -272,13 +273,13 @@ order by
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
 select
-  ID as id,
-  NAME as name,
-  PASSWORD as pass
+  id,
+  name,
+  password as pass
 from
-  CREATER
+  creater
 order by
-  NAME asc
+  name asc
 ;";
                 reader = cmd.ExecuteReader();
 
@@ -562,27 +563,26 @@ https://twitter.com/mikaze_Atlantis";
         {
             string sql = @"
 update
-  `CHARACTER`
+  chara
 set
-  NAME = @name,
-  KANA = @kana,
-  TYPE_ID = @type,
-  SEX_ID = @sex,
-  RACE = @race,
-  AGE = @age,
-  GRADE = @grade,
-  SKILL = @skill,
-  CLUB = @club,
-  ORGANIZATION = @organization,
-  REMARKS = @remarks,
-  CREATER_ID = @createrId,
-  WIKI = @urlToWiki,
-  URL = @urlToPixiv,
-  IMAGE = @image
+  name = @name,
+  kana = @kana,
+  type_id= @type,
+  gender_id = @sex,
+  race = @race,
+  age = @age,
+  grade = @grade,
+  skill = @skill,
+  club = @club,
+  organization = @organization,
+  remarks = @remarks,
+  creater_id = @createrId,
+  wiki_url = @urlToWiki,
+  sheet_url = @urlToPixiv,
+  image = @image
 where
-  ID = @id
-;
-";
+  id = @id
+;";
 
             List<string[]> param = new List<string[]>();
             param.Add(new string[] { "name", doc.Name });

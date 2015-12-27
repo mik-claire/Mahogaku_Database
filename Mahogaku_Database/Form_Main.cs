@@ -14,7 +14,7 @@ namespace Mahogaku_Database
         public Form_Main()
         {
             InitializeComponent();
-            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
+            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=myUser;Pwd=1RewT3vf";
         }
 
         private List<byte[]> imageList = new List<byte[]>();
@@ -113,6 +113,8 @@ https://twitter.com/mikaze_Atlantis";
         /// </summary>
         private void loadDisplay()
         {
+            this.button_Update.Enabled = false;
+
             // データ取得
             List<CharacterData> data = getData();
 
@@ -121,6 +123,8 @@ https://twitter.com/mikaze_Atlantis";
 
             // 表示
             display(data);
+
+            this.backgroundWorker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -141,48 +145,48 @@ https://twitter.com/mikaze_Atlantis";
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
 select
-  ch.ID as id,
-  ch.NAME as name,
-  ch.KANA as kana,
-  t.NAME as type, 
-  g.NAME as gender,
-  ch.RACE as race, 
-  ch.AGE as age, 
-  ch.GRADE as grade,
-  ch.SKILL as skill, 
-  ch.CLUB as club,
-  ch.ORGANIZATION as org,
-  ch.REMARKS as rem, 
-  cr.ID as cr_id, 
-  cr.NAME as cr_name,
-  cr.PIXIV as pixiv, 
-  cr.TWITTER as twitter, 
-  ch.WIKI as wiki, 
-  ch.URL as sheet,
-  cr.PASSWORD as pass
+  ch.id as id,
+  ch.name as name,
+  ch.kana as kana,
+  t.name as type, 
+  g.name as gender,
+  ch.race as race, 
+  ch.age as age, 
+  ch.grade as grade,
+  ch.skill as skill, 
+  ch.club as club,
+  ch.organization as org,
+  ch.remarks as rem, 
+  cr.id as cr_id, 
+  cr.name as cr_name,
+  cr.pixiv_id as pixiv, 
+  cr.twitter_id as twitter, 
+  ch.wiki_url as wiki, 
+  ch.sheet_url as sheet,
+  cr.password as pass
 from
-  `CHARACTER` ch
-  join CREATER cr
-    on ch.CREATER_ID = cr.ID
-    join TYPE t
-      on ch.TYPE_ID = t.ID 
-      join SEX g
-        on ch.SEX_ID = g.ID
+  chara ch
+  join creater cr
+    on ch.creater_id = cr.id
+    join type t
+      on ch.type_id = t.id 
+      join gender g
+        on ch.gender_id = g.id
 order by
-  t.ID asc,
-  ch.KANA asc
+  t.id asc,
+  ch.kana asc
 ;";
                 reader = cmd.ExecuteReader();
                 
                 List<CharacterData> data = new List<CharacterData>();
-                this.imageList.Clear();
+                //this.imageList.Clear();
                 while (reader.Read())
                 {
                     CharacterData doc = new CharacterData();
                     doc.ID = reader["id"].ToString();
                     doc.Name = reader["name"].ToString();
                     doc.Kana = reader["kana"].ToString();
-                    doc.Type = reader["tyoe"].ToString();
+                    doc.Type = reader["type"].ToString();
                     doc.Race = reader["race"].ToString();
                     doc.Sex = reader["gender"].ToString();
                     doc.Age = reader["age"].ToString();
@@ -836,9 +840,14 @@ https://twitter.com/mikaze_Atlantis";
         {
             string sql = @"
 select
-  IMAGE
+  c.image
 from
-  `CHARACTER`
+  chara c
+  join type t
+    on c.type_id = t.id
+order by
+  t.id asc,
+  c.kana asc
 ;";
 
             MySqlConnection cn = null;
@@ -859,9 +868,9 @@ from
                 while (reader.Read())
                 {
                     byte[] imageData = new byte[0];
-                    if (reader["IMAGE"].ToString() != string.Empty)
+                    if (reader["image"].ToString() != string.Empty)
                     {
-                        imageData = (byte[])reader["IMAGE"];
+                        imageData = (byte[])reader["image"];
                     }
 
                     data.Add(imageData);
@@ -894,9 +903,11 @@ from
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             this.isGettingImage = true;
+
             try
             {
-                this.imageList = getImage();
+                List<byte[]> temp = getImage();
+                this.imageList = temp;
             }
             catch (Exception ex)
             {
@@ -933,6 +944,7 @@ https://twitter.com/mikaze_Atlantis";
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             this.isGettingImage = false;
+            this.button_Update.Enabled = true;
         }
     }
 }

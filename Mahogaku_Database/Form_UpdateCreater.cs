@@ -18,7 +18,7 @@ namespace Mahogaku_Database
         public Form_UpdateCreater()
         {
             InitializeComponent();
-            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
+            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=myUser;Pwd=1RewT3vf";
         }
 
         private void Form_UpdateCreater_Load(object sender, EventArgs e)
@@ -134,13 +134,13 @@ https://twitter.com/mikaze_Atlantis";
         {
             string sql = @"
 update
- CREATER 
+ creater 
 set
-  NAME = @name,
-  PIXIV = @pixiv,
-  TWITTER = @twitter
+  name = @name,
+  pixiv_id = @pixiv,
+  twitter_id = @twitter
 where
-  ID = @id
+  id = @id
 ;";
             List<string[]> param = new List<string[]>();
             param.Add(new string[] { "name", doc.Name });

@@ -20,7 +20,7 @@ namespace Mahogaku_Database
         public Form_InsertCharacter()
         {
             InitializeComponent();
-            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=guest;Pwd=password";
+            this.connectionString = "Server=mikserver.ms-18e.com;Database=archive;Uid=myUser;Pwd=1RewT3vf";
         }
 
         /// <summary>
@@ -117,9 +117,9 @@ https://twitter.com/mikaze_Atlantis";
 select
   *
 from
-  SEX
+  gender
 order by
-  ID asc
+  id asc
 ;";
                 reader = cmd.ExecuteReader();
 
@@ -127,8 +127,8 @@ order by
                 while (reader.Read())
                 {
                     string[] doc = {
-                                       reader["ID"].ToString(),
-                                       reader["NAME"].ToString()
+                                       reader["id"].ToString(),
+                                       reader["name"].ToString()
                                    };
                     data.Add(doc);
                 }
@@ -168,9 +168,9 @@ order by
 select
   *
 from
-  TYPE
+  type
 order by
-  ID asc
+  id asc
 ;";
                 reader = cmd.ExecuteReader();
 
@@ -178,8 +178,8 @@ order by
                 while (reader.Read())
                 {
                     string[] doc = {
-                                       reader["ID"].ToString(),
-                                       reader["NAME"].ToString()
+                                       reader["id"].ToString(),
+                                       reader["name"].ToString()
                                    };
                     data.Add(doc);
                 }
@@ -217,13 +217,13 @@ order by
                 cmd = cn.CreateCommand();
                 cmd.CommandText = @"
 select
-  ID id,
-  NAME name,
-  PASSWORD pass
+  id,
+  name,
+  password as pass
 from
-  CREATER
+  creater
 order by
-  C.NAME asc
+  name asc
 ;";
                 reader = cmd.ExecuteReader();
 
@@ -475,24 +475,9 @@ WikiURL : {12}
         {
             string sql = @"
 insert into 
-`CHARACTER` (
-  NAME,
-  KANA,
-  TYPE_ID,
-  SEX_ID,
-  RACE,
-  AGE,
-  GRADE,
-  SKILL,
-  CLUB,
-  ORGANIZATION,
-  REMARKS,
-  CREATER_ID,
-  WIKI,
-  URL,
-  IMAGE
-)
+  chara
 values (
+  null,
   @name,
   @kana,
   @type,
