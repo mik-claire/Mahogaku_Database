@@ -64,7 +64,7 @@ https://twitter.com/mikaze_Atlantis";
                 this.Close();
             }
 
-            this.backgroundWorker.RunWorkerAsync();
+            //this.backgroundWorker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ https://twitter.com/mikaze_Atlantis";
                 }
             }
 
-            this.backgroundWorker.RunWorkerAsync();
+            //this.backgroundWorker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -113,6 +113,12 @@ https://twitter.com/mikaze_Atlantis";
         /// </summary>
         private void loadDisplay()
         {
+            this.backgroundWorker.CancelAsync();
+            while (this.backgroundWorker.IsBusy)
+            {
+                Application.DoEvents();
+            }
+
             this.button_Update.Enabled = false;
 
             // データ取得
@@ -123,6 +129,11 @@ https://twitter.com/mikaze_Atlantis";
 
             // 表示
             display(data);
+
+            if (this.isGettingImage)
+            {
+                return;
+            }
 
             this.backgroundWorker.RunWorkerAsync();
         }
